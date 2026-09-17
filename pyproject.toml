@@ -1,0 +1,51 @@
+[project]
+name = "automation_utilities"
+version = "1.0.0"
+description = "Personal use automation utilities library."
+readme = "README.md"
+license = {file = "LICENSE.md"}
+keywords = [
+    "automation",
+    "utilities",
+    "windows",
+    "mouse",
+    "keyboard",
+    "screen",
+    "timing",
+    "sound",
+    "system",
+    "macro",
+    "bot",
+    "rpa"
+]
+authors = [{name = "Guido Iván Gross", email = "grossguidoivan@gmail.com"}]
+requires-python = ">= 3.10"
+dependencies = [
+    "mss >= 6.1.0",
+    "numpy >= 1.21.0",
+    "opencv-python >= 4.5.5",
+    "psutil >= 5.8.0",
+    "PyGetWindow >= 0.0.9",
+    "pyperclip >= 1.8.2",
+    "winrt-Windows.Foundation >= 3.0",
+    "winrt-Windows.Foundation.Collections >= 3.0",
+    "winrt-Windows.Graphics.Imaging >= 3.0",
+    "winrt-Windows.Media.Ocr >= 3.0",
+    "winrt-Windows.Storage.Streams >= 3.0"
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: Microsoft :: Windows",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Utilities",
+    "Topic :: Desktop Environment"
+]
+
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["automation_utilities*"]
+exclude = ["examples*"]
