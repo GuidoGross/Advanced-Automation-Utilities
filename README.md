@@ -380,3 +380,11 @@ pip install advanced_automation_utilities
 ```bash
 pip install -U advanced_automation_utilities
 ```
+
+---
+
+## **Uninstall**
+
+```bash
+pip uninstall -y advanced_automation_utilities
+```
