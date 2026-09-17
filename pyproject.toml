@@ -1,6 +1,6 @@
 [project]
 name = "advanced_automation_utilities"
-version = "1.0.0"
+version = "1.0.1"
 description = "Personal use automation utilities library."
 readme = "README.md"
 license = {file = "LICENSE.md"}
@@ -27,6 +27,7 @@ dependencies = [
     "psutil >= 5.8.0",
     "PyGetWindow >= 0.0.9",
     "pyperclip >= 1.8.2",
+    "tui_utilities >= 1.9.17",
     "winrt-Windows.Foundation >= 3.0",
     "winrt-Windows.Foundation.Collections >= 3.0",
     "winrt-Windows.Graphics.Imaging >= 3.0",
