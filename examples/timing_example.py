@@ -7,8 +7,8 @@ parent_directory = os.path.dirname(script_directory)
 if parent_directory not in sys.path: sys.path.insert(0, parent_directory)
 
 from examples.examples_utilities import start_stop_script
-from automation_utilities.timing import Timing, measure_time, start_stop_timer
-from automation_utilities.keyboard import KeyboardInfo
+from advanced_automation_utilities.timing import Timing, measure_time, start_stop_timer
+from advanced_automation_utilities.keyboard import KeyboardInfo
 from tui_utilities import (
     set_window_title,
     maximize_window,

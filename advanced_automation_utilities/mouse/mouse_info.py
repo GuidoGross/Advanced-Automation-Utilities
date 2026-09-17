@@ -1,4 +1,4 @@
-from automation_utilities.screen import ScreenInfo
+from advanced_automation_utilities.screen import ScreenInfo
 import ctypes
 
 class MouseInfo:

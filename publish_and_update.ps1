@@ -1,4 +1,4 @@
-$ErrorActionPreference = "Stop"
+﻿$ErrorActionPreference = "Stop"
 
 chcp 65001 > $null
 $utf8_encoding = New-Object System.Text.UTF8Encoding($false)
@@ -76,8 +76,8 @@ function delete_temporary_files {
 function update_library {
     Write-Host "${bold}${italic}[5/5]${/italic} Actualizando librería localmente...${reset_style}" -ForegroundColor White
     $current_step_start_time = Get-Date
-    pip install -U automation_utilities
-    pip install -U automation_utilities
+    pip install -U advanced_automation_utilities
+    pip install -U advanced_automation_utilities
     $duration = (Get-Date) - $current_step_start_time
     Write-Host "${bold}Librería actualizada en:${/bold} $($duration.TotalMilliseconds.ToString("N0", [cultureinfo]::GetCultureInfo("es-ES")))ms${reset_style}" -ForegroundColor Green
     separator

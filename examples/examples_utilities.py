@@ -6,9 +6,9 @@ if script_directory in sys.path: sys.path.remove(script_directory)
 parent_directory = os.path.dirname(script_directory)
 if parent_directory not in sys.path: sys.path.insert(0, parent_directory)
 
-from automation_utilities.keyboard import Keyboard, KeyboardInfo
-from automation_utilities.sound import Sound
-from automation_utilities.timing import Timing
+from advanced_automation_utilities.keyboard import Keyboard, KeyboardInfo
+from advanced_automation_utilities.sound import Sound
+from advanced_automation_utilities.timing import Timing
 from tui_utilities import clear_console, header, print
 
 def update_test_state(title, running):

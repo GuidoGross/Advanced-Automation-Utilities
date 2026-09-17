@@ -1,5 +1,5 @@
 [project]
-name = "automation_utilities"
+name = "advanced_automation_utilities"
 version = "1.0.0"
 description = "Personal use automation utilities library."
 readme = "README.md"
@@ -47,5 +47,5 @@ requires = ["setuptools >= 61.0"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
-include = ["automation_utilities*"]
+include = ["advanced_automation_utilities*"]
 exclude = ["examples*"]

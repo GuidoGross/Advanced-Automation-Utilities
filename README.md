@@ -1,4 +1,4 @@
-# **Automation Utilities**
+# **Advanced Automation Utilities**
 
 Personal use automation utilities library. A powerful, native Python library for Windows automation, featuring Context Manager-based async chaining and zero dependence on heavy GUI automation libraries. It leverages native `ctypes` hooks for maximum speed, security, and lower overhead.
 
@@ -59,8 +59,8 @@ Both **Mouse** and **Keyboard** actions are governed by highly configurable data
 
 You can pass a custom physics object to their respective facades to alter their simulation parameters:
 ```python
-from automation_utilities.mouse import MousePhysics, Mouse
-from automation_utilities.keyboard import KeyboardPhysics, Keyboard
+from advanced_automation_utilities.mouse import MousePhysics, Mouse
+from advanced_automation_utilities.keyboard import KeyboardPhysics, Keyboard
 
 # Configure human-like Bézier curve mouse movements
 mouse_physics = MousePhysics(
@@ -370,7 +370,7 @@ keyboard = Keyboard(keyboard_physics)
 ## **Installation**
 
 ```bash
-pip install automation_utilities
+pip install advanced_automation_utilities
 ```
 
 ---
@@ -378,5 +378,5 @@ pip install automation_utilities
 ## **Update**
 
 ```bash
-pip install -U automation_utilities
+pip install -U advanced_automation_utilities
 ```

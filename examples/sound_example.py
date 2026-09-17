@@ -6,7 +6,7 @@ if script_directory in sys.path: sys.path.remove(script_directory)
 parent_directory = os.path.dirname(script_directory)
 if parent_directory not in sys.path: sys.path.insert(0, parent_directory)
 
-from automation_utilities.sound import Sound
+from advanced_automation_utilities.sound import Sound
 from tui_utilities import set_window_title, maximize_window, menu, confirm_exit, header, print
 
 def main():
