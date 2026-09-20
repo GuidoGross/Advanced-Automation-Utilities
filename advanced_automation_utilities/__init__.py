@@ -11,8 +11,8 @@ from .keyboard import (
     KeyboardInfo,
     KeyboardPhysics,
     KEYBOARD_HUMAN,
-    KEYBOARD_SLOW,
-    KEYBOARD_FAST
+    KEYBOARD_SLOW_AND_PRECISE,
+    KEYBOARD_FAST_AND_IMPRECISE
 )
 from .screen import (Screen, ScreenInfo)
 from .timing import (Timing, TimingInfo, measure_time)
@@ -30,8 +30,8 @@ __all__ = [
     "KeyboardInfo",
     "KeyboardPhysics",
     "KEYBOARD_HUMAN",
-    "KEYBOARD_SLOW",
-    "KEYBOARD_FAST",
+    "KEYBOARD_SLOW_AND_PRECISE",
+    "KEYBOARD_FAST_AND_IMPRECISE",
     "Screen",
     "ScreenInfo",
     "Timing",
