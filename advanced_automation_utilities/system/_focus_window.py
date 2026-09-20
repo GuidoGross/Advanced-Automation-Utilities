@@ -6,9 +6,8 @@ class _FocusWindow(_SystemAction):
     
     def execute(self) -> None:
         windows = pygetwindow.getWindowsWithTitle(self.window_title)
-        if not windows: return False
+        if not windows: return
         try:
             if windows[0].isMinimized: windows[0].restore()
             windows[0].activate()
-            return True
-        except pygetwindow.PyGetWindowException: return False
+        except pygetwindow.PyGetWindowException: pass

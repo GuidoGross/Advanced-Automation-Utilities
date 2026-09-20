@@ -14,8 +14,6 @@ class _ResizeWindow(_SystemAction):
     
     def execute(self) -> None:
         windows = pygetwindow.getWindowsWithTitle(self.window_title)
-        if not windows: return False
-        try:
-            windows[0].resizeTo(self.width, self.height)
-            return True
-        except pygetwindow.PyGetWindowException: return False
+        if not windows: return
+        try: windows[0].resizeTo(self.width, self.height)
+        except pygetwindow.PyGetWindowException: pass

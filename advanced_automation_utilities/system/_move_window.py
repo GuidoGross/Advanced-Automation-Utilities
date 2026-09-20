@@ -9,8 +9,6 @@ class _MoveWindow(_SystemAction):
     
     def execute(self) -> None:
         windows = pygetwindow.getWindowsWithTitle(self.window_title)
-        if not windows: return False
-        try:
-            windows[0].moveTo(self.x, self.y)
-            return True
-        except pygetwindow.PyGetWindowException: return False
+        if not windows: return
+        try: windows[0].moveTo(self.x, self.y)
+        except pygetwindow.PyGetWindowException: pass

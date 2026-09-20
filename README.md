@@ -28,6 +28,7 @@ Personal use automation utilities library. A powerful, native Python library for
 - `psutil` (5.8.0 or higher)
 - `PyGetWindow` (0.0.9 or higher)
 - `pyperclip` (1.8.2 or higher)
+- `tui_utilities` (1.9.17 or higher)
 - `winrt-Windows.Foundation` (3.0 or higher)
 - `winrt-Windows.Foundation.Collections` (3.0 or higher)
 - `winrt-Windows.Graphics.Imaging` (3.0 or higher)
@@ -259,7 +260,7 @@ keyboard = Keyboard(keyboard_physics)
   ```
 - **Timing().wait_random():** Pauses execution for a random duration between two limits.
   ```python
-  Timing().wait_random(min_seconds = 1.0, max_seconds = 3.0)
+  Timing().wait_random(minimum_duration = 1, maximum_duration = 3)
   ```
 - **Timing().wait_until():** Halts execution until a given function or lambda condition evaluates to True.
   ```python
@@ -345,9 +346,9 @@ keyboard = Keyboard(keyboard_physics)
   ```python
   System().disable_kill_switch()
   ```
-- **System().lock():** Locks the Windows session (Win+L).
+- **System().lock_screen():** Locks the Windows session (Win+L).
   ```python
-  System().lock()
+  System().lock_screen()
   ```
 - **System().sign_out():** Signs out the current Windows user.
   ```python
