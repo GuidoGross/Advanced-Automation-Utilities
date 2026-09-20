@@ -30,11 +30,9 @@ class Keyboard:
         Context manager to queue actions and execute them asynchronously.
 
         Example:
-        ```python
-        with keyboard.asynchronous():
-            keyboard.write("Hello")
-            keyboard.press_key("enter")
-        ```
+            >>> with keyboard.asynchronous():
+            ...     keyboard.write("Hello")
+            ...     keyboard.press_key("enter")
         """
         self._queue_mode = True
         self._queue.clear()
@@ -60,9 +58,7 @@ class Keyboard:
         Presses a key and holds it down.
 
         Example:
-        ```python
-        Keyboard().hold_key("shift")
-        ```
+            >>> Keyboard().hold_key("shift")
         """
         return self._execute_or_queue(_HoldKey(key = key, physics = self.physics))
     
@@ -71,9 +67,7 @@ class Keyboard:
         Releases a previously held key.
 
         Example:
-        ```python
-        Keyboard().release_key("shift")
-        ```
+            >>> Keyboard().release_key("shift")
         """
         return self._execute_or_queue(_ReleaseKey(key = key, physics = self.physics))
     
@@ -82,9 +76,7 @@ class Keyboard:
         Presses and immediately releases a single key.
 
         Example:
-        ```python
-        Keyboard().press_key("a")
-        ```
+            >>> Keyboard().press_key("a")
         """
         return self._execute_or_queue(_PressKey(key = key, physics = self.physics))
     
@@ -93,9 +85,7 @@ class Keyboard:
         Holds down a combination of keys and releases them in reverse order.
 
         Example:
-        ```python
-        Keyboard().hotkey("ctrl", "c")
-        ```
+            >>> Keyboard().hotkey("ctrl", "c")
         """
         return self._execute_or_queue(_Hotkey(*keys, physics = self.physics))
     
@@ -104,9 +94,7 @@ class Keyboard:
         Blocks all physical input from a specific key.
 
         Example:
-        ```python
-        Keyboard().block_key("esc")
-        ```
+            >>> Keyboard().block_key("esc")
         """
         return self._execute_or_queue(_BlockKey(key = key))
     
@@ -115,9 +103,7 @@ class Keyboard:
         Unblocks a previously blocked key.
         
         Example:
-        ```python
-        Keyboard().unblock_key("esc")
-        ```
+            >>> Keyboard().unblock_key("esc")
         """
         return self._execute_or_queue(_UnblockKey(key = key))
     
@@ -126,8 +112,6 @@ class Keyboard:
         Types a string character by character with advanced, human-like typing error simulations, delays, and physics.
         
         Example:
-        ```python
-        Keyboard().write("Hello, world!")
-        ```
+            >>> Keyboard().write("Hello, world!")
         """
         return self._execute_or_queue(_Write(text = text, physics = self.physics))

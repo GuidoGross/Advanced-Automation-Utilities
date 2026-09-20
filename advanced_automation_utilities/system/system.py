@@ -40,11 +40,9 @@ class System:
         Context manager to queue actions and execute them asynchronously.
 
         Example:
-        ```python
-        with system.asynchronous():
-            system.open_process("notepad.exe")
-            system.focus_window("Notepad")
-        ```
+            >>> with system.asynchronous():
+            ...     system.open_process("notepad.exe")
+            ...     system.focus_window("Notepad")
         """
         self._queue_mode = True
         self._queue.clear()
@@ -65,9 +63,7 @@ class System:
         Sets the text content of the Windows clipboard.
 
         Example:
-        ```python
-        System().set_clipboard_text("Text to paste later")
-        ```
+            >>> System().set_clipboard_text("Text to paste later")
         """
         return self._execute_or_queue(_SetClipboardText(text = text))
     
@@ -76,9 +72,7 @@ class System:
         Opens a process or file with optional arguments.
 
         Example:
-        ```python
-        System().open_process("notepad.exe")
-        ```
+            >>> System().open_process("notepad.exe")
         """
         return self._execute_or_queue(_OpenProcess(executable_path = executable_path))
     
@@ -87,9 +81,7 @@ class System:
         Terminates an active process by its name.
 
         Example:
-        ```python
-        System().kill_process("notepad.exe", force = True)
-        ```
+            >>> System().kill_process("notepad.exe", force = True)
         """
         return self._execute_or_queue(_KillProcess(process = process, force = force))
     
@@ -98,9 +90,7 @@ class System:
         Brings a specific window to the foreground by its title.
 
         Example:
-        ```python
-        System().focus_window("Untitled - Notepad")
-        ```
+            >>> System().focus_window("Untitled - Notepad")
         """
         return self._execute_or_queue(_FocusWindow(window_title = window_title))
     
@@ -114,9 +104,7 @@ class System:
         Resizes a specific window to the specified dimensions by its title.
 
         Example:
-        ```python
-        System().resize_window("Untitled - Notepad", width = 800, height = 600)
-        ```
+            >>> System().resize_window("Untitled - Notepad", width = 800, height = 600)
         """
         return self._execute_or_queue(
             _ResizeWindow(window_title = window_title, width = width, height = height)
@@ -127,9 +115,7 @@ class System:
         Moves a specific window to the specified coordinates by its title.
 
         Example:
-        ```python
-        System().move_window("Untitled - Notepad", x = 100, y = 100)
-        ```
+            >>> System().move_window("Untitled - Notepad", x = 100, y = 100)
         """
         return self._execute_or_queue(_MoveWindow(window_title = window_title, x = x, y = y))
     
@@ -138,9 +124,7 @@ class System:
         Gently closes a specific window by its title.
 
         Example:
-        ```python
-        System().close_window("Untitled - Notepad")
-        ```
+            >>> System().close_window("Untitled - Notepad")
         """
         return self._execute_or_queue(_CloseWindow(window_title = window_title))
     
@@ -149,9 +133,7 @@ class System:
         Locks the Windows session (Win+L).
 
         Example:
-        ```python
-        System().lock_screen()
-        ```
+            >>> System().lock_screen()
         """
         return self._execute_or_queue(_LockScreen())
     
@@ -160,9 +142,7 @@ class System:
         Signs out the current Windows user.
 
         Example:
-        ```python
-        System().sign_out()
-        ```
+            >>> System().sign_out()
         """
         return self._execute_or_queue(_SignOut())
     
@@ -171,9 +151,7 @@ class System:
         Puts the computer into sleep mode.
 
         Example:
-        ```python
-        System().sleep()
-        ```
+            >>> System().sleep()
         """
         return self._execute_or_queue(_Sleep())
     
@@ -182,9 +160,7 @@ class System:
         Puts the computer into hibernation mode.
 
         Example:
-        ```python
-        System().hibernate()
-        ```
+            >>> System().hibernate()
         """
         return self._execute_or_queue(_Hibernate())
     
@@ -193,9 +169,7 @@ class System:
         Turns off the computer.
 
         Example:
-        ```python
-        System().shutdown()
-        ```
+            >>> System().shutdown()
         """
         return self._execute_or_queue(_Shutdown(delay = delay))
     
@@ -204,9 +178,7 @@ class System:
         Restarts the computer.
 
         Example:
-        ```python
-        System().restart()
-        ```
+            >>> System().restart()
         """
         return self._execute_or_queue(_Restart(delay = delay))
     
@@ -215,9 +187,7 @@ class System:
         Enables a global kill switch (Ctrl + Shift + Alt + K by default) to abort execution instantly.
         
         Example:
-        ```python
-        System().enable_kill_switch()
-        ```
+            >>> System().enable_kill_switch()
         """
         if not keys: keys = ("ctrl", "shift", "alt", "k")
         return self._execute_or_queue(_EnableKillSwitch(*keys))
@@ -227,8 +197,6 @@ class System:
         Disables the global kill switch.
         
         Example:
-        ```python
-        System().disable_kill_switch()
-        ```
+            >>> System().disable_kill_switch()
         """
         return self._execute_or_queue(_DisableKillSwitch())
