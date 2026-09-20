@@ -11,9 +11,7 @@ class ScreenInfo:
         Gets the (width, height) resolution of the primary screen.
 
         Example:
-            ```python
-            width, height = ScreenInfo().resolution
-            ```
+            >>> width, height = ScreenInfo().resolution
         """
         width = ctypes.windll.user32.GetSystemMetrics(0)
         height = ctypes.windll.user32.GetSystemMetrics(1)
@@ -25,9 +23,7 @@ class ScreenInfo:
         Gets the width of the primary screen.
 
         Example:
-            ```python
-            width = ScreenInfo().width
-            ```
+            >>> width = ScreenInfo().width
         """
         return ctypes.windll.user32.GetSystemMetrics(0)
 
@@ -37,9 +33,7 @@ class ScreenInfo:
         Gets the height of the primary screen.
 
         Example:
-            ```python
-            height = ScreenInfo().height
-            ```
+            >>> height = ScreenInfo().height
         """
         return ctypes.windll.user32.GetSystemMetrics(1)
 
@@ -54,11 +48,9 @@ class ScreenInfo:
         ]:
         """
         Gets the RGB color of a specific pixel coordinate.
-
+        
         Example:
-            ```python
-            r, g, b = ScreenInfo().pixel_color(250, 500)
-            ```
+            >>> r, g, b = ScreenInfo().pixel_color(250, 500)
         """
         if format.lower() not in ["rgb", "hexadecimal"]:
             raise ValueError("Invalid color format. Valid options: \"rgb\", \"hexadecimal\".")
