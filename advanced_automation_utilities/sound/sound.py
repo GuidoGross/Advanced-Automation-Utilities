@@ -25,9 +25,11 @@ class Sound:
         Context manager to queue actions and execute them asynchronously.
 
         Example:
-            >>> with sound.asynchronous():
-            ...     sound.play_beep_sound(1000, 500)
-            ...     sound.speak("Hello World")
+        ```python
+        with sound.asynchronous():
+            sound.play_beep_sound(1000, 500)
+            sound.speak("Hello World")
+        ```
         """
         self._queue_mode = True
         self._queue.clear()
@@ -57,7 +59,9 @@ class Sound:
         Plays a motherboard beep with a specific frequency and duration.
 
         Example:
-            >>> Sound().play_beep_sound(frequency = 1000, duration = 0.5)
+        ```python
+        Sound().play_beep_sound(frequency = 1000, duration = 0.5)
+        ```
         """
         return self._execute_or_queue(_PlayBeepSound(frequency = frequency, duration = duration))
     
@@ -66,7 +70,9 @@ class Sound:
         Plays an audio file from the file system.
 
         Example:
-            >>> Sound().play_audio("alert.wav")
+        ```python
+        Sound().play_audio("alert.wav")
+        ```
         """
         return self._execute_or_queue(_PlayAudio(file_path = file_path))
     
@@ -76,9 +82,11 @@ class Sound:
     ) -> None:
         """
         Plays a default Windows system sound.
-
+        
         Example:
-            >>> Sound().play_system_sound("warning")
+        ```python
+        Sound().play_system_sound("warning")
+        ```
         """
         return self._execute_or_queue(_PlaySystemSound(sound_type = sound_type))
     
@@ -87,6 +95,8 @@ class Sound:
         Synthesizes text to speech using the default Windows voice.
         
         Example:
-            >>> Sound().speak("Hello, world!")
+        ```python
+        Sound().speak("Hello, world!")
+        ```
         """
         return self._execute_or_queue(_Speak(text = text))

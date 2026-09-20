@@ -13,7 +13,9 @@ class Timing:
         Pauses execution for an exact amount of seconds.
         
         Example:
-            >>> Timing().wait(2.5)
+        ```python
+        Timing().wait(2.5)
+        ```
         """
         return _Wait(duration = duration).execute()
     
@@ -26,7 +28,9 @@ class Timing:
         Pauses execution for a random duration between two limits.
 
         Example:
-            >>> Timing().wait_random(min_seconds = 1.0, max_seconds = 3.0)
+        ```python
+        Timing().wait_random(min_seconds = 1.0, max_seconds = 3.0)
+        ```
         """
         return _WaitRandom(
             minimum_duration = minimum_duration, maximum_duration = maximum_duration
@@ -40,10 +44,12 @@ class Timing:
     ) -> bool:
         """
         Halts execution until a given function or lambda condition evaluates to True.
-
+        
         Example:
-            >>> # Waits until the shift key is pressed
-            >>> Timing().wait_until(lambda: KeyboardInfo().is_pressed("shift"))
+        ```python
+        # Waits until the shift key is pressed
+        Timing().wait_until(lambda: KeyboardInfo().is_pressed("shift"))
+        ```
         """
         return _WaitUntil(
             condition_function = condition_function,

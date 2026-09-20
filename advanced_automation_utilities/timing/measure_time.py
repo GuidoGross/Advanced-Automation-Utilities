@@ -8,8 +8,10 @@ def measure_time(function: Callable) -> Callable:
     A decorator to automatically measure and print the execution time of any function.
     
     Example:
-        >>> @measure_time
-        ... def heavy_task(): pass
+    ```python
+    @measure_time
+    def heavy_task(): pass
+    ```
     """
     @wraps(function)
     def wrapper(*args, **kwargs) -> Any:

@@ -22,7 +22,9 @@ class Screen:
         Searches for a template image on the screen and returns its central coordinates. Supports multi-monitor setups.
 
         Example:
-            >>> x, y = Screen().locate_image("button.png", monitor_index = 0)
+        ```python
+        x, y = Screen().locate_image("button.png", monitor_index = 0)
+        ```
         """
         return _LocateImage(
             image_path = image_path,
@@ -41,9 +43,11 @@ class Screen:
     ) -> str:
         """
         Uses OCR to extract all readable text from the screen or a specific region. Supports multi-monitor setups.
-
+        
         Example:
-            >>> text = Screen().read_text(monitor_index = 0)
+        ```python
+        text = Screen().read_text(monitor_index = 0)
+        ```
         """
         return _ReadText(region = region, monitor_index = monitor_index).execute()
     
@@ -61,7 +65,9 @@ class Screen:
         Uses OCR to find specific text on the screen and returns its central coordinates. Supports multi-monitor setups.
         
         Example:
-            >>> x, y = Screen().locate_text("Submit", monitor_index = 0)
+        ```python
+        x, y = Screen().locate_text("Submit", monitor_index = 0)
+        ```
         """
         return _LocateText(
             text = text,

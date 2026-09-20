@@ -12,7 +12,9 @@ class MouseInfo:
         Gets the current (X, Y) coordinates of the pointer.
 
         Example:
-            >>> x, y = MouseInfo().coordinates
+        ```python
+        x, y = MouseInfo().coordinates
+        ```
         """
         point = _Point()
         ctypes.windll.user32.GetCursorPos(ctypes.byref(point))
@@ -24,7 +26,9 @@ class MouseInfo:
         Gets the current X coordinate of the pointer.
 
         Example:
-            >>> x = MouseInfo().x
+        ```python
+        x = MouseInfo().x
+        ```
         """
         return self.coordinates[0]
     
@@ -34,7 +38,9 @@ class MouseInfo:
         Gets the current Y coordinate of the pointer.
 
         Example:
-            >>> y = MouseInfo().y
+        ```python
+        y = MouseInfo().y
+        ```
         """
         return self.coordinates[1]
     
@@ -44,9 +50,11 @@ class MouseInfo:
     ) -> None:
         """
         Gets the RGB color of the pixel currently under the pointer.
-
+        
         Example:
-            >>> r, g, b = MouseInfo().pixel_color()
+        ```python
+        r, g, b = MouseInfo().pixel_color()
+        ```
         """
         return ScreenInfo().pixel_color(self.x, self.y, format = format)
     
@@ -56,7 +64,9 @@ class MouseInfo:
         Checks if the pointer is currently within the bounds of any screen.
         
         Example:
-            >>> is_visible = MouseInfo().on_screen
+        ```python
+        is_visible = MouseInfo().on_screen
+        ```
         """
         x, y = self.coordinates
         width, height = ScreenInfo().resolution

@@ -10,6 +10,8 @@ class TimingInfo:
         Returns the current time in seconds.
         
         Example:
-            >>> current_time = TimingInfo().time
+        ```python
+        current_time = TimingInfo().time
+        ```
         """
         return time.time()

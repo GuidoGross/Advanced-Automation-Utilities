@@ -33,9 +33,11 @@ class Mouse:
         Context manager to queue actions and execute them asynchronously.
 
         Example:
-            >>> with mouse.asynchronous():
-            ...     mouse.move(100, 100)
-            ...     mouse.scroll(1000, "down")
+        ```python
+        with mouse.asynchronous():
+            mouse.move(100, 100)
+            mouse.scroll(1000, "down")
+        ```
         """
         self._queue_mode = True
         self._queue.clear()
@@ -65,7 +67,9 @@ class Mouse:
         Moves the pointer to the specified coordinates smoothly based on the configured physics.
 
         Example:
-            >>> Mouse().move(x = 250, y = 500)
+        ```python
+        Mouse().move(x = 250, y = 500)
+        ```
         """
         return self._execute_or_queue(_Move(x = x, y = y, physics = self.physics))
     
@@ -79,7 +83,9 @@ class Mouse:
         Holds down a mouse button.
 
         Example:
-            >>> Mouse().hold_click()
+        ```python
+        Mouse().hold_click()
+        ```
         """
         return self._execute_or_queue(_HoldClick(x = x, y = y, button = button, physics = self.physics))
     
@@ -93,7 +99,9 @@ class Mouse:
         Releases a previously held mouse button.
 
         Example:
-            >>> Mouse().release_click()
+        ```python
+        Mouse().release_click()
+        ```
         """
         return self._execute_or_queue(_ReleaseClick(x = x, y = y, button = button, physics = self.physics))
 
@@ -107,8 +115,10 @@ class Mouse:
         Clicks the mouse at its current position or at specified coordinates.
 
         Example:
-            >>> Mouse().click()
-            >>> Mouse().click(x = 100, y = 200) # Moves before clicking
+        ```python
+        Mouse().click()
+        Mouse().click(x = 100, y = 200) # Moves before clicking
+        ```
         """
         return self._execute_or_queue(
             _Click(x = x, y = y, button = button, clicks = 1, physics = self.physics)
@@ -124,7 +134,9 @@ class Mouse:
         Performs a double click.
 
         Example:
-            >>> Mouse().double_click()
+        ```python
+        Mouse().double_click()
+        ```
         """
         return self._execute_or_queue(_DoubleClick(x = x, y = y, button = button, physics = self.physics))
     
@@ -137,7 +149,9 @@ class Mouse:
         Performs a right click.
 
         Example:
-            >>> Mouse().right_click()
+        ```python
+        Mouse().right_click()
+        ```
         """
         return self._execute_or_queue(_RightClick(x = x, y = y, physics = self.physics))
     
@@ -150,7 +164,9 @@ class Mouse:
         Performs a middle click.
 
         Example:
-            >>> Mouse().middle_click()
+        ```python
+        Mouse().middle_click()
+        ```
         """
         return self._execute_or_queue(_MiddleClick(x = x, y = y, physics = self.physics))
     
@@ -166,7 +182,9 @@ class Mouse:
         Drags an item from start to end coordinates smoothly.
 
         Example:
-            >>> Mouse().drag_and_drop(start_x = 100, start_y = 100, end_x = 500, end_y = 500)
+        ```python
+        Mouse().drag_and_drop(start_x = 100, start_y = 100, end_x = 500, end_y = 500)
+        ```
         """
         return self._execute_or_queue(
             _DragAndDrop(
@@ -188,7 +206,9 @@ class Mouse:
         Scrolls the mouse wheel by the specified amount in the specified direction.
 
         Example:
-            >>> Mouse().scroll(amount = 1000, direction = "down")
+        ```python
+        Mouse().scroll(amount = 1000, direction = "down")
+        ```
         """
         return self._execute_or_queue(
             _Scroll(amount = amount, direction = direction, physics = self.physics)
@@ -206,11 +226,13 @@ class Mouse:
         Scrolls the mouse wheel continuously in the background until a given condition function evaluates to True, or an amount limit / timeout is reached.
         
         Example:
-            >>> # Scrolls down infinitely until the image is found
-            >>> Mouse().scroll_until(
-            ...     condition_function = lambda: Screen().locate_image("logo.png")[0] is not None,
-            ...     direction = "down"
-            ... )
+        ```python
+        # Scrolls down infinitely until the image is found
+        Mouse().scroll_until(
+            condition_function = lambda: Screen().locate_image("logo.png")[0] is not None,
+            direction = "down"
+        )
+        ```
         """
         return self._execute_or_queue(
             _ScrollUntil(

@@ -12,7 +12,9 @@ class SystemInfo:
         Gets the current text content of the Windows clipboard.
 
         Example:
-            >>> text = SystemInfo().clipboard_text
+        ```python
+        text = SystemInfo().clipboard_text
+        ```
         """
         return pyperclip.paste()
     
@@ -20,9 +22,11 @@ class SystemInfo:
     def active_window_title(self) -> str:
         """
         Gets the title of the currently focused/active window.
-
+        
         Example:
-            >>> title = SystemInfo().active_window_title
+        ```python
+        title = SystemInfo().active_window_title
+        ```
         """
         active_window = pygetwindow.getActiveWindow()
         return active_window.title if active_window else ""
@@ -32,7 +36,9 @@ class SystemInfo:
         Checks if a specific process is currently running.
         
         Example:
-            >>> is_running = SystemInfo().is_process_running("notepad.exe")
+        ```python
+        is_running = SystemInfo().is_process_running("notepad.exe")
+        ```
         """
         lower_case_process = process.lower()
         for process in psutil.process_iter(["name"]):
