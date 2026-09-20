@@ -1,5 +1,5 @@
 from ._timing_action import _TimingAction
-from ._timing_utilities import _start_stop_timer
+from .timing_info import TimingInfo
 from ._wait import _Wait
 from typing import Callable
 
@@ -17,8 +17,9 @@ class _WaitUntil(_TimingAction):
         if self.poll_interval < 0: raise ValueError("Poll interval cannot be negative.")
     
     def execute(self) -> bool:
-        start_time = _start_stop_timer()
-        while self.timeout == 0 or _start_stop_timer() - start_time < self.timeout:
+        timing_info = TimingInfo()
+        start_time = timing_info.time
+        while self.timeout == 0 or timing_info.time - start_time < self.timeout:
             if self.condition_function(): return True
             _Wait(self.poll_interval).execute()
         return False

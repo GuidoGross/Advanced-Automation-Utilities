@@ -7,7 +7,7 @@ parent_directory = os.path.dirname(script_directory)
 if parent_directory not in sys.path: sys.path.insert(0, parent_directory)
 
 from examples.examples_utilities import start_stop_script
-from advanced_automation_utilities.timing import Timing, measure_time, _start_stop_timer
+from advanced_automation_utilities.timing import Timing, TimingInfo, measure_time
 from advanced_automation_utilities.keyboard import KeyboardInfo
 from tui_utilities import (
     set_window_title,
@@ -68,9 +68,10 @@ def test_wait_random():
         (" segundos...\n", {})
     ], alignment = "center")
     timing = Timing()
-    start_time = _start_stop_timer()
+    timing_info = TimingInfo()
+    start_time = timing_info.time
     timing.wait_random(lower_waiting_time, upper_waiting_time)
-    end_time = _start_stop_timer()
+    end_time = timing_info.time
     print([
         ("\nEspera terminada en ", {}),
         (f"{decimal_format((end_time - start_time) * 1000, decimals = 0)}ms", {"color": "#00bfff"})

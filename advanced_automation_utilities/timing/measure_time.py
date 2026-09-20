@@ -1,4 +1,4 @@
-from ._timing_utilities import _start_stop_timer
+from .timing_info import TimingInfo
 from tui_utilities import print, decimal_format
 from functools import wraps
 from typing import Callable, Any
@@ -15,9 +15,10 @@ def measure_time(function: Callable) -> Callable:
     """
     @wraps(function)
     def wrapper(*args, **kwargs) -> Any:
-        start_time = _start_stop_timer()
+        timing_info = TimingInfo()
+        start_time = timing_info.time
         result = function(*args, **kwargs)
-        end_time = _start_stop_timer()
+        end_time = timing_info.time
         print([
             ("Ejecución de ", {}),
             (f"{function.__name__}()", {"color": "#00bfff"}),

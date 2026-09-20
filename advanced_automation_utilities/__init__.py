@@ -15,8 +15,8 @@ from .keyboard import (
     KEYBOARD_FAST
 )
 from .screen import (Screen, ScreenInfo)
+from .timing import (Timing, TimingInfo, measure_time)
 from .sound import Sound
-from .timing import (Timing, measure_time)
 from .system import (System, SystemInfo)
 
 __all__ = [
@@ -34,9 +34,10 @@ __all__ = [
     "KEYBOARD_FAST",
     "Screen",
     "ScreenInfo",
-    "Sound",
     "Timing",
+    "TimingInfo",
     "measure_time",
+    "Sound",
     "System",
     "SystemInfo",
 ]

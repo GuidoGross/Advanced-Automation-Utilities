@@ -1,8 +1,7 @@
 from ._mouse_action import _MouseAction
 from .mouse_physics import MousePhysics
 from ._scroll import _Scroll
-from ..timing import Timing
-from ..timing._timing_utilities import _start_stop_timer
+from ..timing import Timing, TimingInfo
 from typing import Callable, Optional
 import threading
 
@@ -33,6 +32,7 @@ class _ScrollUntil(_MouseAction):
     def execute(self) -> bool:
         stop_scroll = False
         timing = Timing()
+        timing_info = TimingInfo()
         scrolled = 0
         limit = self.amount if self.amount > 0 else float("inf")
         step = self.physics.scroll_step
@@ -48,9 +48,9 @@ class _ScrollUntil(_MouseAction):
         
         scroll_thread = threading.Thread(target = scroller, daemon = True)
         scroll_thread.start()
-        start_time = _start_stop_timer()
+        start_time = timing_info.time
         condition_met = False
-        while self.timeout == 0 or _start_stop_timer() - start_time < self.timeout:
+        while self.timeout == 0 or timing_info.time - start_time < self.timeout:
             if self.condition_function():
                 condition_met = True
                 break

@@ -1,3 +1,5 @@
 from .timing import Timing
+from .timing_info import TimingInfo
 from .measure_time import measure_time
-from ._timing_utilities import _start_stop_timer
+
+__all__ = ["Timing", "TimingInfo", "measure_time"]
