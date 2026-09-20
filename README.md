@@ -162,9 +162,17 @@ keyboard = Keyboard(keyboard_physics)
   ```python
   Mouse().drag_and_drop(start_x = 100, start_y = 100, end_x = 500, end_y = 500)
   ```
-- **scroll():** Scrolls the mouse wheel by the specified amount.
+- **scroll():** Scrolls the mouse wheel by the specified amount in the specified direction.
   ```python
-  Mouse().scroll(amount = -1000)
+  Mouse().scroll(amount = 1000, direction = "down")
+  ```
+- **scroll_until():** Scrolls the mouse wheel continuously in the background until a given condition function evaluates to True, or an amount limit / timeout is reached.
+  ```python
+  # Scrolls down infinitely until the image is found
+  Mouse().scroll_until(
+    condition_function = lambda: Screen().locate_image("logo.png")[0] is not None,
+    direction = "down"
+  )
   ```
 
 ### **Keyboard Utilities (keyboard)**

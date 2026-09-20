@@ -1,10 +1,10 @@
-from ._keyboard_physics import KeyboardPhysics
-from abc import ABC, abstractmethod
+from .keyboard_physics import KeyboardPhysics
 from typing import Optional
+from abc import ABC, abstractmethod
 
-class KeyboardAction(ABC):
-    def __init__(self, physics: Optional[KeyboardPhysics] = None):
+class _KeyboardAction(ABC):
+    def __init__(self, physics: Optional[KeyboardPhysics] = None) -> None:
         self.physics = physics or KeyboardPhysics()
-
+    
     @abstractmethod
-    def execute(self): pass
+    def execute(self) -> None: pass

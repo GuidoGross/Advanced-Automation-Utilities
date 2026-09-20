@@ -1,4 +1,4 @@
-from ._mouse_physics import MousePhysics
+from .mouse_physics import MousePhysics
 
 MOUSE_HUMAN = MousePhysics(
     speed = 1500,

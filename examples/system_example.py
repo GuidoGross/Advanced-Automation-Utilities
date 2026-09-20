@@ -174,8 +174,7 @@ def test_kill_switch():
         timing.wait(10)
         system.disable_kill_switch()
         success_message("Prueba finalizada sin usar el Kill Switch")
-    except KeyboardInterrupt:
-        error_message("Prueba abortada")
+    except KeyboardInterrupt: error_message("Prueba abortada")
     finally: system.disable_kill_switch()
 
 if __name__ == "__main__": main()

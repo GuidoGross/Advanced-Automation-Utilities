@@ -1,7 +1,10 @@
-import mss
 from typing import Optional
+import mss
 
-def take_screenshot(region: Optional[tuple[int, int, int, int]] = None, monitor_index: int = 0):
+def _take_screenshot(
+    region: Optional[tuple[int, int, int, int]] = None,
+    monitor_index: int = 0
+) -> mss.base.ScreenShot:
     with mss.mss() as screen_capture:
         if region is None: screen = screen_capture.monitors[monitor_index]
         else:
@@ -15,7 +18,7 @@ def take_screenshot(region: Optional[tuple[int, int, int, int]] = None, monitor_
         screenshot = screen_capture.grab(screen)
     return screenshot
 
-def adjust_coordinates_for_region(
+def _adjust_coordinates_for_region(
     x: int,
     y: int,
     region: Optional[tuple[int, int, int, int]],

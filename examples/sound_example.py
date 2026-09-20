@@ -40,7 +40,7 @@ def test_play_audio():
     header("Reproducir un archivo de audio")
     print("Reproduciendo el archivo de audio...", alignment = "center")
     sound = Sound()
-    sound.play_audio("test.mp3")
+    sound.play_audio("")
 
 def test_system_sound():
     header("Reproducir un sonido del sistema")

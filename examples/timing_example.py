@@ -7,7 +7,7 @@ parent_directory = os.path.dirname(script_directory)
 if parent_directory not in sys.path: sys.path.insert(0, parent_directory)
 
 from examples.examples_utilities import start_stop_script
-from advanced_automation_utilities.timing import Timing, measure_time, start_stop_timer
+from advanced_automation_utilities.timing import Timing, measure_time, _start_stop_timer
 from advanced_automation_utilities.keyboard import KeyboardInfo
 from tui_utilities import (
     set_window_title,
@@ -68,9 +68,9 @@ def test_wait_random():
         (" segundos...\n", {})
     ], alignment = "center")
     timing = Timing()
-    start_time = start_stop_timer()
+    start_time = _start_stop_timer()
     timing.wait_random(lower_waiting_time, upper_waiting_time)
-    end_time = start_stop_timer()
+    end_time = _start_stop_timer()
     print([
         ("\nEspera terminada en ", {}),
         (f"{decimal_format((end_time - start_time) * 1000, decimals = 0)}ms", {"color": "#00bfff"})
@@ -89,7 +89,7 @@ def test_wait_until():
         timing = Timing()
         
         def condition(): return keyboard_info.is_pressed("space")
-            
+        
         success = timing.wait_until(condition, timeout = 5)
         if success:
             wait_for_key(text = "")
@@ -106,7 +106,7 @@ def test_measure_time():
     def simulated_task():
         print("Iniciando una tarea simulada...\n", alignment = "center")
         timing.wait_random(1, 3)
-        
+    
     simulated_task()
     wait_for_key()
 

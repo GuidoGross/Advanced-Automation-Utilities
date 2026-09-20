@@ -61,7 +61,7 @@ def test_get_pixel_color():
         x = 300
         y = 600
         pixel_color = screen_info.pixel_color(x, y)
-        hexadecimal_color = screen_info.pixel_color(x, y, format = "hex")
+        hexadecimal_color = screen_info.pixel_color(x, y, format = "hexadecimal")
         print(f"Color del píxel en ({x}; {y}): ", bold = True)
         print([("    - RGB: ", {"bold": True}), (f"■ {pixel_color}", {"color": hexadecimal_color})])
         print([

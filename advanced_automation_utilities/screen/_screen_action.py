@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
 
-class ScreenAction(ABC):
+class _ScreenAction(ABC):
     @abstractmethod
-    def execute(self): pass
+    def execute(self) -> None: pass

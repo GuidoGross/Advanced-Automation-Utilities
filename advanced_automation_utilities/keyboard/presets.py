@@ -1,4 +1,4 @@
-from ._keyboard_physics import KeyboardPhysics
+from .keyboard_physics import KeyboardPhysics
 
 KEYBOARD_HUMAN = KeyboardPhysics(
     press_delay = 0.1,

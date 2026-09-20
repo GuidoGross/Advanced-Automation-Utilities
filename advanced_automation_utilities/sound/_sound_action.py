@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
 
-class SoundAction(ABC):
+class _SoundAction(ABC):
     @abstractmethod
-    def execute(self): pass
+    def execute(self) -> None: pass

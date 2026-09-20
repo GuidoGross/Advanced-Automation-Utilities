@@ -26,10 +26,11 @@ def main():
                 "5": "Hacer clic medio",
                 "6": "Mantener y soltar clic",
                 "7": "Arrastrar",
-                "8": "Desplazar hacia abajo y arriba",
-                "9": "Obtener coordenadas del puntero",
-                "10": "Obtener color del pixel en el que se encuentra el puntero",
-                "11": "Detectar si el puntero está en la pantalla",
+                "8": "Desplazar",
+                "9": "Desplazar hasta que se cumpla una condición",
+                "10": "Obtener coordenadas del puntero",
+                "11": "Obtener color del pixel en el que se encuentra el puntero",
+                "12": "Detectar si el puntero está en la pantalla",
                 "S": "Salir"
             }
         )
@@ -41,10 +42,11 @@ def main():
             case "5": test_middle_click()
             case "6": test_hold_and_release_click()
             case "7": test_drag()
-            case "8": test_scroll_down_and_up()
-            case "9": test_get_pointer_coordinates()
-            case "10": test_get_pixel_color()
-            case "11": test_is_pointer_on_screen()
+            case "8": test_scroll()
+            case "9": test_scroll_until()
+            case "10": test_get_pointer_coordinates()
+            case "11": test_get_pixel_color()
+            case "12": test_is_pointer_on_screen()
             case "S": confirm_exit()
 
 def test_move_pointer():
@@ -183,8 +185,8 @@ def test_drag():
     
     start_stop_script(drag, "Arrastrar")
 
-def test_scroll_down_and_up():
-    def scroll_down_and_up():
+def test_scroll():
+    def scroll():
         physics = MousePhysics(
             scroll_speed = 1000,
             scroll_speed_variation = 0.1,
@@ -194,9 +196,28 @@ def test_scroll_down_and_up():
             scroll_pause_variation = 0.1
         )
         mouse = Mouse(physics)
-        mouse.scroll(-1000).scroll(1000)
+        mouse.scroll(1000).scroll(1000, "up").scroll(1000, "right").scroll(1000, "left")
     
-    start_stop_script(scroll_down_and_up, "Desplazarse hacia abajo y arriba")
+    start_stop_script(scroll, "Desplazarse")
+
+def test_scroll_until():
+    def scroll_until():
+        physics = MousePhysics(
+            scroll_speed = 1000,
+            scroll_speed_variation = 0.1,
+            scroll_duration = 0,
+            scroll_duration_variation = 0,
+            scroll_step = 120,
+            scroll_pause_variation = 0.1
+        )
+        mouse = Mouse(physics)
+        mouse.scroll_until(condition_function = lambda: False, timeout = 2.5)
+        mouse.scroll_until(condition_function = lambda: False, direction = "up", timeout = 2.5)
+        mouse.scroll_until(condition_function = lambda: False, direction = "right", timeout = 2.5)
+        mouse.scroll_until(condition_function = lambda: False, direction = "left", timeout = 2.5)
+    
+    start_stop_script(scroll_until, "Desplazarse hasta que se cumpla una condición")
+
 
 def test_get_pointer_coordinates():
     def get_pointer_coordinates():
@@ -217,7 +238,7 @@ def test_get_pixel_color():
         header("Color del pixel bajo el puntero")
         mouse_info = MouseInfo()
         pixel_color = mouse_info.pixel_color()
-        hexadecimal_pixel_color = mouse_info.pixel_color(format = "hex")
+        hexadecimal_pixel_color = mouse_info.pixel_color(format = "hexadecimal")
         print("Color del pixel bajo el puntero:", bold = True)
         print([("    - RGB:", {"bold": True}), (f" ■ {pixel_color}", {"color": hexadecimal_pixel_color})])
         print([

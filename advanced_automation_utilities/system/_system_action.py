@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
 
-class SystemAction(ABC):
+class _SystemAction(ABC):
     @abstractmethod
-    def execute(self): pass
+    def execute(self) -> None: pass

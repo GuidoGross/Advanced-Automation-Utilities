@@ -1,13 +1,23 @@
-from ._timing_utilities import start_stop_timer
+from ._timing_utilities import _start_stop_timer
 from tui_utilities import print, decimal_format
 from functools import wraps
+from typing import Callable, Any
 
-def measure_time(function):
+def measure_time(function: Callable) -> Callable:
+    """
+    A decorator to automatically measure and print the execution time of any function.
+
+    Example:
+        ```python
+        @measure_time
+        def heavy_task(): pass
+        ```
+    """
     @wraps(function)
-    def wrapper(*args, **kwargs):
-        start_time = start_stop_timer()
+    def wrapper(*args, **kwargs) -> Any:
+        start_time = _start_stop_timer()
         result = function(*args, **kwargs)
-        end_time = start_stop_timer()
+        end_time = _start_stop_timer()
         print([
             ("Ejecución de ", {}),
             (f"{function.__name__}()", {"color": "#00bfff"}),
@@ -15,4 +25,5 @@ def measure_time(function):
             (f"{decimal_format((end_time - start_time) * 1000, decimals = 0)}ms", {"color": "#00bfff"})
         ], alignment = "center")
         return result
+    
     return wrapper

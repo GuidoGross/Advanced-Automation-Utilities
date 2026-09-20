@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
 
-class TimingAction(ABC):
+class _TimingAction(ABC):
     @abstractmethod
-    def execute(self): pass
+    def execute(self) -> None: pass

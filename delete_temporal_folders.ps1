@@ -1,4 +1,4 @@
-$ErrorActionPreference = "Stop"
+﻿$ErrorActionPreference = "Stop"
 
 chcp 65001 > $null
 $utf8_encoding = New-Object System.Text.UTF8Encoding($false)
