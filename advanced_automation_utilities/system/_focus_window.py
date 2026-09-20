@@ -11,4 +11,4 @@ class _FocusWindow(_SystemAction):
             if windows[0].isMinimized: windows[0].restore()
             windows[0].activate()
             return True
-        except Exception: return False
+        except pygetwindow.PyGetWindowException: return False

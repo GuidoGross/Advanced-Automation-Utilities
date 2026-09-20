@@ -8,4 +8,4 @@ class _CloseWindow(_SystemAction):
         windows = pygetwindow.getWindowsWithTitle(self.window_title)
         for window in windows:
             try: window.close()
-            except Exception: pass
+            except pygetwindow.PyGetWindowException: pass

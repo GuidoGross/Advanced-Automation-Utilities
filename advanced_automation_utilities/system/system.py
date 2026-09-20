@@ -1,4 +1,3 @@
-from ._system_action import _SystemAction
 from ._set_clipboard_text import _SetClipboardText
 from ._open_process import _OpenProcess
 from ._kill_process import _KillProcess
@@ -14,11 +13,10 @@ from ._shutdown import _Shutdown
 from ._restart import _Restart
 from ._enable_kill_switch import _EnableKillSwitch
 from ._disable_kill_switch import _DisableKillSwitch
-from contextlib import contextmanager
-import threading
+from .._queueable_controller import _QueueableController
 from typing import Annotated
 
-class System:
+class System(_QueueableController):
     """
     Main controller for system-level operations.
     Allows managing windows, processes, clipboard, and power states.
@@ -27,36 +25,7 @@ class System:
         """
         Initializes the System controller.
         """
-        self._queue = []
-        self._queue_mode = False
-    
-    def _execute_or_queue(self, action: _SystemAction) -> None:
-        self._queue.append(action) if self._queue_mode else action.execute()
-        return self
-    
-    @contextmanager
-    def asynchronous(self) -> None:
-        """
-        Context manager to queue actions and execute them asynchronously.
-
-        Example:
-            >>> with system.asynchronous():
-            ...     system.open_process("notepad.exe")
-            ...     system.focus_window("Notepad")
-        """
-        self._queue_mode = True
-        self._queue.clear()
-        try: yield self
-        finally:
-            self._queue_mode = False
-            if self._queue:
-                actions_to_run = list(self._queue)
-                
-                def run_actions() -> None:
-                    for action in actions_to_run: action.execute()
-                
-                threading.Thread(target = run_actions, daemon = True).start()
-            self._queue.clear()
+        super().__init__()
     
     def set_clipboard_text(self, text: str) -> None:
         """

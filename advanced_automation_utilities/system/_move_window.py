@@ -13,4 +13,4 @@ class _MoveWindow(_SystemAction):
         try:
             windows[0].moveTo(self.x, self.y)
             return True
-        except Exception: return False
+        except pygetwindow.PyGetWindowException: return False

@@ -1,4 +1,3 @@
-from ._mouse_action import _MouseAction
 from .mouse_physics import MousePhysics
 from ._move import _Move
 from ._hold_click import _HoldClick
@@ -10,11 +9,10 @@ from ._middle_click import _MiddleClick
 from ._drag_and_drop import _DragAndDrop
 from ._scroll import _Scroll
 from ._scroll_until import _ScrollUntil
+from .._queueable_controller import _QueueableController
 from typing import Optional, Annotated, Callable
-from contextlib import contextmanager
-import threading
 
-class Mouse:
+class Mouse(_QueueableController):
     """
     Main controller for mouse automation.
     Allows moving the cursor, clicking, dragging, and scrolling.
@@ -23,38 +21,8 @@ class Mouse:
         """
         Initializes the Mouse controller.
         """
+        super().__init__()
         self.physics = physics or MousePhysics()
-        self._queue_mode = False
-        self._queue = []
-    
-    @contextmanager
-    def asynchronous(self) -> None:
-        """
-        Context manager to queue actions and execute them asynchronously.
-
-        Example:
-            >>> with mouse.asynchronous():
-            ...     mouse.move(100, 100)
-            ...     mouse.scroll(1000, "down")
-        """
-        self._queue_mode = True
-        self._queue.clear()
-        try: yield self
-        finally:
-            self._queue_mode = False
-            if self._queue:
-                queue_copy = list(self._queue)
-                self._queue.clear()
-
-                def worker(actions: list) -> None:
-                    for action in actions: action.execute()
-                
-                thread = threading.Thread(target = worker, args = (queue_copy,), daemon = True)
-                thread.start()
-    
-    def _execute_or_queue(self, action: _MouseAction) -> None:
-        self._queue.append(action) if self._queue_mode else action.execute()
-        return self
     
     def move(
         self,

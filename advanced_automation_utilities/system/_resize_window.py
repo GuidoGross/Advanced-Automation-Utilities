@@ -18,4 +18,4 @@ class _ResizeWindow(_SystemAction):
         try:
             windows[0].resizeTo(self.width, self.height)
             return True
-        except Exception: return False
+        except pygetwindow.PyGetWindowException: return False

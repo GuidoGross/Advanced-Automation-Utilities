@@ -5,6 +5,8 @@ from winrt.windows.graphics.imaging import SoftwareBitmap, BitmapPixelFormat, Bi
 from winrt.windows.storage.streams import DataWriter
 import asyncio
 
+_ocr_loop = asyncio.new_event_loop()
+
 def _run_ocr_on_region(
     region: Optional[tuple[int, int, int, int]] = None,
     monitor_index: int = 0
@@ -27,4 +29,4 @@ def _run_ocr_on_region(
     
     async def recognize() -> OcrResult: return await engine.recognize_async(software_bitmap)
     
-    return asyncio.run(recognize())
+    return _ocr_loop.run_until_complete(recognize())

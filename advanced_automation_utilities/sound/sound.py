@@ -1,13 +1,11 @@
-from ._sound_action import _SoundAction
 from ._play_beep_sound import _PlayBeepSound
 from ._play_audio import _PlayAudio
 from ._play_system_sound import _PlaySystemSound
 from ._speak import _Speak
-from contextlib import contextmanager
-import threading
+from .._queueable_controller import _QueueableController
 from typing import Annotated
 
-class Sound:
+class Sound(_QueueableController):
     """
     Main controller for audio operations.
     Allows playing beeps, audio files, system sounds, and text-to-speech.
@@ -16,37 +14,7 @@ class Sound:
         """
         Initializes the Sound controller.
         """
-        self._queue_mode = False
-        self._queue = []
-    
-    @contextmanager
-    def asynchronous(self) -> None:
-        """
-        Context manager to queue actions and execute them asynchronously.
-
-        Example:
-            >>> with sound.asynchronous():
-            ...     sound.play_beep_sound(1000, 500)
-            ...     sound.speak("Hello World")
-        """
-        self._queue_mode = True
-        self._queue.clear()
-        try: yield self
-        finally:
-            self._queue_mode = False
-            if self._queue:
-                queue_copy = list(self._queue)
-                self._queue.clear()
-
-                def worker(actions: list) -> None:
-                    for action in actions: action.execute()
-                
-                thread = threading.Thread(target = worker, args = (queue_copy,), daemon = True)
-                thread.start()
-    
-    def _execute_or_queue(self, action: _SoundAction) -> None:
-        self._queue.append(action) if self._queue_mode else action.execute()
-        return self
+        super().__init__()
     
     def play_beep_sound(
         self, 

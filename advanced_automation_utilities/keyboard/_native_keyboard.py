@@ -1,4 +1,3 @@
-from ..timing import Timing
 import ctypes
 from ctypes import wintypes
 import _thread
@@ -55,6 +54,7 @@ _key_states = {}
 _hook_id = None
 _hook_function = None
 _hook_thread = None
+_hook_ready_event = threading.Event()
 _kill_switch_enabled = False
 _kill_switch_key = 0
 _kill_switch_modifiers = []
@@ -206,6 +206,7 @@ def _hook_worker() -> None:
         return _user32.CallNextHookEx(_hook_id, hook_code, window_message, hook_data)
     _hook_function = _HookProcedure(_low_level_keyboard_handler)
     _hook_id = _user32.SetWindowsHookExW(_WINDOWS_HOOK_KEYBOARD_LOW_LEVEL, _hook_function, None, 0)
+    _hook_ready_event.set()
     message = wintypes.MSG()
     while _user32.GetMessageW(ctypes.byref(message), None, 0, 0) > 0:
         _user32.TranslateMessage(ctypes.byref(message))
@@ -214,7 +215,7 @@ def _hook_worker() -> None:
 def _ensure_hook() -> None:
     global _hook_thread
     if _hook_thread is None or not _hook_thread.is_alive():
+        _hook_ready_event.clear()
         _hook_thread = threading.Thread(target = _hook_worker, daemon = True)
         _hook_thread.start()
-        timing = Timing()
-        timing.wait(0.1)
+        _hook_ready_event.wait()
