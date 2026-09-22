@@ -52,7 +52,7 @@ def main():
 def test_move_pointer():
     def move():
         physics = MousePhysics(
-            speed = 1500,
+            speed = 1250,
             speed_variation = 0.1,
             base_duration = 0.1,
             base_duration_variation = 0.1,
@@ -68,7 +68,7 @@ def test_move_pointer():
 def test_click():
     def click():
         physics = MousePhysics(
-            speed = 1500,
+            speed = 1250,
             speed_variation = 0.1,
             base_duration = 0.1,
             base_duration_variation = 0.1,
@@ -88,7 +88,7 @@ def test_click():
 def test_double_click():
     def double_click():
         physics = MousePhysics(
-            speed = 1500,
+            speed = 1250,
             speed_variation = 0.1,
             base_duration = 0.1,
             base_duration_variation = 0.1,
@@ -108,7 +108,7 @@ def test_double_click():
 def test_right_click():
     def right_click():
         physics = MousePhysics(
-            speed = 1500,
+            speed = 1250,
             speed_variation = 0.1,
             base_duration = 0.1,
             base_duration_variation = 0.1,
@@ -128,7 +128,7 @@ def test_right_click():
 def test_middle_click():
     def middle_click():
         physics = MousePhysics(
-            speed = 1500,
+            speed = 1250,
             speed_variation = 0.1,
             base_duration = 0.1,
             base_duration_variation = 0.1,
@@ -148,7 +148,7 @@ def test_middle_click():
 def test_hold_and_release_click():
     def hold_and_release_click():
         physics = MousePhysics(
-            speed = 1500,
+            speed = 1250,
             speed_variation = 0.1,
             base_duration = 0.1,
             base_duration_variation = 0.1,
@@ -168,7 +168,7 @@ def test_hold_and_release_click():
 def test_drag():
     def drag():
         physics = MousePhysics(
-            speed = 1500,
+            speed = 1250,
             speed_variation = 0.1,
             base_duration = 0.1,
             base_duration_variation = 0.1,

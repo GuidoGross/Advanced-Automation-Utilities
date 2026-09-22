@@ -90,7 +90,7 @@ def test_write():
             typing_error_delayed_realization_chance = 0.5
         )
         keyboard = Keyboard(physics)
-        keyboard.write("Al escribir este texto se generarán errores simulados muy avanzados.")
+        keyboard.write("Al escribir este texto, se generarán errores simulados muy avanzados.")
     
     start_stop_script(write, "Escribir texto")
 
