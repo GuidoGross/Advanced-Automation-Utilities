@@ -1,22 +1,37 @@
 from dataclasses import dataclass
-from typing import Annotated
 
 @dataclass
 class KeyboardPhysics:
     """
+    **Description:**
+
     Configuration class that defines the timing characteristics
     for keyboard actions, allowing for human-like typing speeds or instantaneous execution.
+
+    **Arguments:**
+
+    - **`press_delay`** (`float`): Seconds. Must be >= 0.
+    - **`press_delay_variation`** (`float`): Must be >= 0.
+    - **`press_duration`** (`float`): Seconds. Must be >= 0.
+    - **`press_duration_variation`** (`float`): Must be >= 0.
+    - **`hotkey_delay`** (`float`): Seconds. Must be >= 0.
+    - **`hotkey_delay_variation`** (`float`): Must be >= 0.
+    - **`typing_error_chance`** (`float`): Must be >= 0 and <= 1.
+    - **`typing_error_correction_delay`** (`float`): Seconds. Must be >= 0.
+    - **`typing_error_correction_delay_variation`** (`float`): Must be >= 0.
+    - **`typing_error_delayed_realization_chance`** (`float`): Must be >= 0 and <= 1.
+    - **`auto_repeat`** (`bool`)
     """
-    press_delay: Annotated[float, "Seconds. Must be >= 0"] = 0.05
-    press_delay_variation: Annotated[float, "Must be >= 0"] = 0
-    press_duration: Annotated[float, "Seconds. Must be >= 0"] = 0.05
-    press_duration_variation: Annotated[float, "Must be >= 0"] = 0
-    hotkey_delay: Annotated[float, "Seconds. Must be >= 0"] = 0.01
-    hotkey_delay_variation: Annotated[float, "Must be >= 0"] = 0
-    typing_error_chance: Annotated[float, "Must be >= 0 and <= 1"] = 0
-    typing_error_correction_delay: Annotated[float, "Seconds. Must be >= 0"] = 0.1
-    typing_error_correction_delay_variation: Annotated[float, "Must be >= 0"] = 0
-    typing_error_delayed_realization_chance: Annotated[float, "Must be >= 0 and <= 1"] = 0
+    press_delay: float = 0.05
+    press_delay_variation: float = 0
+    press_duration: float = 0.05
+    press_duration_variation: float = 0
+    hotkey_delay: float = 0.01
+    hotkey_delay_variation: float = 0
+    typing_error_chance: float = 0
+    typing_error_correction_delay: float = 0.1
+    typing_error_correction_delay_variation: float = 0
+    typing_error_delayed_realization_chance: float = 0
     auto_repeat: bool = True
 
     def __post_init__(self) -> None:

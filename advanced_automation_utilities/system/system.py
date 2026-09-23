@@ -14,66 +14,136 @@ from ._restart import _Restart
 from ._enable_kill_switch import _EnableKillSwitch
 from ._disable_kill_switch import _DisableKillSwitch
 from .._queueable_controller import _QueueableController
-from typing import Annotated
 
 class System(_QueueableController):
     """
+    **Description:**
+
     Main controller for system-level operations.
     Allows managing windows, processes, clipboard, and power states.
     """
     def __init__(self) -> None:
         """
+        **Description:**
+
         Initializes the System controller.
+
+        **Returns:**
+
+        **`None`**
         """
         super().__init__()
     
     def set_clipboard_text(self, text: str) -> None:
         """
+        **Description:**
+
         Sets the text content of the Windows clipboard.
 
-        Example:
-            >>> System().set_clipboard_text("Text to paste later")
+        **Arguments:**
+
+        - **`text`** (`str`)
+
+        **Returns:**
+
+        **`None`**
+
+        **Example:**
+
+        ```python
+        System().set_clipboard_text("Text to paste later")
+        ```
         """
         return self._execute_or_queue(_SetClipboardText(text = text))
     
     def open_process(self, executable_path: str) -> None:
         """
+        **Description:**
+
         Opens a process or file with optional arguments.
 
-        Example:
-            >>> System().open_process("notepad.exe")
+        **Arguments:**
+
+        - **`executable_path`** (`str`)
+
+        **Returns:**
+
+        **`None`**
+
+        **Example:**
+
+        ```python
+        System().open_process("notepad.exe")
+        ```
         """
         return self._execute_or_queue(_OpenProcess(executable_path = executable_path))
     
     def kill_process(self, process: str, force: bool = True) -> None:
         """
+        **Description:**
+
         Terminates an active process by its name.
 
-        Example:
-            >>> System().kill_process("notepad.exe", force = True)
+        **Arguments:**
+
+        - **`process`** (`str`)
+        - **`force`** (`bool`)
+
+        **Returns:**
+
+        **`None`**
+
+        **Example:**
+
+        ```python
+        System().kill_process("notepad.exe", force = True)
+        ```
         """
         return self._execute_or_queue(_KillProcess(process = process, force = force))
     
     def focus_window(self, window_title: str) -> None:
         """
+        **Description:**
+
         Brings a specific window to the foreground by its title.
 
-        Example:
-            >>> System().focus_window("Untitled - Notepad")
+        **Arguments:**
+
+        - **`window_title`** (`str`)
+
+        **Returns:**
+
+        **`None`**
+
+        **Example:**
+
+        ```python
+        System().focus_window("Untitled - Notepad")
+        ```
         """
         return self._execute_or_queue(_FocusWindow(window_title = window_title))
     
-    def resize_window(
-        self, 
-        window_title: str, 
-        width: Annotated[int, "Must be > 0"], 
-        height: Annotated[int, "Must be > 0"]
-    ) -> None:
+    def resize_window(self, window_title: str, width: int, height: int) -> None:
         """
+        **Description:**
+
         Resizes a specific window to the specified dimensions by its title.
 
-        Example:
-            >>> System().resize_window("Untitled - Notepad", width = 800, height = 600)
+        **Arguments:**
+
+        - **`window_title`** (`str`)
+        - **`width`** (`int`): Must be > 0.
+        - **`height`** (`int`): Must be > 0.
+
+        **Returns:**
+
+        **`None`**
+
+        **Example:**
+
+        ```python
+        System().resize_window("Untitled - Notepad", width = 800, height = 600)
+        ```
         """
         return self._execute_or_queue(
             _ResizeWindow(window_title = window_title, width = width, height = height)
@@ -81,91 +151,203 @@ class System(_QueueableController):
     
     def move_window(self, window_title: str, x: int, y: int) -> None:
         """
+        **Description:**
+
         Moves a specific window to the specified coordinates by its title.
 
-        Example:
-            >>> System().move_window("Untitled - Notepad", x = 100, y = 100)
+        **Arguments:**
+
+        - **`window_title`** (`str`)
+        - **`x`** (`int`)
+        - **`y`** (`int`)
+
+        **Returns:**
+
+        **`None`**
+
+        **Example:**
+
+        ```python
+        System().move_window("Untitled - Notepad", x = 100, y = 100)
+        ```
         """
         return self._execute_or_queue(_MoveWindow(window_title = window_title, x = x, y = y))
     
     def close_window(self, window_title: str) -> None:
         """
+        **Description:**
+
         Gently closes a specific window by its title.
 
-        Example:
-            >>> System().close_window("Untitled - Notepad")
+        **Arguments:**
+
+        - **`window_title`** (`str`)
+
+        **Returns:**
+
+        **`None`**
+
+        **Example:**
+
+        ```python
+        System().close_window("Untitled - Notepad")
+        ```
         """
         return self._execute_or_queue(_CloseWindow(window_title = window_title))
     
     def lock_screen(self) -> None: 
         """
+        **Description:**
+
         Locks the Windows session (Win+L).
 
-        Example:
-            >>> System().lock_screen()
+        **Returns:**
+
+        **`None`**
+
+        **Example:**
+
+        ```python
+        System().lock_screen()
+        ```
         """
         return self._execute_or_queue(_LockScreen())
     
     def sign_out(self) -> None: 
         """
+        **Description:**
+
         Signs out the current Windows user.
 
-        Example:
-            >>> System().sign_out()
+        **Returns:**
+
+        **`None`**
+
+        **Example:**
+
+        ```python
+        System().sign_out()
+        ```
         """
         return self._execute_or_queue(_SignOut())
     
     def sleep(self) -> None: 
         """
+        **Description:**
+
         Puts the computer into sleep mode.
 
-        Example:
-            >>> System().sleep()
+        **Returns:**
+
+        **`None`**
+
+        **Example:**
+
+        ```python
+        System().sleep()
+        ```
         """
         return self._execute_or_queue(_Sleep())
     
     def hibernate(self) -> None: 
         """
+        **Description:**
+
         Puts the computer into hibernation mode.
 
-        Example:
-            >>> System().hibernate()
+        **Returns:**
+
+        **`None`**
+
+        **Example:**
+
+        ```python
+        System().hibernate()
+        ```
         """
         return self._execute_or_queue(_Hibernate())
     
-    def shutdown(self, delay: Annotated[int, "Seconds. Must be >= 0"] = 0) -> None:
+    def shutdown(self, delay: int = 0) -> None:
         """
+        **Description:**
+
         Turns off the computer.
 
-        Example:
-            >>> System().shutdown()
+        **Arguments:**
+
+        - **`delay`** (`int`): Seconds. Must be >= 0.
+
+        **Returns:**
+
+        **`None`**
+
+        **Example:**
+
+        ```python
+        System().shutdown()
+        ```
         """
         return self._execute_or_queue(_Shutdown(delay = delay))
     
-    def restart(self, delay: Annotated[int, "Seconds. Must be >= 0"] = 0) -> None:
+    def restart(self, delay: int = 0) -> None:
         """
+        **Description:**
+
         Restarts the computer.
 
-        Example:
-            >>> System().restart()
+        **Arguments:**
+
+        - **`delay`** (`int`): Seconds. Must be >= 0.
+
+        **Returns:**
+
+        **`None`**
+
+        **Example:**
+
+        ```python
+        System().restart()
+        ```
         """
         return self._execute_or_queue(_Restart(delay = delay))
     
     def enable_kill_switch(self, *keys: str) -> None:
         """
+        **Description:**
+
         Enables a global kill switch (Ctrl + Shift + Alt + K by default) to abort execution instantly.
-        
-        Example:
-            >>> System().enable_kill_switch()
+
+        **Arguments:**
+
+        - **`*keys`** (`str`)
+
+        **Returns:**
+
+        **`None`**
+
+        **Example:**
+
+        ```python
+        System().enable_kill_switch()
+        ```
         """
         if not keys: keys = ("ctrl", "shift", "alt", "k")
         return self._execute_or_queue(_EnableKillSwitch(*keys))
     
     def disable_kill_switch(self) -> None: 
         """
+        **Description:**
+
         Disables the global kill switch.
-        
-        Example:
-            >>> System().disable_kill_switch()
+
+        **Returns:**
+
+        **`None`**
+
+        **Example:**
+
+        ```python
+        System().disable_kill_switch()
+        ```
         """
         return self._execute_or_queue(_DisableKillSwitch())

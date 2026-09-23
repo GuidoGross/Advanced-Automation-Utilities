@@ -11,75 +11,178 @@ from typing import Optional
 
 class Keyboard(_QueueableController):
     """
+    **Description:**
+
     Main controller for keyboard automation.
     Allows pressing keys, typing text, and managing key states.
     """
     def __init__(self, physics: Optional[KeyboardPhysics] = None) -> None:
         """
+        **Description:**
+
         Initializes the Keyboard controller.
+
+        **Arguments:**
+
+        - **`physics`** (`Optional[KeyboardPhysics]`)
+
+        **Returns:**
+
+        **`None`**
         """
         super().__init__()
         self.physics = physics or KeyboardPhysics()
     
     def hold_key(self, key: str) -> None:
         """
+        **Description:**
+
         Presses a key and holds it down.
 
-        Example:
-            >>> Keyboard().hold_key("shift")
+        **Arguments:**
+
+        - **`key`** (`str`)
+
+        **Returns:**
+
+        **`None`**
+
+        **Example:**
+
+        ```python
+        Keyboard().hold_key("shift")
+        ```
         """
         return self._execute_or_queue(_HoldKey(key = key, physics = self.physics))
     
     def release_key(self, key: str) -> None:
         """
+        **Description:**
+
         Releases a previously held key.
 
-        Example:
-            >>> Keyboard().release_key("shift")
+        **Arguments:**
+
+        - **`key`** (`str`)
+
+        **Returns:**
+
+        **`None`**
+
+        **Example:**
+
+        ```python
+        Keyboard().release_key("shift")
+        ```
         """
         return self._execute_or_queue(_ReleaseKey(key = key, physics = self.physics))
     
     def press_key(self, key: str) -> None:
         """
+        **Description:**
+
         Presses and immediately releases a single key.
 
-        Example:
-            >>> Keyboard().press_key("a")
+        **Arguments:**
+
+        - **`key`** (`str`)
+
+        **Returns:**
+
+        **`None`**
+
+        **Example:**
+
+        ```python
+        Keyboard().press_key("a")
+        ```
         """
         return self._execute_or_queue(_PressKey(key = key, physics = self.physics))
     
     def hotkey(self, *keys: str) -> None:
         """
+        **Description:**
+
         Holds down a combination of keys and releases them in reverse order.
 
-        Example:
-            >>> Keyboard().hotkey("ctrl", "c")
+        **Arguments:**
+
+        - **`*keys`** (`str`)
+
+        **Returns:**
+
+        **`None`**
+
+        **Example:**
+
+        ```python
+        Keyboard().hotkey("ctrl", "c")
+        ```
         """
         return self._execute_or_queue(_Hotkey(*keys, physics = self.physics))
     
     def block_key(self, key: str) -> None:
         """
+        **Description:**
+
         Blocks all physical input from a specific key.
 
-        Example:
-            >>> Keyboard().block_key("esc")
+        **Arguments:**
+
+        - **`key`** (`str`)
+
+        **Returns:**
+
+        **`None`**
+
+        **Example:**
+
+        ```python
+        Keyboard().block_key("esc")
+        ```
         """
         return self._execute_or_queue(_BlockKey(key = key))
     
     def unblock_key(self, key: str) -> None:
         """
+        **Description:**
+
         Unblocks a previously blocked key.
-        
-        Example:
-            >>> Keyboard().unblock_key("esc")
+
+        **Arguments:**
+
+        - **`key`** (`str`)
+
+        **Returns:**
+
+        **`None`**
+
+        **Example:**
+
+        ```python
+        Keyboard().unblock_key("esc")
+        ```
         """
         return self._execute_or_queue(_UnblockKey(key = key))
     
     def write(self, text: str) -> None:
         """
+        **Description:**
+
         Types a string character by character with advanced, human-like typing error simulations, delays, and physics.
-        
-        Example:
-            >>> Keyboard().write("Hello, world!")
+
+        **Arguments:**
+
+        - **`text`** (`str`)
+
+        **Returns:**
+
+        **`None`**
+
+        **Example:**
+
+        ```python
+        Keyboard().write("Hello, world!")
+        ```
         """
         return self._execute_or_queue(_Write(text = text, physics = self.physics))

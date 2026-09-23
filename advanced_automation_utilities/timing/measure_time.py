@@ -1,18 +1,31 @@
 from .timing_info import TimingInfo
 from tui_utilities import print, decimal_format
 from functools import wraps
-from typing import Callable, Any
+from typing import Callable
 
 def measure_time(function: Callable) -> Callable:
     """
+    **Description:**
+
     A decorator to automatically measure and print the execution time of any function.
-    
-    Example:
-        >>> @measure_time
-        >>> def heavy_task(): pass
+
+    **Arguments:**
+
+    - **`function`** (`Callable`)
+
+    **Returns:**
+
+    **`Callable`**
+
+    **Example:**
+
+    ```python
+    @measure_time
+    def heavy_task(): pass
+    ```
     """
     @wraps(function)
-    def wrapper(*args, **kwargs) -> Any:
+    def wrapper(*args, **kwargs):
         timing_info = TimingInfo()
         start_time = timing_info.time
         result = function(*args, **kwargs)

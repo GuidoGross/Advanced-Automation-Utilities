@@ -1,6 +1,6 @@
 from .mouse_physics import MousePhysics
 
-MOUSE_HUMAN = MousePhysics(
+MOUSE_NORMAL = MousePhysics(
     speed = 1250,
     speed_variation = 0.1,
     base_duration = 0.1,
@@ -18,7 +18,7 @@ MOUSE_HUMAN = MousePhysics(
     scroll_pause_variation = 0.1
 )
 
-MOUSE_SLOW_AND_PRECISE = MousePhysics(
+MOUSE_SLOW = MousePhysics(
     speed = 625,
     speed_variation = 0.1,
     base_duration = 0.1,
@@ -36,7 +36,7 @@ MOUSE_SLOW_AND_PRECISE = MousePhysics(
     scroll_pause_variation = 0.1
 )
 
-MOUSE_FAST_AND_IMPRECISE = MousePhysics(
+MOUSE_FAST = MousePhysics(
     speed = 2500,
     speed_variation = 0.1,
     base_duration = 0.1,

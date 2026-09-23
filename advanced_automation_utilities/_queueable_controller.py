@@ -10,12 +10,21 @@ class _QueueableController:
     @contextmanager
     def asynchronous(self) -> Generator["_QueueableController", None, None]:
         """
+        **Description:**
+
         Context manager to queue actions and execute them asynchronously.
-        
-        Example:
-            >>> with controller.asynchronous():
-            ...     controller.action_1()
-            ...     controller.action_2()
+
+        **Returns:**
+
+        **`Generator["_QueueableController", None, None]`**
+
+        **Example:**
+
+        ```python
+        with controller.asynchronous():
+            controller.action_1()
+            controller.action_2()
+        ```
         """
         self._queue_mode = True
         self._queue.clear()

@@ -1,6 +1,6 @@
 from .keyboard_physics import KeyboardPhysics
 
-KEYBOARD_HUMAN = KeyboardPhysics(
+KEYBOARD_NORMAL = KeyboardPhysics(
     press_delay = 0.15,
     press_delay_variation = 0.5,
     press_duration = 0.05,
@@ -13,7 +13,7 @@ KEYBOARD_HUMAN = KeyboardPhysics(
     typing_error_delayed_realization_chance = 0.5
 )
 
-KEYBOARD_SLOW_AND_PRECISE = KeyboardPhysics(
+KEYBOARD_SLOW = KeyboardPhysics(
     press_delay = 0.3,
     press_delay_variation = 0.5,
     press_duration = 0.1,
@@ -26,7 +26,7 @@ KEYBOARD_SLOW_AND_PRECISE = KeyboardPhysics(
     typing_error_delayed_realization_chance = 0.25
 )
 
-KEYBOARD_FAST_AND_IMPRECISE = KeyboardPhysics(
+KEYBOARD_FAST = KeyboardPhysics(
     press_delay = 0.075,
     press_delay_variation = 0.5,
     press_duration = 0.025,

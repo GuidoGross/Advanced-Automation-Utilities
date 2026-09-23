@@ -1,17 +1,28 @@
-from typing import Annotated, Union
+from typing import Union
 import ctypes
 
 class ScreenInfo:
     """
+    **Description:**
+
     Provides real-time information about the screen properties and state.
     """
     @property
-    def resolution(self) -> Annotated[tuple[int, int], "Format: (width, height)"]:
+    def resolution(self) -> tuple[int, int]:
         """
+        **Description:**
+
         Gets the (width, height) resolution of the primary screen.
 
-        Example:
-            >>> width, height = ScreenInfo().resolution
+        **Returns:**
+
+        **`tuple[int, int]`:** Format: (width, height).
+
+        **Example:**
+
+        ```python
+        width, height = ScreenInfo().resolution
+        ```
         """
         width = ctypes.windll.user32.GetSystemMetrics(0)
         height = ctypes.windll.user32.GetSystemMetrics(1)
@@ -20,37 +31,62 @@ class ScreenInfo:
     @property
     def width(self) -> int:
         """
+        **Description:**
+
         Gets the width of the primary screen.
 
-        Example:
-            >>> width = ScreenInfo().width
+        **Returns:**
+
+        **`int`**
+
+        **Example:**
+
+        ```python
+        width = ScreenInfo().width
+        ```
         """
         return ctypes.windll.user32.GetSystemMetrics(0)
 
     @property
     def height(self) -> int:
         """
+        **Description:**
+
         Gets the height of the primary screen.
-        
-        Example:
-            >>> height = ScreenInfo().height
+
+        **Returns:**
+
+        **`int`**
+
+        **Example:**
+
+        ```python
+        height = ScreenInfo().height
+        ```
         """
         return ctypes.windll.user32.GetSystemMetrics(1)
 
-    def pixel_color(
-        self,
-        x: int,
-        y: int,
-        format: Annotated[str, "Valid options: \"rgb\", \"hexadecimal\""] = "rgb"
-    ) -> Annotated[
-            Union[tuple[int, int, int], str],
-            "Format: (R, G, B) for \"rgb\" or \"#RRGGBB\" for \"hexadecimal\""
-        ]:
+    def pixel_color(self, x: int, y: int, format: str = "rgb") -> Union[tuple[int, int, int], str]:
         """
+        **Description:**
+
         Gets the RGB color of a specific pixel coordinate.
-        
-        Example:
-            >>> r, g, b = ScreenInfo().pixel_color(250, 500)
+
+        **Arguments:**
+
+        - **`x`** (`int`)
+        - **`y`** (`int`)
+        - **`format`** (`str`): Valid options: "rgb", "hexadecimal".
+
+        **Returns:**
+
+        **`Union[tuple[int, int, int], str]`:** Format: (R, G, B) for "rgb" or "#RRGGBB" for "hexadecimal".
+
+        **Example:**
+
+        ```python
+        r, g, b = ScreenInfo().pixel_color(250, 500)
+        ```
         """
         if format.lower() not in ["rgb", "hexadecimal"]:
             raise ValueError("Invalid color format. Valid options: \"rgb\", \"hexadecimal\".")

@@ -1,33 +1,58 @@
 from dataclasses import dataclass
-from typing import Annotated
 
 @dataclass
 class MousePhysics:
     """
+    **Description:**
+
     Configuration class that defines the timing and movement characteristics
     for mouse actions, allowing for human-like or instantaneous execution.
+
+    **Arguments:**
+
+    - **`speed`** (`float`): Must be >= 0.
+    - **`minimum_speed`** (`float`): Must be >= 0.
+    - **`maximum_speed`** (`float`): Must be >= 0.
+    - **`speed_variation`** (`float`): Must be >= 0.
+    - **`duration`** (`float`): Seconds. Must be >= 0.
+    - **`duration_variation`** (`float`): Must be >= 0.
+    - **`base_duration`** (`float`): Seconds. Must be >= 0.
+    - **`base_duration_variation`** (`float`): Must be >= 0.
+    - **`inconsistency`** (`float`): Must be >= 0.
+    - **`target_radius`** (`float`): Must be >= 0.
+    - **`readjustment_duration_ratio`** (`float`): Must be >= 0 and <= 1.
+    - **`click_delay`** (`float`): Seconds. Must be >= 0.
+    - **`click_delay_variation`** (`float`): Must be >= 0.
+    - **`click_duration`** (`float`): Seconds. Must be >= 0.
+    - **`click_duration_variation`** (`float`): Must be >= 0.
+    - **`scroll_speed`** (`float`): Must be >= 0.
+    - **`scroll_speed_variation`** (`float`): Must be >= 0.
+    - **`scroll_duration`** (`float`): Seconds. Must be >= 0.
+    - **`scroll_duration_variation`** (`float`): Must be >= 0.
+    - **`scroll_step`** (`int`): Must be >= 1.
+    - **`scroll_pause_variation`** (`float`): Must be >= 0.
     """
-    speed: Annotated[float, "Must be >= 0"] = 0
-    minimum_speed: Annotated[float, "Must be >= 0"] = 0
-    maximum_speed: Annotated[float, "Must be >= 0"] = 0
-    speed_variation: Annotated[float, "Must be >= 0"] = 0
-    duration: Annotated[float, "Seconds. Must be >= 0"] = 0
-    duration_variation: Annotated[float, "Must be >= 0"] = 0
-    base_duration: Annotated[float, "Seconds. Must be >= 0"] = 0
-    base_duration_variation: Annotated[float, "Must be >= 0"] = 0
-    inconsistency: Annotated[float, "Must be >= 0"] = 0
-    target_radius: Annotated[float, "Must be >= 0"] = 0
-    readjustment_duration_ratio: Annotated[float, "Must be >= 0 and <= 1"] = 0.25
-    click_delay: Annotated[float, "Seconds. Must be >= 0"] = 0.05
-    click_delay_variation: Annotated[float, "Must be >= 0"] = 0
-    click_duration: Annotated[float, "Seconds. Must be >= 0"] = 0.05
-    click_duration_variation: Annotated[float, "Must be >= 0"] = 0
-    scroll_speed: Annotated[float, "Must be >= 0"] = 0
-    scroll_speed_variation: Annotated[float, "Must be >= 0"] = 0
-    scroll_duration: Annotated[float, "Seconds. Must be >= 0"] = 0
-    scroll_duration_variation: Annotated[float, "Must be >= 0"] = 0
-    scroll_step: Annotated[int, "Must be >= 1"] = 1
-    scroll_pause_variation: Annotated[float, "Must be >= 0"] = 0
+    speed: float = 0
+    minimum_speed: float = 0
+    maximum_speed: float = 0
+    speed_variation: float = 0
+    duration: float = 0
+    duration_variation: float = 0
+    base_duration: float = 0
+    base_duration_variation: float = 0
+    inconsistency: float = 0
+    target_radius: float = 0
+    readjustment_duration_ratio: float = 0.25
+    click_delay: float = 0.05
+    click_delay_variation: float = 0
+    click_duration: float = 0.05
+    click_duration_variation: float = 0
+    scroll_speed: float = 0
+    scroll_speed_variation: float = 0
+    scroll_duration: float = 0
+    scroll_duration_variation: float = 0
+    scroll_step: int = 1
+    scroll_pause_variation: float = 0
 
     def __post_init__(self) -> None:
         if self.speed < 0: raise ValueError("Speed cannot be negative.")
