@@ -3,14 +3,13 @@ from ._move import _Move
 from ._hold_click import _HoldClick
 from ._release_click import _ReleaseClick
 from ._click import _Click
-from ._double_click import _DoubleClick
-from ._right_click import _RightClick
-from ._middle_click import _MiddleClick
 from ._drag_and_drop import _DragAndDrop
 from ._scroll import _Scroll
 from ._scroll_until import _ScrollUntil
+from ._wander import _Wander
+from ._wander_until import _WanderUntil
 from .._queueable_controller import _QueueableController
-from typing import Optional, Callable
+from typing import Optional, Self, Callable
 
 class Mouse(_QueueableController):
     """
@@ -27,7 +26,7 @@ class Mouse(_QueueableController):
 
         **Arguments:**
 
-        - **`physics`** (`Optional[MousePhysics]`)
+        - **`physics` (`Optional[MousePhysics]`)**
 
         **Returns:**
 
@@ -36,7 +35,7 @@ class Mouse(_QueueableController):
         super().__init__()
         self.physics = physics or MousePhysics()
     
-    def move(self, x: int, y: int) -> None:
+    def move(self, x: int, y: int) -> Self:
         """
         **Description:**
 
@@ -44,12 +43,12 @@ class Mouse(_QueueableController):
 
         **Arguments:**
 
-        - **`x`** (`int`)
-        - **`y`** (`int`)
+        - **`x` (`int`)**
+        - **`y` (`int`)**
 
         **Returns:**
 
-        **`None`**
+        **`Self`**
 
         **Example:**
 
@@ -59,12 +58,7 @@ class Mouse(_QueueableController):
         """
         return self._execute_or_queue(_Move(x = x, y = y, physics = self.physics))
     
-    def hold_click(
-        self,
-        x: Optional[int] = None,
-        y: Optional[int] = None,
-        button: str = "left"
-    ) -> None:
+    def hold_click(self, x: Optional[int] = None, y: Optional[int] = None, button: str = "left") -> Self:
         """
         **Description:**
 
@@ -72,13 +66,13 @@ class Mouse(_QueueableController):
 
         **Arguments:**
 
-        - **`x`** (`Optional[int]`): Must be >= 0 and <= screen width.
-        - **`y`** (`Optional[int]`): Must be >= 0 and <= screen height.
-        - **`button`** (`str`): Valid options: "left", "right", "middle".
+        - **`x` (`Optional[int]`):** Must be >= 0 and <= screen width.
+        - **`y` (`Optional[int]`):** Must be >= 0 and <= screen height.
+        - **`button` (`str`):** Valid options: "left", "right", "middle".
 
         **Returns:**
 
-        **`None`**
+        **`Self`**
 
         **Example:**
 
@@ -89,11 +83,8 @@ class Mouse(_QueueableController):
         return self._execute_or_queue(_HoldClick(x = x, y = y, button = button, physics = self.physics))
     
     def release_click(
-        self,
-        x: Optional[int] = None,
-        y: Optional[int] = None,
-        button: str = "left"
-    ) -> None:
+        self, x: Optional[int] = None, y: Optional[int] = None, button: str = "left"
+    ) -> Self:
         """
         **Description:**
 
@@ -101,13 +92,13 @@ class Mouse(_QueueableController):
 
         **Arguments:**
 
-        - **`x`** (`Optional[int]`): Must be >= 0 and <= screen width.
-        - **`y`** (`Optional[int]`): Must be >= 0 and <= screen height.
-        - **`button`** (`str`): Valid options: "left", "right", "middle".
+        - **`x` (`Optional[int]`):** Must be >= 0 and <= screen width.
+        - **`y` (`Optional[int]`):** Must be >= 0 and <= screen height.
+        - **`button` (`str`):** Valid options: "left", "right", "middle".
 
         **Returns:**
 
-        **`None`**
+        **`Self`**
 
         **Example:**
 
@@ -115,14 +106,11 @@ class Mouse(_QueueableController):
         Mouse().release_click()
         ```
         """
-        return self._execute_or_queue(_ReleaseClick(x = x, y = y, button = button, physics = self.physics))
+        return self._execute_or_queue(
+            _ReleaseClick(x = x, y = y, button = button, physics = self.physics)
+        )
 
-    def click(
-        self, 
-        x: Optional[int] = None, 
-        y: Optional[int] = None, 
-        button: str = "left"
-    ) -> None:
+    def click(self, x: Optional[int] = None, y: Optional[int] = None, button: str = "left") -> Self:
         """
         **Description:**
 
@@ -130,13 +118,13 @@ class Mouse(_QueueableController):
 
         **Arguments:**
 
-        - **`x`** (`Optional[int]`): Must be >= 0 and <= screen width.
-        - **`y`** (`Optional[int]`): Must be >= 0 and <= screen height.
-        - **`button`** (`str`): Valid options: "left", "right", "middle".
+        - **`x` (`Optional[int]`):** Must be >= 0 and <= screen width.
+        - **`y` (`Optional[int]`):** Must be >= 0 and <= screen height.
+        - **`button` (`str`):** Valid options: "left", "right", "middle".
 
         **Returns:**
 
-        **`None`**
+        **`Self`**
 
         **Example:**
 
@@ -150,11 +138,8 @@ class Mouse(_QueueableController):
         )
     
     def double_click(
-        self,
-        x: Optional[int] = None,
-        y: Optional[int] = None,
-        button: str = "left"
-    ) -> None:
+        self, x: Optional[int] = None, y: Optional[int] = None, button: str = "left"
+    ) -> Self:
         """
         **Description:**
 
@@ -162,13 +147,13 @@ class Mouse(_QueueableController):
 
         **Arguments:**
 
-        - **`x`** (`Optional[int]`): Must be >= 0 and <= screen width.
-        - **`y`** (`Optional[int]`): Must be >= 0 and <= screen height.
-        - **`button`** (`str`): Valid options: "left", "right", "middle".
+        - **`x` (`Optional[int]`):** Must be >= 0 and <= screen width.
+        - **`y` (`Optional[int]`):** Must be >= 0 and <= screen height.
+        - **`button` (`str`):** Valid options: "left", "right", "middle".
 
         **Returns:**
 
-        **`None`**
+        **`Self`**
 
         **Example:**
 
@@ -176,9 +161,11 @@ class Mouse(_QueueableController):
         Mouse().double_click()
         ```
         """
-        return self._execute_or_queue(_DoubleClick(x = x, y = y, button = button, physics = self.physics))
+        return self._execute_or_queue(
+            _Click(x = x, y = y, button = button, clicks = 2, physics = self.physics)
+        )
     
-    def right_click(self, x: Optional[int] = None, y: Optional[int] = None) -> None:
+    def right_click(self, x: Optional[int] = None, y: Optional[int] = None) -> Self:
         """
         **Description:**
 
@@ -186,12 +173,12 @@ class Mouse(_QueueableController):
 
         **Arguments:**
 
-        - **`x`** (`Optional[int]`): Must be >= 0 and <= screen width.
-        - **`y`** (`Optional[int]`): Must be >= 0 and <= screen height.
+        - **`x` (`Optional[int]`):** Must be >= 0 and <= screen width.
+        - **`y` (`Optional[int]`):** Must be >= 0 and <= screen height.
 
         **Returns:**
 
-        **`None`**
+        **`Self`**
 
         **Example:**
 
@@ -199,9 +186,11 @@ class Mouse(_QueueableController):
         Mouse().right_click()
         ```
         """
-        return self._execute_or_queue(_RightClick(x = x, y = y, physics = self.physics))
+        return self._execute_or_queue(
+            _Click(x = x, y = y, button = "right", clicks = 1, physics = self.physics)
+        )
     
-    def middle_click(self, x: Optional[int] = None, y: Optional[int] = None) -> None:
+    def middle_click(self, x: Optional[int] = None, y: Optional[int] = None) -> Self:
         """
         **Description:**
 
@@ -209,12 +198,12 @@ class Mouse(_QueueableController):
 
         **Arguments:**
 
-        - **`x`** (`Optional[int]`): Must be >= 0 and <= screen width.
-        - **`y`** (`Optional[int]`): Must be >= 0 and <= screen height.
+        - **`x` (`Optional[int]`):** Must be >= 0 and <= screen width.
+        - **`y` (`Optional[int]`):** Must be >= 0 and <= screen height.
 
         **Returns:**
 
-        **`None`**
+        **`Self`**
 
         **Example:**
 
@@ -222,16 +211,13 @@ class Mouse(_QueueableController):
         Mouse().middle_click()
         ```
         """
-        return self._execute_or_queue(_MiddleClick(x = x, y = y, physics = self.physics))
+        return self._execute_or_queue(
+            _Click(x = x, y = y, button = "middle", clicks = 1, physics = self.physics)
+        )
     
     def drag_and_drop(
-        self,
-        start_x: int,
-        start_y: int,
-        end_x: int,
-        end_y: int,
-        button: str = "left"
-    ) -> None:
+        self, start_x: int, start_y: int, end_x: int, end_y: int, button: str = "left"
+    ) -> Self:
         """
         **Description:**
 
@@ -239,15 +225,15 @@ class Mouse(_QueueableController):
 
         **Arguments:**
 
-        - **`start_x`** (`int`)
-        - **`start_y`** (`int`)
-        - **`end_x`** (`int`)
-        - **`end_y`** (`int`)
-        - **`button`** (`str`): Valid options: "left", "right", "middle".
+        - **`start_x` (`int`)**
+        - **`start_y` (`int`)**
+        - **`end_x` (`int`)**
+        - **`end_y` (`int`)**
+        - **`button` (`str`):** Valid options: "left", "right", "middle".
 
         **Returns:**
 
-        **`None`**
+        **`Self`**
 
         **Example:**
 
@@ -266,7 +252,7 @@ class Mouse(_QueueableController):
             )
         )
     
-    def scroll(self, amount: int, direction: str = "down") -> None:
+    def scroll(self, amount: int, direction: str = "down") -> Self:
         """
         **Description:**
 
@@ -274,12 +260,12 @@ class Mouse(_QueueableController):
 
         **Arguments:**
 
-        - **`amount`** (`int`): Must be >= 0.
-        - **`direction`** (`str`): Valid options: "up", "down", "left", "right".
+        - **`amount` (`int`):** Must be >= 0.
+        - **`direction` (`str`):** Valid options: "up", "down", "left", "right".
 
         **Returns:**
 
-        **`None`**
+        **`Self`**
 
         **Example:**
 
@@ -298,7 +284,7 @@ class Mouse(_QueueableController):
         direction: str = "down",
         timeout: float = 0,
         poll_interval: float = 0.1
-    ) -> None:
+    ) -> Self:
         """
         **Description:**
 
@@ -306,22 +292,22 @@ class Mouse(_QueueableController):
 
         **Arguments:**
 
-        - **`condition_function`** (`Callable[[], bool]`)
-        - **`amount`** (`int`)
-        - **`direction`** (`str`): Valid options: "up", "down", "left", "right".
-        - **`timeout`** (`float`)
-        - **`poll_interval`** (`float`)
+        - **`condition_function` (`Callable[[], bool]`)**
+        - **`amount` (`int`)**
+        - **`direction` (`str`):** Valid options: "up", "down", "left", "right".
+        - **`timeout` (`float`)**
+        - **`poll_interval` (`float`)**
 
         **Returns:**
 
-        **`None`**
+        **`Self`**
 
         **Example:**
 
         ```python
         # Scrolls down infinitely until the image is found
         Mouse().scroll_until(
-            condition_function = lambda: Screen().locate_image("logo.png")[0] is not None,
+            condition_function = lambda: KeyboardInfo().is_pressed("shift"),
             direction = "down"
         )
         ```
@@ -331,6 +317,78 @@ class Mouse(_QueueableController):
                 condition_function = condition_function,
                 amount = amount,
                 direction = direction,
+                timeout = timeout,
+                poll_interval = poll_interval,
+                physics = self.physics
+            )
+        )
+    
+    def wander(
+        self,
+        duration: float = 10,
+        region: Optional[tuple[int, int, int, int]] = None,
+        maximum_steps: Optional[int] = None
+    ) -> Self:
+        """
+        **Description:**
+
+        Simulates idle mouse wandering by moving the pointer around randomly.
+
+        **Arguments:**
+
+        - **`duration` (`float`):** Seconds. Must be >= 0.
+        - **`region` (`Optional[tuple[int, int, int, int]]`):** Format: (left, top, right, bottom).
+        - **`maximum_steps` (`Optional[int]`):** Must be >= 0.
+
+        **Returns:**
+
+        **`Self`**
+
+        **Example:**
+
+        ```python
+        Mouse().wander(duration = 10)
+        ```
+        """
+        return self._execute_or_queue(_Wander(duration, region, maximum_steps, physics = self.physics))
+    
+    def wander_until(
+        self,
+        condition_function: Callable[[], bool],
+        region: Optional[tuple[int, int, int, int]] = None,
+        maximum_steps: Optional[int] = None,
+        timeout: float = 0,
+        poll_interval: float = 0.1
+    ) -> Self:
+        """
+        **Description:**
+
+        Simulates idle mouse wandering continuously in the background until a given condition function evaluates to True, or a maximum steps / timeout is reached.
+
+        **Arguments:**
+
+        - **`condition_function` (`Callable[[], bool]`)**
+        - **`region` (`Optional[tuple[int, int, int, int]]`):** Format: (left, top, right, bottom).
+        - **`maximum_steps` (`Optional[int]`):** Must be >= 0.
+        - **`timeout` (`float`)**
+        - **`poll_interval` (`float`)**
+
+        **Returns:**
+
+        **`Self`**
+
+        **Example:**
+
+        ```python
+        # Wanders around infinitely until the image is found
+        Mouse().wander_until(condition_function = lambda: KeyboardInfo().is_pressed("shift"))
+        ```
+        """
+        return self._execute_or_queue(
+            _WanderUntil(
+                condition_function = condition_function,
+                region = region,
+                maximum_steps = maximum_steps,
                 timeout = timeout,
                 poll_interval = poll_interval,
                 physics = self.physics

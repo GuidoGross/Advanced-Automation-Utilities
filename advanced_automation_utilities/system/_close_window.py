@@ -1,11 +1,7 @@
 from ._system_action import _SystemAction
-import pygetwindow
+from ..backend.windows._system import _close_window
 
 class _CloseWindow(_SystemAction):
-    def __init__(self, window_title: str) -> None: self.window_title = window_title
+    def __init__(self, window_title): self.window_title = window_title
     
-    def execute(self) -> None:
-        windows = pygetwindow.getWindowsWithTitle(self.window_title)
-        for window in windows:
-            try: window.close()
-            except pygetwindow.PyGetWindowException: pass
+    def execute(self): _close_window(self.window_title)

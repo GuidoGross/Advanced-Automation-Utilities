@@ -22,7 +22,7 @@ def update_test_state(title, running):
         ),
         (". Pulse ", {}),
         ("F1", {"color": "#00bfff"}),
-        (f" para {'ejecutar' if not running else 'detener'} la prueba, o ", {}),
+        (f" para {"ejecutar" if not running else "detener"} la prueba, o ", {}),
         ("F2", {"color": "#00bfff"}),
         (" para volver al menú principal", {})
     ], alignment = "center")
@@ -38,18 +38,18 @@ def start_stop_script(test_function, title):
     keyboard.block_key("f2")
     while True:
         if keyboard_info.is_pressed("f2"):
-            sound.play_beep_sound(500, 250)
+            with sound.asynchronous() as sound_task: sound.play_beep_sound(500, 0.25)
             break
         if keyboard_info.is_pressed("f1"):
             running = not running
             update_test_state(title, running)
-            sound.play_beep_sound(1000, 250)
+            with sound.asynchronous() as sound_task: sound.play_beep_sound(1000, 0.25)
             while keyboard_info.is_pressed("f1"): timing.wait(0.01)
             if running:
                 test_function()
                 running = False
                 update_test_state(title, running)
-                sound.play_beep_sound(500, 250)
+                with sound.asynchronous() as sound_task: sound.play_beep_sound(500, 0.25)
         timing.wait(0.05)
     keyboard.unblock_key("f1")
     keyboard.unblock_key("f2")

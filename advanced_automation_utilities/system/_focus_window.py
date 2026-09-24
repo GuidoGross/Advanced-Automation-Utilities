@@ -1,13 +1,7 @@
 from ._system_action import _SystemAction
-import pygetwindow
+from ..backend.windows._system import _focus_window
 
 class _FocusWindow(_SystemAction):
-    def __init__(self, window_title: str) -> None: self.window_title = window_title
+    def __init__(self, window_title): self.window_title = window_title
     
-    def execute(self) -> None:
-        windows = pygetwindow.getWindowsWithTitle(self.window_title)
-        if not windows: return
-        try:
-            if windows[0].isMinimized: windows[0].restore()
-            windows[0].activate()
-        except pygetwindow.PyGetWindowException: pass
+    def execute(self): _focus_window(self.window_title)

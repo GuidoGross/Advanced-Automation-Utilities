@@ -24,10 +24,10 @@ class Screen:
 
         **Arguments:**
 
-        - **`image_path`** (`str`): Must be a valid file path.
-        - **`confidence`** (`float`): Must be >= 0 and <= 1.
-        - **`region`** (`Optional[tuple[int, int, int, int]]`): Format: (left, top, right, bottom). Values must be >= 0 and <= screen width/height.
-        - **`monitor_index`** (`int`)
+        - **`image_path` (`str`):** Must be a valid file path.
+        - **`confidence` (`float`):** Must be >= 0 and <= 1.
+        - **`region` (`Optional[tuple[int, int, int, int]]`):** Format: (left, top, right, bottom). Values must be >= 0 and <= screen width/height.
+        - **`monitor_index` (`int`)**
 
         **Returns:**
 
@@ -46,7 +46,9 @@ class Screen:
             monitor_index = monitor_index
         ).execute()
     
-    def read_text(self, region: Optional[tuple[int, int, int, int]] = None, monitor_index: int = 0) -> str:
+    def read_text(
+        self, region: Optional[tuple[int, int, int, int]] = None, monitor_index: int = 0
+    ) -> str:
         """
         **Description:**
 
@@ -54,8 +56,8 @@ class Screen:
 
         **Arguments:**
 
-        - **`region`** (`Optional[tuple[int, int, int, int]]`): Format: (left, top, right, bottom). Values must be >= 0 and <= screen width/height.
-        - **`monitor_index`** (`int`)
+        - **`region` (`Optional[tuple[int, int, int, int]]`):** Format: (left, top, right, bottom). Values must be >= 0 and <= screen width/height.
+        - **`monitor_index` (`int`)**
 
         **Returns:**
 
@@ -83,10 +85,10 @@ class Screen:
 
         **Arguments:**
 
-        - **`text`** (`str`)
-        - **`region`** (`Optional[tuple[int, int, int, int]]`): Format: (left, top, right, bottom). Values must be >= 0 and <= screen width/height.
-        - **`exact_match`** (`bool`)
-        - **`monitor_index`** (`int`)
+        - **`text` (`str`)**
+        - **`region` (`Optional[tuple[int, int, int, int]]`):** Format: (left, top, right, bottom). Values must be >= 0 and <= screen width/height.
+        - **`exact_match` (`bool`)**
+        - **`monitor_index` (`int`)**
 
         **Returns:**
 

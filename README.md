@@ -41,18 +41,27 @@ Python (3.10 or higher)
 
 ### **Operating System**
 
-**Any of the following:**
-
-- Windows (10 or higher)
-- Linux (Any modern distribution capable of running Python 3.10)
-- MacOS (10.15 or higher)
-
-> [!WARNING]
-> **Linux and MacOS Limitations:** This library is heavily optimized and written for Windows. On Linux and MacOS, **Keyboard, Mouse, Sound, OCR features, Window Management, and Power options** are completely unsupported because they rely on native Windows APIs (`ctypes.windll`, `winrt`, `winsound`, etcetera). Only Timing, Screen (image search and pixel color), and Clipboard functionalities will work natively on these systems.
+- Windows 10 or higher.
 
 ---
 
 ## **Features**
+
+### **Asynchronous Execution**
+
+All hardware-bound actions (Mouse, Keyboard, Screen, Sound, System) can be queued and executed in the background using the `asynchronous` context manager. This allows you to perform operations concurrently without blocking the main thread. By returning `Self`, actions can be seamlessly chained.
+
+```python
+from advanced_automation_utilities import Mouse, Keyboard
+
+# Queue multiple actions to run in the background
+with Mouse().asynchronous() as mouse_task: Mouse().move(500, 500).click().scroll(1000)
+with Keyboard().asynchronous() as keyboard_task: Keyboard().write("Hello World!")
+# Wait for both tasks to complete synchronously
+mouse_task.wait()
+keyboard_task.wait()
+mouse_task.cancel() # Cancel a running task
+```
 
 ### **Physics (Human Simulation)**
 
@@ -88,7 +97,6 @@ mouse_physics = MousePhysics(
     scroll_pause_variation = 0.1
 )
 mouse = Mouse(mouse_physics)
-
 # Configure advanced typing simulation with errors and delayed realizations
 keyboard_physics = KeyboardPhysics(
     press_delay = 0.15,
@@ -171,9 +179,18 @@ keyboard = Keyboard(keyboard_physics)
   ```python
   # Scrolls down infinitely until the image is found
   Mouse().scroll_until(
-    condition_function = lambda: Screen().locate_image("logo.png")[0] is not None,
+    condition_function = lambda: KeyboardInfo().is_pressed("shift"),
     direction = "down"
   )
+  ```
+- **Mouse().wander():** Simulates idle mouse wandering by moving the pointer around randomly.
+  ```python
+  Mouse().wander(duration = 10)
+  ```
+- **Mouse().wander_until():** Simulates idle mouse wandering continuously in the background until a given condition function evaluates to True, or a maximum steps / timeout is reached.
+  ```python
+  # Wanders around infinitely until the image is found
+  Mouse().wander_until(condition_function = lambda: KeyboardInfo().is_pressed("shift"))
   ```
 
 ### **Keyboard Utilities (keyboard)**

@@ -1,5 +1,5 @@
 from typing import Union
-import ctypes
+from ..backend.windows._screen import _get_screen_resolution, _get_pixel_color, _get_work_area
 
 class ScreenInfo:
     """
@@ -24,9 +24,7 @@ class ScreenInfo:
         width, height = ScreenInfo().resolution
         ```
         """
-        width = ctypes.windll.user32.GetSystemMetrics(0)
-        height = ctypes.windll.user32.GetSystemMetrics(1)
-        return (width, height)
+        return _get_screen_resolution()
     
     @property
     def width(self) -> int:
@@ -45,7 +43,7 @@ class ScreenInfo:
         width = ScreenInfo().width
         ```
         """
-        return ctypes.windll.user32.GetSystemMetrics(0)
+        return self.resolution[0]
 
     @property
     def height(self) -> int:
@@ -64,7 +62,7 @@ class ScreenInfo:
         height = ScreenInfo().height
         ```
         """
-        return ctypes.windll.user32.GetSystemMetrics(1)
+        return self.resolution[1]
 
     def pixel_color(self, x: int, y: int, format: str = "rgb") -> Union[tuple[int, int, int], str]:
         """
@@ -74,9 +72,9 @@ class ScreenInfo:
 
         **Arguments:**
 
-        - **`x`** (`int`)
-        - **`y`** (`int`)
-        - **`format`** (`str`): Valid options: "rgb", "hexadecimal".
+        - **`x` (`int`)**
+        - **`y` (`int`)**
+        - **`format` (`str`):** Valid options: "rgb", "hexadecimal".
 
         **Returns:**
 
@@ -90,14 +88,27 @@ class ScreenInfo:
         """
         if format.lower() not in ["rgb", "hexadecimal"]:
             raise ValueError("Invalid color format. Valid options: \"rgb\", \"hexadecimal\".")
-        device_context = ctypes.windll.user32.GetDC(0)
-        color = ctypes.windll.gdi32.GetPixel(device_context, x, y)
-        ctypes.windll.user32.ReleaseDC(0, device_context)
-        r = color & 0xFF
-        g = (color >> 8) & 0xFF
-        b = (color >> 16) & 0xFF
-        rgb_color = (r, g, b)
+        rgb_color = _get_pixel_color(x, y)
         hexadecimal_color = "#{:02x}{:02x}{:02x}".format(rgb_color[0], rgb_color[1], rgb_color[2])
         match format.lower():
             case "rgb": return rgb_color
             case "hexadecimal": return hexadecimal_color
+    
+    @property
+    def work_area(self) -> tuple[int, int, int, int]:
+        """
+        **Description:**
+
+        Gets the primary screen's work area, excluding the taskbar.
+
+        **Returns:**
+
+        **`tuple[int, int, int, int]`:** Format: (left, top, right, bottom).
+
+        **Example:**
+
+        ```python
+        left, top, right, bottom = ScreenInfo().work_area
+        ```
+        """
+        return _get_work_area()

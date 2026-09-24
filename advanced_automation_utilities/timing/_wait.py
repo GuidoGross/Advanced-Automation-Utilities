@@ -1,12 +1,13 @@
 from ._timing_action import _TimingAction
+from ..utilities import _validate_between_range
 import time
 
 class _Wait(_TimingAction):
-    def __init__(self, duration: float) -> None:
-        if duration < 0: raise ValueError("Duration cannot be negative.")
+    def __init__(self, duration):
+        _validate_between_range(duration = duration)
         self.duration = duration
     
-    def execute(self) -> None:
+    def execute(self):
         end_time = time.perf_counter() + self.duration
         while time.perf_counter() < end_time:
             remaining = end_time - time.perf_counter()

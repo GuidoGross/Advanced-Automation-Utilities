@@ -28,9 +28,11 @@ def main():
                 "7": "Arrastrar",
                 "8": "Desplazar",
                 "9": "Desplazar hasta que se cumpla una condición",
-                "10": "Obtener coordenadas del puntero",
-                "11": "Obtener color del pixel en el que se encuentra el puntero",
-                "12": "Detectar si el puntero está en la pantalla",
+                "10": "Deambular",
+                "11": "Deambular hasta que se cumpla una condición",
+                "12": "Obtener coordenadas del puntero",
+                "13": "Obtener color del pixel en el que se encuentra el puntero",
+                "14": "Detectar si el puntero está en la pantalla",
                 "S": "Salir"
             }
         )
@@ -44,9 +46,11 @@ def main():
             case "7": test_drag()
             case "8": test_scroll()
             case "9": test_scroll_until()
-            case "10": test_get_pointer_coordinates()
-            case "11": test_get_pixel_color()
-            case "12": test_is_pointer_on_screen()
+            case "10": test_wander()
+            case "11": test_wander_until()
+            case "12": test_get_pointer_coordinates()
+            case "13": test_get_pixel_color()
+            case "14": test_is_pointer_on_screen()
             case "S": confirm_exit()
 
 def test_move_pointer():
@@ -218,6 +222,45 @@ def test_scroll_until():
     
     start_stop_script(scroll_until, "Desplazarse hasta que se cumpla una condición")
 
+def test_wander():
+    def wander():
+        physics = MousePhysics(
+            speed = 1250,
+            speed_variation = 0.1,
+            base_duration = 0.1,
+            base_duration_variation = 0.1,
+            inconsistency = 0.25,
+            target_radius = 25,
+            readjustment_duration_ratio = 0.25,
+            wander_delay = 2.5,
+            wander_delay_variation = 0.1,
+            wander_distance_ratio = 0.25,
+            wander_distance_ratio_variation = 0.1
+        )
+        mouse = Mouse(physics)
+        mouse.wander(10)
+    
+    start_stop_script(wander, "Deambular")
+
+def test_wander_until():
+    def wander_until():
+        physics = MousePhysics(
+            speed = 1250,
+            speed_variation = 0.1,
+            base_duration = 0.1,
+            base_duration_variation = 0.1,
+            inconsistency = 0.25,
+            target_radius = 25,
+            readjustment_duration_ratio = 0.25,
+            wander_delay = 2.5,
+            wander_delay_variation = 0.1,
+            wander_distance_ratio = 0.25,
+            wander_distance_ratio_variation = 0.1
+        )
+        mouse = Mouse(physics)
+        mouse.wander_until(condition_function = lambda: False, timeout = 10)
+    
+    start_stop_script(wander_until, "Deambular hasta que se cumpla una condición")
 
 def test_get_pointer_coordinates():
     def get_pointer_coordinates():

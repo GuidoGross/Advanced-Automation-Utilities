@@ -3,6 +3,7 @@ from ._play_audio import _PlayAudio
 from ._play_system_sound import _PlaySystemSound
 from ._speak import _Speak
 from .._queueable_controller import _QueueableController
+from typing import Self
 
 class Sound(_QueueableController):
     """
@@ -23,7 +24,7 @@ class Sound(_QueueableController):
         """
         super().__init__()
     
-    def play_beep_sound(self, frequency: int, duration: int) -> None:
+    def play_beep_sound(self, frequency: int, duration: float) -> Self:
         """
         **Description:**
 
@@ -31,12 +32,12 @@ class Sound(_QueueableController):
 
         **Arguments:**
 
-        - **`frequency`** (`int`): Must be between 37 and 32767.
-        - **`duration`** (`int`): Milliseconds. Must be > 0.
+        - **`frequency` (`int`):** Must be between 37 and 32767.
+        - **`duration` (`float`):** Seconds. Must be > 0.
 
         **Returns:**
 
-        **`None`**
+        **`Self`**
 
         **Example:**
 
@@ -46,7 +47,7 @@ class Sound(_QueueableController):
         """
         return self._execute_or_queue(_PlayBeepSound(frequency = frequency, duration = duration))
     
-    def play_audio(self, file_path: str) -> None:
+    def play_audio(self, file_path: str) -> Self:
         """
         **Description:**
 
@@ -54,11 +55,11 @@ class Sound(_QueueableController):
 
         **Arguments:**
 
-        - **`file_path`** (`str`)
+        - **`file_path` (`str`)**
 
         **Returns:**
 
-        **`None`**
+        **`Self`**
 
         **Example:**
 
@@ -68,7 +69,7 @@ class Sound(_QueueableController):
         """
         return self._execute_or_queue(_PlayAudio(file_path = file_path))
     
-    def play_system_sound(self, sound_type: str) -> None:
+    def play_system_sound(self, sound_type: str) -> Self:
         """
         **Description:**
 
@@ -76,11 +77,11 @@ class Sound(_QueueableController):
 
         **Arguments:**
 
-        - **`sound_type`** (`str`): Valid options: "info", "warning", "error", "question", "ok".
+        - **`sound_type` (`str`):** Valid options: "info", "warning", "error", "question", "ok".
 
         **Returns:**
 
-        **`None`**
+        **`Self`**
 
         **Example:**
 
@@ -90,7 +91,7 @@ class Sound(_QueueableController):
         """
         return self._execute_or_queue(_PlaySystemSound(sound_type = sound_type))
     
-    def speak(self, text: str) -> None:
+    def speak(self, text: str) -> Self:
         """
         **Description:**
 
@@ -98,11 +99,11 @@ class Sound(_QueueableController):
 
         **Arguments:**
 
-        - **`text`** (`str`)
+        - **`text` (`str`)**
 
         **Returns:**
 
-        **`None`**
+        **`Self`**
 
         **Example:**
 

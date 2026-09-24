@@ -1,5 +1,5 @@
 from ._system_action import _SystemAction
-import subprocess
+from ..backend.windows._system import _sign_out
 
 class _SignOut(_SystemAction):
-    def execute(self) -> None: subprocess.run(["shutdown", "/l"], creationflags = 0x08000000)
+    def execute(self): _sign_out()

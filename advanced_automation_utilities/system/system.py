@@ -14,6 +14,7 @@ from ._restart import _Restart
 from ._enable_kill_switch import _EnableKillSwitch
 from ._disable_kill_switch import _DisableKillSwitch
 from .._queueable_controller import _QueueableController
+from typing import Self
 
 class System(_QueueableController):
     """
@@ -34,7 +35,7 @@ class System(_QueueableController):
         """
         super().__init__()
     
-    def set_clipboard_text(self, text: str) -> None:
+    def set_clipboard_text(self, text: str) -> Self:
         """
         **Description:**
 
@@ -42,11 +43,11 @@ class System(_QueueableController):
 
         **Arguments:**
 
-        - **`text`** (`str`)
+        - **`text` (`str`)**
 
         **Returns:**
 
-        **`None`**
+        **`Self`**
 
         **Example:**
 
@@ -56,7 +57,7 @@ class System(_QueueableController):
         """
         return self._execute_or_queue(_SetClipboardText(text = text))
     
-    def open_process(self, executable_path: str) -> None:
+    def open_process(self, executable_path: str) -> Self:
         """
         **Description:**
 
@@ -64,11 +65,11 @@ class System(_QueueableController):
 
         **Arguments:**
 
-        - **`executable_path`** (`str`)
+        - **`executable_path` (`str`)**
 
         **Returns:**
 
-        **`None`**
+        **`Self`**
 
         **Example:**
 
@@ -78,7 +79,7 @@ class System(_QueueableController):
         """
         return self._execute_or_queue(_OpenProcess(executable_path = executable_path))
     
-    def kill_process(self, process: str, force: bool = True) -> None:
+    def kill_process(self, process: str, force: bool = True) -> Self:
         """
         **Description:**
 
@@ -86,12 +87,12 @@ class System(_QueueableController):
 
         **Arguments:**
 
-        - **`process`** (`str`)
-        - **`force`** (`bool`)
+        - **`process` (`str`)**
+        - **`force` (`bool`)**
 
         **Returns:**
 
-        **`None`**
+        **`Self`**
 
         **Example:**
 
@@ -101,7 +102,7 @@ class System(_QueueableController):
         """
         return self._execute_or_queue(_KillProcess(process = process, force = force))
     
-    def focus_window(self, window_title: str) -> None:
+    def focus_window(self, window_title: str) -> Self:
         """
         **Description:**
 
@@ -109,11 +110,11 @@ class System(_QueueableController):
 
         **Arguments:**
 
-        - **`window_title`** (`str`)
+        - **`window_title` (`str`)**
 
         **Returns:**
 
-        **`None`**
+        **`Self`**
 
         **Example:**
 
@@ -123,7 +124,7 @@ class System(_QueueableController):
         """
         return self._execute_or_queue(_FocusWindow(window_title = window_title))
     
-    def resize_window(self, window_title: str, width: int, height: int) -> None:
+    def resize_window(self, window_title: str, width: int, height: int) -> Self:
         """
         **Description:**
 
@@ -131,13 +132,13 @@ class System(_QueueableController):
 
         **Arguments:**
 
-        - **`window_title`** (`str`)
-        - **`width`** (`int`): Must be > 0.
-        - **`height`** (`int`): Must be > 0.
+        - **`window_title` (`str`)**
+        - **`width` (`int`):** Must be > 0.
+        - **`height` (`int`):** Must be > 0.
 
         **Returns:**
 
-        **`None`**
+        **`Self`**
 
         **Example:**
 
@@ -149,7 +150,7 @@ class System(_QueueableController):
             _ResizeWindow(window_title = window_title, width = width, height = height)
         )
     
-    def move_window(self, window_title: str, x: int, y: int) -> None:
+    def move_window(self, window_title: str, x: int, y: int) -> Self:
         """
         **Description:**
 
@@ -157,13 +158,13 @@ class System(_QueueableController):
 
         **Arguments:**
 
-        - **`window_title`** (`str`)
-        - **`x`** (`int`)
-        - **`y`** (`int`)
+        - **`window_title` (`str`)**
+        - **`x` (`int`)**
+        - **`y` (`int`)**
 
         **Returns:**
 
-        **`None`**
+        **`Self`**
 
         **Example:**
 
@@ -173,7 +174,7 @@ class System(_QueueableController):
         """
         return self._execute_or_queue(_MoveWindow(window_title = window_title, x = x, y = y))
     
-    def close_window(self, window_title: str) -> None:
+    def close_window(self, window_title: str) -> Self:
         """
         **Description:**
 
@@ -181,11 +182,11 @@ class System(_QueueableController):
 
         **Arguments:**
 
-        - **`window_title`** (`str`)
+        - **`window_title` (`str`)**
 
         **Returns:**
 
-        **`None`**
+        **`Self`**
 
         **Example:**
 
@@ -195,7 +196,7 @@ class System(_QueueableController):
         """
         return self._execute_or_queue(_CloseWindow(window_title = window_title))
     
-    def lock_screen(self) -> None: 
+    def lock_screen(self) -> Self: 
         """
         **Description:**
 
@@ -203,7 +204,7 @@ class System(_QueueableController):
 
         **Returns:**
 
-        **`None`**
+        **`Self`**
 
         **Example:**
 
@@ -213,7 +214,7 @@ class System(_QueueableController):
         """
         return self._execute_or_queue(_LockScreen())
     
-    def sign_out(self) -> None: 
+    def sign_out(self) -> Self: 
         """
         **Description:**
 
@@ -221,7 +222,7 @@ class System(_QueueableController):
 
         **Returns:**
 
-        **`None`**
+        **`Self`**
 
         **Example:**
 
@@ -231,7 +232,7 @@ class System(_QueueableController):
         """
         return self._execute_or_queue(_SignOut())
     
-    def sleep(self) -> None: 
+    def sleep(self) -> Self: 
         """
         **Description:**
 
@@ -239,7 +240,7 @@ class System(_QueueableController):
 
         **Returns:**
 
-        **`None`**
+        **`Self`**
 
         **Example:**
 
@@ -249,7 +250,7 @@ class System(_QueueableController):
         """
         return self._execute_or_queue(_Sleep())
     
-    def hibernate(self) -> None: 
+    def hibernate(self) -> Self: 
         """
         **Description:**
 
@@ -257,7 +258,7 @@ class System(_QueueableController):
 
         **Returns:**
 
-        **`None`**
+        **`Self`**
 
         **Example:**
 
@@ -267,7 +268,7 @@ class System(_QueueableController):
         """
         return self._execute_or_queue(_Hibernate())
     
-    def shutdown(self, delay: int = 0) -> None:
+    def shutdown(self, delay: int = 0) -> Self:
         """
         **Description:**
 
@@ -275,11 +276,11 @@ class System(_QueueableController):
 
         **Arguments:**
 
-        - **`delay`** (`int`): Seconds. Must be >= 0.
+        - **`delay` (`int`):** Seconds. Must be >= 0.
 
         **Returns:**
 
-        **`None`**
+        **`Self`**
 
         **Example:**
 
@@ -289,7 +290,7 @@ class System(_QueueableController):
         """
         return self._execute_or_queue(_Shutdown(delay = delay))
     
-    def restart(self, delay: int = 0) -> None:
+    def restart(self, delay: int = 0) -> Self:
         """
         **Description:**
 
@@ -297,11 +298,11 @@ class System(_QueueableController):
 
         **Arguments:**
 
-        - **`delay`** (`int`): Seconds. Must be >= 0.
+        - **`delay` (`int`):** Seconds. Must be >= 0.
 
         **Returns:**
 
-        **`None`**
+        **`Self`**
 
         **Example:**
 
@@ -311,7 +312,7 @@ class System(_QueueableController):
         """
         return self._execute_or_queue(_Restart(delay = delay))
     
-    def enable_kill_switch(self, *keys: str) -> None:
+    def enable_kill_switch(self, *keys: str) -> Self:
         """
         **Description:**
 
@@ -319,11 +320,11 @@ class System(_QueueableController):
 
         **Arguments:**
 
-        - **`*keys`** (`str`)
+        - **`*keys` (`str`)**
 
         **Returns:**
 
-        **`None`**
+        **`Self`**
 
         **Example:**
 
@@ -334,7 +335,7 @@ class System(_QueueableController):
         if not keys: keys = ("ctrl", "shift", "alt", "k")
         return self._execute_or_queue(_EnableKillSwitch(*keys))
     
-    def disable_kill_switch(self) -> None: 
+    def disable_kill_switch(self) -> Self: 
         """
         **Description:**
 
@@ -342,7 +343,7 @@ class System(_QueueableController):
 
         **Returns:**
 
-        **`None`**
+        **`Self`**
 
         **Example:**
 

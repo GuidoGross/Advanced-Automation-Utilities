@@ -1,6 +1,7 @@
+from ..utilities import _validate_between_range
 from dataclasses import dataclass
 
-@dataclass
+@dataclass(frozen = True)
 class KeyboardPhysics:
     """
     **Description:**
@@ -10,17 +11,17 @@ class KeyboardPhysics:
 
     **Arguments:**
 
-    - **`press_delay`** (`float`): Seconds. Must be >= 0.
-    - **`press_delay_variation`** (`float`): Must be >= 0.
-    - **`press_duration`** (`float`): Seconds. Must be >= 0.
-    - **`press_duration_variation`** (`float`): Must be >= 0.
-    - **`hotkey_delay`** (`float`): Seconds. Must be >= 0.
-    - **`hotkey_delay_variation`** (`float`): Must be >= 0.
-    - **`typing_error_chance`** (`float`): Must be >= 0 and <= 1.
-    - **`typing_error_correction_delay`** (`float`): Seconds. Must be >= 0.
-    - **`typing_error_correction_delay_variation`** (`float`): Must be >= 0.
-    - **`typing_error_delayed_realization_chance`** (`float`): Must be >= 0 and <= 1.
-    - **`auto_repeat`** (`bool`)
+    - **`press_delay` (`float`):** Seconds. Must be >= 0.
+    - **`press_delay_variation` (`float`):** Must be >= 0.
+    - **`press_duration` (`float`):** Seconds. Must be >= 0.
+    - **`press_duration_variation` (`float`):** Must be >= 0.
+    - **`hotkey_delay` (`float`):** Seconds. Must be >= 0.
+    - **`hotkey_delay_variation` (`float`):** Must be >= 0.
+    - **`typing_error_chance` (`float`):** Must be >= 0 and <= 1.
+    - **`typing_error_correction_delay` (`float`):** Seconds. Must be >= 0.
+    - **`typing_error_correction_delay_variation` (`float`):** Must be >= 0.
+    - **`typing_error_delayed_realization_chance` (`float`):** Must be >= 0 and <= 1.
+    - **`auto_repeat` (`bool`)**
     """
     press_delay: float = 0.05
     press_delay_variation: float = 0
@@ -35,18 +36,17 @@ class KeyboardPhysics:
     auto_repeat: bool = True
 
     def __post_init__(self) -> None:
-        if self.press_delay < 0: raise ValueError("Press delay cannot be negative.")
-        if self.press_delay_variation < 0: raise ValueError("Press delay variation cannot be negative.")
-        if self.press_duration < 0: raise ValueError("Press duration cannot be negative.")
-        if self.press_duration_variation < 0:
-            raise ValueError("Press duration variation cannot be negative.")
-        if self.hotkey_delay < 0: raise ValueError("Hotkey delay cannot be negative.")
-        if self.hotkey_delay_variation < 0: raise ValueError("Hotkey delay variation cannot be negative.")
-        if not (0 <= self.typing_error_chance <= 1):
-            raise ValueError("Typing error chance must be between 0 and 1.")
-        if self.typing_error_correction_delay < 0:
-            raise ValueError("Typing error correction delay cannot be negative.")
-        if self.typing_error_correction_delay_variation < 0:
-            raise ValueError("Typing error correction delay variation cannot be negative.")
-        if not (0 <= self.typing_error_delayed_realization_chance <= 1):
-            raise ValueError("Typing error delayed realization chance must be between 0 and 1.")
+        _validate_between_range(
+            press_delay = self.press_delay,
+            press_delay_variation = self.press_delay_variation,
+            press_duration = self.press_duration,
+            press_duration_variation = self.press_duration_variation,
+            hotkey_delay = self.hotkey_delay,
+            hotkey_delay_variation = self.hotkey_delay_variation,
+            typing_error_correction_delay = self.typing_error_correction_delay,
+            typing_error_correction_delay_variation = self.typing_error_correction_delay_variation,
+        )
+        _validate_between_range(0, 1, 
+            typing_error_chance = self.typing_error_chance,
+            typing_error_delayed_realization_chance = self.typing_error_delayed_realization_chance,
+        )

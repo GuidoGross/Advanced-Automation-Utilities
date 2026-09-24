@@ -1,13 +1,21 @@
+from ..._kill_switch_event import KILL_SWITCH_EVENT
 import ctypes
 from ctypes import wintypes
 import _thread
 import threading
 
-_WINDOWS_HOOK_KEYBOARD_LOW_LEVEL = 13
+_KEY_UP = 0x0002
+_SHIFT_VIRTUAL_KEY = 0x10
+_CONTROL_VIRTUAL_KEY = 0x11
+_ALT_VIRTUAL_KEY = 0x12
+_UNICODE = 0x0004
+_KEY_PRESSED = 0x8000
+_INJECTED = 0x10
 _WINDOW_MESSAGE_KEY_DOWN = 0x0100
-_WINDOW_MESSAGE_KEY_UP = 0x0101
 _WINDOW_MESSAGE_SYSTEM_KEY_DOWN = 0x0104
+_WINDOW_MESSAGE_KEY_UP = 0x0101
 _WINDOW_MESSAGE_SYSTEM_KEY_UP = 0x0105
+_WINDOWS_HOOK_KEYBOARD_LOW_LEVEL = 13
 
 _VIRTUAL_KEY_CODES = {
     "backspace":         0x08, "tab":               0x09, "clear":             0x0C,
@@ -106,67 +114,116 @@ class _KeyboardHookStruct(ctypes.Structure):
         ("extra_information", ctypes.POINTER(ctypes.c_ulong))
     ]
 
-def _send_key(key: str, key_released: bool = False) -> None:
-    virtual_key = _get_virtual_key_code(key)
-    if not virtual_key: return
-    input_struct = _Input(
-        type = 1,
-        keyboard_input = _KeyboardInput(
-            virtual_key_code = virtual_key, flags = 0x0002 if key_released else 0
+def _send_key(key, key_released = False):
+    virtual_key_result = _get_virtual_key_code(key)
+    if not virtual_key_result: return
+    virtual_key_code, modifiers = virtual_key_result
+    inputs = []
+    flags = _KEY_UP if key_released else 0
+    if key_released:
+        inputs.append(
+            _Input(
+                type = 1,
+                keyboard_input = _KeyboardInput(virtual_key_code = virtual_key_code, flags = flags)
+            )
         )
-    )
-    _user32.SendInput(1, ctypes.byref(input_struct), ctypes.sizeof(input_struct))
+    for bit, modifier_virtual_key in ((1, _SHIFT_VIRTUAL_KEY), (2, _CONTROL_VIRTUAL_KEY), (4, _ALT_VIRTUAL_KEY)):
+        if modifiers & bit:
+            inputs.append(
+                _Input(
+                    type = 1,
+                    keyboard_input = _KeyboardInput(
+                        virtual_key_code = modifier_virtual_key, flags = flags
+                    )
+                )
+            )
+    if not key_released:
+        inputs.append(
+            _Input(
+                type = 1, keyboard_input = _KeyboardInput(
+                    virtual_key_code = virtual_key_code, flags = flags
+                )
+            )
+        )
+    input_array_type = _Input * len(inputs)
+    input_array = input_array_type(*inputs)
+    _user32.SendInput(len(inputs), ctypes.byref(input_array), ctypes.sizeof(_Input))
 
-def _send_unicode(text: str) -> None:
+def _send_unicode(text):
     for character in text:
         surrogate = character.encode("utf-16-le")
-        for i in range(0, len(surrogate), 2):
-            code = int.from_bytes(surrogate[i: i + 2], "little")
+        for index in range(0, len(surrogate), 2):
+            code = int.from_bytes(surrogate[index: index + 2], "little")
             input_down = _Input(
                 type = 1,
                 keyboard_input = _KeyboardInput(
-                    virtual_key_code = 0, scan_code = code, flags = 0x0004, time = 0
+                    virtual_key_code = 0, scan_code = code, flags = _UNICODE, time = 0
                 )
             )
             _user32.SendInput(1, ctypes.byref(input_down), ctypes.sizeof(input_down))
             input_up = _Input(
                 type = 1,
                 keyboard_input = _KeyboardInput(
-                    virtual_key_code = 0, scan_code = code, flags = 0x0004 | 0x0002, time = 0
+                    virtual_key_code = 0, scan_code = code, flags = _UNICODE | _KEY_UP, time = 0
                 )
             )
             _user32.SendInput(1, ctypes.byref(input_up), ctypes.sizeof(input_up))
 
-def _is_pressed(key: str) -> bool:
-    virtual_key = _get_virtual_key_code(key)
-    if not virtual_key: return False
-    if _key_states.get(virtual_key, False): return True
-    return (_user32.GetAsyncKeyState(virtual_key) & 0x8000) != 0
+def _is_pressed(key):
+    virtual_key_result = _get_virtual_key_code(key)
+    if not virtual_key_result: return False
+    virtual_key_code, _ = virtual_key_result
+    if _key_states.get(virtual_key_code, False): return True
+    return (_user32.GetAsyncKeyState(virtual_key_code) & _KEY_PRESSED) != 0
 
-def _block_key(key: str) -> None:
-    virtual_key = _get_virtual_key_code(key)
-    if virtual_key:
-        _blocked_keys.add(virtual_key)
+def _block_key(key):
+    virtual_key_result = _get_virtual_key_code(key)
+    if virtual_key_result:
+        virtual_key_code, _ = virtual_key_result
+        _blocked_keys.add(virtual_key_code)
         _ensure_hook()
 
-def _unblock_key(key: str) -> None:
-    virtual_key = _get_virtual_key_code(key)
-    if virtual_key and virtual_key in _blocked_keys: _blocked_keys.remove(virtual_key)
+def _unblock_key(key):
+    virtual_key_result = _get_virtual_key_code(key)
+    if virtual_key_result:
+        virtual_key_code, _ = virtual_key_result
+        if virtual_key_code in _blocked_keys: _blocked_keys.remove(virtual_key_code)
 
-def _enable_kill_switch(keys: list[str]) -> None:
+def _enable_kill_switch(keys):
     global _kill_switch_enabled, _kill_switch_key, _kill_switch_modifiers
     if not keys: return
-    main_key = _get_virtual_key_code(keys[-1])
-    modifiers = [_get_virtual_key_code(modifier) for modifier in keys[:-1]]
-    if not main_key: return
+    main_result = _get_virtual_key_code(keys[-1])
+    if not main_result: return
+    main_key, _ = main_result
+    modifiers = []
+    for modifier in keys[:-1]:
+        modifier_result = _get_virtual_key_code(modifier)
+        if modifier_result: modifiers.append(modifier_result[0])
     _kill_switch_key = main_key
-    _kill_switch_modifiers = [modifier for modifier in modifiers if modifier]
+    _kill_switch_modifiers = modifiers
     _kill_switch_enabled = True
     _ensure_hook()
 
-def _disable_kill_switch() -> None:
+def _disable_kill_switch():
     global _kill_switch_enabled
     _kill_switch_enabled = False
+
+def _get_virtual_key_code(key):
+    key_lower = key.lower()
+    if key_lower in _VIRTUAL_KEY_CODES: return _VIRTUAL_KEY_CODES[key_lower], 0
+    if len(key) == 1:
+        virtual_key = _user32.VkKeyScanW(ord(key))
+        if virtual_key == -1: return None
+        return virtual_key & 0xFF, virtual_key >> 8
+    return None
+
+def _ensure_hook():
+    global _hook_thread
+    if _hook_thread is None or not _hook_thread.is_alive():
+        _hook_ready_event.clear()
+        _hook_thread = threading.Thread(target = _hook_worker, daemon = True)
+        _hook_thread.start()
+        _hook_ready_event.wait()
 
 _HookProcedure = ctypes.WINFUNCTYPE(ctypes.c_long, ctypes.c_int, wintypes.WPARAM, wintypes.LPARAM)
 _user32.SetWindowsHookExW.argtypes = [ctypes.c_int, _HookProcedure, wintypes.HINSTANCE, wintypes.DWORD]
@@ -174,35 +231,31 @@ _user32.SetWindowsHookExW.restype = wintypes.HHOOK
 _user32.CallNextHookEx.argtypes = [wintypes.HHOOK, ctypes.c_int, wintypes.WPARAM, wintypes.LPARAM]
 _user32.CallNextHookEx.restype = wintypes.LPARAM
 
-def _get_virtual_key_code(key: str) -> int:
-    key = key.lower()
-    if key in _VIRTUAL_KEY_CODES: return _VIRTUAL_KEY_CODES[key]
-    if len(key) == 1:
-        virtual_key = _user32.VkKeyScanW(ord(key))
-        return virtual_key & 0xFF
-    return 0
-
-def _hook_worker() -> None:
+def _hook_worker():
     global _hook_id, _hook_function
-    def _low_level_keyboard_handler(hook_code: int, window_message: int, hook_data: int) -> int:
+    def _low_level_keyboard_handler(hook_code, window_message, hook_data):
         if hook_code >= 0:
-            virtual_key = ctypes.cast(
+            hook_struct = ctypes.cast(
                 hook_data, ctypes.POINTER(_KeyboardHookStruct)
-            ).contents.virtual_key_code
+            ).contents
+            virtual_key = hook_struct.virtual_key_code
+            flags = hook_struct.flags
+            is_injected = (flags & _INJECTED) != 0
             if window_message in (_WINDOW_MESSAGE_KEY_DOWN, _WINDOW_MESSAGE_SYSTEM_KEY_DOWN):
                 _key_states[virtual_key] = True
                 if _kill_switch_enabled and virtual_key == _kill_switch_key:
                     all_modifiers_pressed = True
                     for modifier in _kill_switch_modifiers:
-                        if not _key_states.get(modifier, False) and not (_user32.GetAsyncKeyState(modifier) & 0x8000):
+                        if not _key_states.get(modifier, False) and not (_user32.GetAsyncKeyState(modifier) & _KEY_PRESSED):
                             all_modifiers_pressed = False
                             break
                     if all_modifiers_pressed:
+                        KILL_SWITCH_EVENT.set()
                         _thread.interrupt_main()
                         return 1
             elif window_message in (_WINDOW_MESSAGE_KEY_UP, _WINDOW_MESSAGE_SYSTEM_KEY_UP):
                 _key_states[virtual_key] = False
-            if virtual_key in _blocked_keys: return 1
+            if virtual_key in _blocked_keys and not is_injected: return 1
         return _user32.CallNextHookEx(_hook_id, hook_code, window_message, hook_data)
     _hook_function = _HookProcedure(_low_level_keyboard_handler)
     _hook_id = _user32.SetWindowsHookExW(_WINDOWS_HOOK_KEYBOARD_LOW_LEVEL, _hook_function, None, 0)
@@ -211,11 +264,3 @@ def _hook_worker() -> None:
     while _user32.GetMessageW(ctypes.byref(message), None, 0, 0) > 0:
         _user32.TranslateMessage(ctypes.byref(message))
         _user32.DispatchMessageW(ctypes.byref(message))
-
-def _ensure_hook() -> None:
-    global _hook_thread
-    if _hook_thread is None or not _hook_thread.is_alive():
-        _hook_ready_event.clear()
-        _hook_thread = threading.Thread(target = _hook_worker, daemon = True)
-        _hook_thread.start()
-        _hook_ready_event.wait()

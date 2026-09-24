@@ -1,3 +1,13 @@
+import os
+
+if os.name != "nt":
+    raise NotImplementedError("Advanced Automation Utilities is currently only supported on Windows.")
+
+import ctypes
+
+try: ctypes.windll.user32.SetProcessDPIAware()
+except Exception: pass
+
 from .mouse import (
     Mouse,
     MouseInfo,
@@ -18,6 +28,7 @@ from .screen import (Screen, ScreenInfo)
 from .timing import (Timing, TimingInfo, measure_time)
 from .sound import Sound
 from .system import (System, SystemInfo)
+from .exceptions import WindowNotFoundError
 
 __all__ = [
     "Mouse",
@@ -40,4 +51,5 @@ __all__ = [
     "Sound",
     "System",
     "SystemInfo",
+    "WindowNotFoundError",
 ]

@@ -34,7 +34,7 @@ def test_play_beep_sound():
     header("Reproducir un pitido")
     print("Reproduciendo el pitido...", alignment = "center")
     sound = Sound()
-    sound.play_beep_sound(1000, 500)
+    sound.play_beep_sound(1000, 0.5)
 
 def test_play_audio():
     header("Reproducir un archivo de audio")

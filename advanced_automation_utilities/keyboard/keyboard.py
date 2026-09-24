@@ -7,7 +7,7 @@ from ._block_key import _BlockKey
 from ._unblock_key import _UnblockKey
 from ._write import _Write
 from .._queueable_controller import _QueueableController
-from typing import Optional
+from typing import Optional, Self
 
 class Keyboard(_QueueableController):
     """
@@ -24,7 +24,7 @@ class Keyboard(_QueueableController):
 
         **Arguments:**
 
-        - **`physics`** (`Optional[KeyboardPhysics]`)
+        - **`physics` (`Optional[KeyboardPhysics]`)**
 
         **Returns:**
 
@@ -33,7 +33,7 @@ class Keyboard(_QueueableController):
         super().__init__()
         self.physics = physics or KeyboardPhysics()
     
-    def hold_key(self, key: str) -> None:
+    def hold_key(self, key: str) -> Self:
         """
         **Description:**
 
@@ -41,11 +41,11 @@ class Keyboard(_QueueableController):
 
         **Arguments:**
 
-        - **`key`** (`str`)
+        - **`key` (`str`)**
 
         **Returns:**
 
-        **`None`**
+        **`Self`**
 
         **Example:**
 
@@ -55,7 +55,7 @@ class Keyboard(_QueueableController):
         """
         return self._execute_or_queue(_HoldKey(key = key, physics = self.physics))
     
-    def release_key(self, key: str) -> None:
+    def release_key(self, key: str) -> Self:
         """
         **Description:**
 
@@ -63,11 +63,11 @@ class Keyboard(_QueueableController):
 
         **Arguments:**
 
-        - **`key`** (`str`)
+        - **`key` (`str`)**
 
         **Returns:**
 
-        **`None`**
+        **`Self`**
 
         **Example:**
 
@@ -77,7 +77,7 @@ class Keyboard(_QueueableController):
         """
         return self._execute_or_queue(_ReleaseKey(key = key, physics = self.physics))
     
-    def press_key(self, key: str) -> None:
+    def press_key(self, key: str) -> Self:
         """
         **Description:**
 
@@ -85,11 +85,11 @@ class Keyboard(_QueueableController):
 
         **Arguments:**
 
-        - **`key`** (`str`)
+        - **`key` (`str`)**
 
         **Returns:**
 
-        **`None`**
+        **`Self`**
 
         **Example:**
 
@@ -99,7 +99,7 @@ class Keyboard(_QueueableController):
         """
         return self._execute_or_queue(_PressKey(key = key, physics = self.physics))
     
-    def hotkey(self, *keys: str) -> None:
+    def hotkey(self, *keys: str) -> Self:
         """
         **Description:**
 
@@ -107,11 +107,11 @@ class Keyboard(_QueueableController):
 
         **Arguments:**
 
-        - **`*keys`** (`str`)
+        - **`*keys` (`str`)**
 
         **Returns:**
 
-        **`None`**
+        **`Self`**
 
         **Example:**
 
@@ -121,7 +121,7 @@ class Keyboard(_QueueableController):
         """
         return self._execute_or_queue(_Hotkey(*keys, physics = self.physics))
     
-    def block_key(self, key: str) -> None:
+    def block_key(self, key: str) -> Self:
         """
         **Description:**
 
@@ -129,11 +129,11 @@ class Keyboard(_QueueableController):
 
         **Arguments:**
 
-        - **`key`** (`str`)
+        - **`key` (`str`)**
 
         **Returns:**
 
-        **`None`**
+        **`Self`**
 
         **Example:**
 
@@ -143,7 +143,7 @@ class Keyboard(_QueueableController):
         """
         return self._execute_or_queue(_BlockKey(key = key))
     
-    def unblock_key(self, key: str) -> None:
+    def unblock_key(self, key: str) -> Self:
         """
         **Description:**
 
@@ -151,11 +151,11 @@ class Keyboard(_QueueableController):
 
         **Arguments:**
 
-        - **`key`** (`str`)
+        - **`key` (`str`)**
 
         **Returns:**
 
-        **`None`**
+        **`Self`**
 
         **Example:**
 
@@ -165,7 +165,7 @@ class Keyboard(_QueueableController):
         """
         return self._execute_or_queue(_UnblockKey(key = key))
     
-    def write(self, text: str) -> None:
+    def write(self, text: str) -> Self:
         """
         **Description:**
 
@@ -173,11 +173,11 @@ class Keyboard(_QueueableController):
 
         **Arguments:**
 
-        - **`text`** (`str`)
+        - **`text` (`str`)**
 
         **Returns:**
 
-        **`None`**
+        **`Self`**
 
         **Example:**
 

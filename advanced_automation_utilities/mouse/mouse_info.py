@@ -1,5 +1,6 @@
 from advanced_automation_utilities.screen import ScreenInfo
-import ctypes
+from ..backend.windows._mouse import _get_cursor_position
+import mss
 
 class MouseInfo:
     """
@@ -24,9 +25,7 @@ class MouseInfo:
         x, y = MouseInfo().coordinates
         ```
         """
-        point = _Point()
-        ctypes.windll.user32.GetCursorPos(ctypes.byref(point))
-        return (int(point.x), int(point.y))
+        return _get_cursor_position()
     
     @property
     def x(self) -> int:
@@ -74,7 +73,7 @@ class MouseInfo:
 
         **Arguments:**
 
-        - **`format`** (`str`): Valid options: "rgb", "hexadecimal".
+        - **`format` (`str`):** Valid options: "rgb", "hexadecimal".
 
         **Returns:**
 
@@ -106,7 +105,8 @@ class MouseInfo:
         ```
         """
         x, y = self.coordinates
-        width, height = ScreenInfo().resolution
-        return 0 <= x < width and 0 <= y < height
-
-class _Point(ctypes.Structure): _fields_ = [("x", ctypes.c_long), ("y", ctypes.c_long)]
+        with mss.mss() as screen_capture_tool:
+            virtual = screen_capture_tool.monitors[0]
+            return (
+                virtual["left"] <= x < virtual["left"] + virtual["width"] and virtual["top"] <= y < virtual["top"] + virtual["height"]
+            )

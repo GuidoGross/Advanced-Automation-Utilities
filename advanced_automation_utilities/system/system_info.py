@@ -1,6 +1,4 @@
-import pyperclip
-import pygetwindow
-import psutil
+from ..backend.windows._system import _get_clipboard_text, _get_active_window_title, _is_process_running
 
 class SystemInfo:
     """
@@ -25,7 +23,7 @@ class SystemInfo:
         text = SystemInfo().clipboard_text
         ```
         """
-        return pyperclip.paste()
+        return _get_clipboard_text()
     
     @property
     def active_window_title(self) -> str:
@@ -44,8 +42,7 @@ class SystemInfo:
         title = SystemInfo().active_window_title
         ```
         """
-        active_window = pygetwindow.getActiveWindow()
-        return active_window.title if active_window else ""
+        return _get_active_window_title()
     
     def is_process_running(self, process: str) -> bool:
         """
@@ -55,7 +52,7 @@ class SystemInfo:
 
         **Arguments:**
 
-        - **`process`** (`str`)
+        - **`process` (`str`)**
 
         **Returns:**
 
@@ -67,9 +64,4 @@ class SystemInfo:
         is_running = SystemInfo().is_process_running("notepad.exe")
         ```
         """
-        lower_case_process = process.lower()
-        for process in psutil.process_iter(["name"]):
-            try:
-                if process.info["name"] and process.info["name"].lower() == lower_case_process: return True
-            except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess): pass
-        return False
+        return _is_process_running(process)

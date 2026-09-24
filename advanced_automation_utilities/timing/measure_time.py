@@ -11,7 +11,7 @@ def measure_time(function: Callable) -> Callable:
 
     **Arguments:**
 
-    - **`function`** (`Callable`)
+    - **`function` (`Callable`)**
 
     **Returns:**
 

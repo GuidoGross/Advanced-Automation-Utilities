@@ -15,7 +15,11 @@ MOUSE_NORMAL = MousePhysics(
     scroll_speed = 1000,
     scroll_speed_variation = 0.1,
     scroll_step = 120,
-    scroll_pause_variation = 0.1
+    scroll_pause_variation = 0.1,
+    wander_delay = 2.5,
+    wander_delay_variation = 0.1,
+    wander_distance_ratio = 0.25,
+    wander_distance_ratio_variation = 0.1
 )
 
 MOUSE_SLOW = MousePhysics(
@@ -33,7 +37,11 @@ MOUSE_SLOW = MousePhysics(
     scroll_speed = 500,
     scroll_speed_variation = 0.1,
     scroll_step = 120,
-    scroll_pause_variation = 0.1
+    scroll_pause_variation = 0.1,
+    wander_delay = 5,
+    wander_delay_variation = 0.1,
+    wander_distance_ratio = 0.125,
+    wander_distance_ratio_variation = 0.1
 )
 
 MOUSE_FAST = MousePhysics(
@@ -51,5 +59,9 @@ MOUSE_FAST = MousePhysics(
     scroll_speed = 2000,
     scroll_speed_variation = 0.1,
     scroll_step = 120,
-    scroll_pause_variation = 0.1
+    scroll_pause_variation = 0.1,
+    wander_delay = 1.25,
+    wander_delay_variation = 0.1,
+    wander_distance_ratio = 0.5,
+    wander_distance_ratio_variation = 0.1
 )
