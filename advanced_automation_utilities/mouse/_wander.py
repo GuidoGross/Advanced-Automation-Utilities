@@ -73,14 +73,16 @@ class _Wander(_MouseAction):
                     delay = _apply_variation(delay, self.physics.wander_delay_variation)
                 delay = max(0, delay)
             if move_duration + delay > remaining:
-                timing.wait(remaining)
+                if stop_event is not None: stop_event.wait(remaining)
+                else: timing.wait(remaining)
                 break
             target_x, target_y = self._get_next_target(distance)
             _Move(target_x, target_y, physics = self.physics).execute()
             steps_taken += 1
             if KILL_SWITCH_EVENT.is_set(): break
-            if stop_event is not None and stop_event.is_set(): break
-            timing.wait(delay)
+            if stop_event is not None:
+                if stop_event.wait(delay): break
+            else: timing.wait(delay)
     
     def _get_next_target(self, distance):
         mouse_info = MouseInfo()

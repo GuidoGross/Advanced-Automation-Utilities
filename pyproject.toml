@@ -1,6 +1,6 @@
 [project]
 name = "advanced_automation_utilities"
-version = "1.2.0"
+version = "1.2.1"
 description = "Personal use automation utilities library."
 readme = "README.md"
 license = "MIT"
