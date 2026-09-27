@@ -77,8 +77,8 @@ class Mouse(_QueueableController):
 
         **Arguments:**
 
-        - **`x` (`Optional[int]`):** Must be >= 0 and <= screen width.
-        - **`y` (`Optional[int]`):** Must be >= 0 and <= screen height.
+        - **`x` (`Optional[int]`)**
+        - **`y` (`Optional[int]`)**
         - **`button` (`str`):** Valid options: "left", "right", "middle".
 
         **Returns:**
@@ -109,8 +109,8 @@ class Mouse(_QueueableController):
 
         **Arguments:**
 
-        - **`x` (`Optional[int]`):** Must be >= 0 and <= screen width.
-        - **`y` (`Optional[int]`):** Must be >= 0 and <= screen height.
+        - **`x` (`Optional[int]`)**
+        - **`y` (`Optional[int]`)**
         - **`button` (`str`):** Valid options: "left", "right", "middle".
 
         **Returns:**
@@ -143,8 +143,8 @@ class Mouse(_QueueableController):
 
         **Arguments:**
 
-        - **`x` (`Optional[int]`):** Must be >= 0 and <= screen width.
-        - **`y` (`Optional[int]`):** Must be >= 0 and <= screen height.
+        - **`x` (`Optional[int]`)**
+        - **`y` (`Optional[int]`)**
         - **`button` (`str`):** Valid options: "left", "right", "middle".
 
         **Returns:**
@@ -177,8 +177,8 @@ class Mouse(_QueueableController):
 
         **Arguments:**
 
-        - **`x` (`Optional[int]`):** Must be >= 0 and <= screen width.
-        - **`y` (`Optional[int]`):** Must be >= 0 and <= screen height.
+        - **`x` (`Optional[int]`)**
+        - **`y` (`Optional[int]`)**
         - **`button` (`str`):** Valid options: "left", "right", "middle".
 
         **Returns:**
@@ -205,8 +205,8 @@ class Mouse(_QueueableController):
 
         **Arguments:**
 
-        - **`x` (`Optional[int]`):** Must be >= 0 and <= screen width.
-        - **`y` (`Optional[int]`):** Must be >= 0 and <= screen height.
+        - **`x` (`Optional[int]`)**
+        - **`y` (`Optional[int]`)**
 
         **Returns:**
 
@@ -232,8 +232,8 @@ class Mouse(_QueueableController):
 
         **Arguments:**
 
-        - **`x` (`Optional[int]`):** Must be >= 0 and <= screen width.
-        - **`y` (`Optional[int]`):** Must be >= 0 and <= screen height.
+        - **`x` (`Optional[int]`)**
+        - **`y` (`Optional[int]`)**
 
         **Returns:**
 

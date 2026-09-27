@@ -90,7 +90,7 @@ Windows 10 or higher.
 The library features a powerful Context Manager-based asynchronous execution system. All hardware-bound actions, such as Mouse, Keyboard, Screen, Sound, or System operations, can be seamlessly queued and executed in the background. This architecture allows you to perform heavy operations concurrently without blocking your main script's logic.
 
 > [!TIP]
-> All actions return `Self`, meaning they can be fluidly chained together. For instance, `Mouse().move(x, y).click()` queues both actions sequentially within the same background task. 
+> All actions return `Self`, meaning they can be fluidly chained together. For instance, `Mouse().move(x, y).click()` queues both actions sequentially within the same background task.
 
 > [!NOTE]
 > To fetch the return value of an action (such as a boolean from `scroll_until`), use `.last_result` at the end of a synchronous chain, or `.results` on the task object for asynchronous queues.
@@ -122,7 +122,7 @@ print(result)
 
 ### **Physics (human simulation)**
 
-To evade bot-detection mechanisms and simulate real user interactions, both **Mouse** and **Keyboard** modules are governed by highly configurable, immutable dataclasses (`MousePhysics` and `KeyboardPhysics`). 
+To evade bot-detection mechanisms and simulate real user interactions, both **Mouse** and **Keyboard** modules are governed by highly configurable, immutable dataclasses (`MousePhysics` and `KeyboardPhysics`).
 
 Mouse movements follow randomized Bézier curves with dynamic speeds and overshoots, while keyboard typing simulates human delays, keystroke variations, and even random typos with delayed corrections.
 
@@ -206,8 +206,8 @@ keyboard = Keyboard(keyboard_physics)
   
   **Arguments:**
 
-  - **`x` (`Optional[int]`):** Must be >= 0 and <= screen width.
-  - **`y` (`Optional[int]`):** Must be >= 0 and <= screen height.
+  - **`x` (`Optional[int]`)**
+  - **`y` (`Optional[int]`)**
   - **`button` (`str`):** Valid options: "left", "right", "middle".
 
   **Returns:**
@@ -231,8 +231,8 @@ keyboard = Keyboard(keyboard_physics)
   
   **Arguments:**
 
-  - **`x` (`Optional[int]`):** Must be >= 0 and <= screen width.
-  - **`y` (`Optional[int]`):** Must be >= 0 and <= screen height.
+  - **`x` (`Optional[int]`)**
+  - **`y` (`Optional[int]`)**
   - **`button` (`str`):** Valid options: "left", "right", "middle".
 
   **Returns:**
@@ -253,8 +253,8 @@ keyboard = Keyboard(keyboard_physics)
   
   **Arguments:**
 
-  - **`x` (`Optional[int]`):** Must be >= 0 and <= screen width.
-  - **`y` (`Optional[int]`):** Must be >= 0 and <= screen height.
+  - **`x` (`Optional[int]`)**
+  - **`y` (`Optional[int]`)**
 
   **Returns:**
 
@@ -274,8 +274,8 @@ keyboard = Keyboard(keyboard_physics)
   
   **Arguments:**
 
-  - **`x` (`Optional[int]`):** Must be >= 0 and <= screen width.
-  - **`y` (`Optional[int]`):** Must be >= 0 and <= screen height.
+  - **`x` (`Optional[int]`)**
+  - **`y` (`Optional[int]`)**
 
   **Returns:**
 
@@ -295,8 +295,8 @@ keyboard = Keyboard(keyboard_physics)
   
   **Arguments:**
 
-  - **`x` (`Optional[int]`):** Must be >= 0 and <= screen width.
-  - **`y` (`Optional[int]`):** Must be >= 0 and <= screen height.
+  - **`x` (`Optional[int]`)**
+  - **`y` (`Optional[int]`)**
   - **`button` (`str`):** Valid options: "left", "right", "middle".
 
   **Returns:**
@@ -320,8 +320,8 @@ keyboard = Keyboard(keyboard_physics)
   
   **Arguments:**
 
-  - **`x` (`Optional[int]`):** Must be >= 0 and <= screen width.
-  - **`y` (`Optional[int]`):** Must be >= 0 and <= screen height.
+  - **`x` (`Optional[int]`)**
+  - **`y` (`Optional[int]`)**
   - **`button` (`str`):** Valid options: "left", "right", "middle".
 
   **Returns:**
@@ -735,7 +735,7 @@ keyboard = Keyboard(keyboard_physics)
 
   - **`image_path` (`str`):** Must be a valid file path.
   - **`confidence` (`float`):** Must be >= 0 and <= 1.
-  - **`region` (`Optional[tuple[int, int, int, int]]`):** Format: (left, top, right, bottom). Values must be >= 0 and <= screen width/height.
+  - **`region` (`Optional[tuple[int, int, int, int]]`):** Format: (left, top, right, bottom).
   - **`monitor_index` (`int`)**
 
   **Returns:**
@@ -762,7 +762,7 @@ keyboard = Keyboard(keyboard_physics)
   **Arguments:**
 
   - **`text` (`str`)**
-  - **`region` (`Optional[tuple[int, int, int, int]]`):** Format: (left, top, right, bottom). Values must be >= 0 and <= screen width/height.
+  - **`region` (`Optional[tuple[int, int, int, int]]`):** Format: (left, top, right, bottom).
   - **`exact_match` (`bool`)**
   - **`monitor_index` (`int`)**
 
@@ -789,7 +789,7 @@ keyboard = Keyboard(keyboard_physics)
 
   **Arguments:**
 
-  - **`region` (`Optional[tuple[int, int, int, int]]`):** Format: (left, top, right, bottom). Values must be >= 0 and <= screen width/height.
+  - **`region` (`Optional[tuple[int, int, int, int]]`):** Format: (left, top, right, bottom).
   - **`monitor_index` (`int`)**
 
   **Returns:**

@@ -28,7 +28,7 @@ class Screen:
 
         - **`image_path` (`str`):** Must be a valid file path.
         - **`confidence` (`float`):** Must be >= 0 and <= 1.
-        - **`region` (`Optional[tuple[int, int, int, int]]`):** Format: (left, top, right, bottom). Values must be >= 0 and <= screen width/height.
+        - **`region` (`Optional[tuple[int, int, int, int]]`):** Format: (left, top, right, bottom).
         - **`monitor_index` (`int`)**
 
         **Returns:**
@@ -65,7 +65,7 @@ class Screen:
 
         **Arguments:**
 
-        - **`region` (`Optional[tuple[int, int, int, int]]`):** Format: (left, top, right, bottom). Values must be >= 0 and <= screen width/height.
+        - **`region` (`Optional[tuple[int, int, int, int]]`):** Format: (left, top, right, bottom).
         - **`monitor_index` (`int`)**
 
         **Returns:**
@@ -97,7 +97,7 @@ class Screen:
         **Arguments:**
 
         - **`text` (`str`)**
-        - **`region` (`Optional[tuple[int, int, int, int]]`):** Format: (left, top, right, bottom). Values must be >= 0 and <= screen width/height.
+        - **`region` (`Optional[tuple[int, int, int, int]]`):** Format: (left, top, right, bottom).
         - **`exact_match` (`bool`)**
         - **`monitor_index` (`int`)**
 
