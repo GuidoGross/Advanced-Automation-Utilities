@@ -101,7 +101,9 @@ print(mouse_task.results) # E.g., [None, True]
 # Or fetch it instantly in synchronous mode
 result = Mouse().scroll_until(...).last_result 
 ```
+
 </details>
+
 <details open>
 <summary><h3><b>Physics (human simulation)</b></h3></summary>
 
@@ -156,7 +158,9 @@ keyboard_physics = KeyboardPhysics(
 )
 keyboard = Keyboard(keyboard_physics)
 ```
+
 </details>
+
 <details open>
 <summary><h3><b>Mouse Utilities (mouse)</b></h3></summary>
 
@@ -236,7 +240,9 @@ keyboard = Keyboard(keyboard_physics)
   # Wanders around infinitely until the image is found
   Mouse().wander_until(condition_function = lambda: KeyboardInfo().is_pressed("shift"))
   ```
+
 </details>
+
 <details open>
 <summary><h3><b>Keyboard Utilities (keyboard)</b></h3></summary>
 
@@ -274,7 +280,9 @@ keyboard = Keyboard(keyboard_physics)
   ```python
   Keyboard().write("Hello, world!")
   ```
+
 </details>
+
 <details open>
 <summary><h3><b>Screen Utilities (screen)</b></h3></summary>
 
@@ -308,7 +316,9 @@ keyboard = Keyboard(keyboard_physics)
   ```python
   text = Screen().read_text(monitor_index = 0)
   ```
+
 </details>
+
 <details open>
 <summary><h3><b>Timing Utilities (timing)</b></h3></summary>
 
@@ -336,7 +346,9 @@ keyboard = Keyboard(keyboard_physics)
   @measure_time
   def heavy_task(): pass
   ```
+
 </details>
+
 <details open>
 <summary><h3><b>Sound Utilities (sound)</b></h3></summary>
 
@@ -358,7 +370,9 @@ keyboard = Keyboard(keyboard_physics)
   ```python
   Sound().speak("Hello, world!")
   ```
+
 </details>
+
 <details open>
 <summary><h3><b>System Utilities (system)</b></h3></summary>
 
@@ -436,4 +450,5 @@ keyboard = Keyboard(keyboard_physics)
   ```python
   System().restart()
   ```
+
 </details>
