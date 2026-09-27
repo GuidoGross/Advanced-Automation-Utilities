@@ -50,7 +50,7 @@ class Timing:
         **Example:**
 
         ```python
-        Timing().wait_random(minimum_duration = 1.0, maximum_duration = 3.0)
+        Timing().wait_random(minimum_duration = 1, maximum_duration = 3)
         ```
         """
         return _WaitRandom(

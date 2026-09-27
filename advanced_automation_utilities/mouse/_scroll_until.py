@@ -1,6 +1,7 @@
 from ._mouse_action import _MouseAction
 from ._scroll import _Scroll
-from ..utilities import _validate_between_range
+from .._utilities import _validate_between_range
+from .._typing import ScrollDirection
 from ..timing import Timing, TimingInfo
 import threading
 import math
@@ -10,7 +11,7 @@ class _ScrollUntil(_MouseAction):
         self,
         condition_function,
         amount = 0,
-        direction = "down",
+        direction: ScrollDirection = "down",
         timeout = 0,
         poll_interval = 0.1,
         physics = None

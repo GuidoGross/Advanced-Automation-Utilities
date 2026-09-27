@@ -1,6 +1,6 @@
 from ._mouse_action import _MouseAction
 from ._wander import _Wander
-from ..utilities import _validate_between_range, _validate_region
+from .._utilities import _validate_between_range, _validate_region
 from ..timing import Timing, TimingInfo
 import threading
 import math

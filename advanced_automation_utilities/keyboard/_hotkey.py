@@ -1,7 +1,7 @@
 from ._keyboard_action import _KeyboardAction
 from ._hold_key import _HoldKey
 from ._release_key import _ReleaseKey
-from ..utilities import _apply_variation
+from .._utilities import _apply_variation
 from ..backend.windows._keyboard import _get_virtual_key_code
 from ..timing import Timing
 

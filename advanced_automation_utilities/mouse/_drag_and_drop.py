@@ -2,11 +2,12 @@ from ._mouse_action import _MouseAction
 from ._move import _Move
 from ._hold_click import _HoldClick
 from ._release_click import _ReleaseClick
-from ..utilities import _validate_mouse_button
+from .._utilities import _validate_mouse_button
+from .._typing import MouseButton
 from ..timing import Timing
 
 class _DragAndDrop(_MouseAction):
-    def __init__(self, start_x, start_y, end_x, end_y, button = "left", physics = None):
+    def __init__(self, start_x, start_y, end_x, end_y, button: MouseButton = "left", physics = None):
         super().__init__(physics = physics)
         self.start_x = start_x
         self.start_y = start_y

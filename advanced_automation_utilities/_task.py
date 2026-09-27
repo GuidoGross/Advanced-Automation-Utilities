@@ -12,6 +12,8 @@ class Task:
         self._done_event = threading.Event()
         self._exception: Exception | None = None
         self._cancelled = False
+        self.results: list[Any] = []
+        self.last_result: Any = None
     
     def wait(self) -> None:
         """

@@ -1,6 +1,6 @@
 from ._timing_action import _TimingAction
 from ._wait import _Wait
-from ..utilities import _validate_between_range
+from .._utilities import _validate_between_range
 import random
 
 class _WaitRandom(_TimingAction):

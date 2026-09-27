@@ -30,26 +30,23 @@ def update_test_state(title, running):
 def start_stop_script(test_function, title):
     running = False
     update_test_state(title, running)
-    keyboard = Keyboard()
-    keyboard_info = KeyboardInfo()
-    sound = Sound()
-    timing = Timing()
-    keyboard.block_key("f1")
-    keyboard.block_key("f2")
+    Keyboard().block_key("f1")
+    Keyboard().block_key("f2")
     while True:
-        if keyboard_info.is_pressed("f2"):
+        sound = Sound()
+        if KeyboardInfo().is_pressed("f2"):
             with sound.asynchronous() as sound_task: sound.play_beep_sound(500, 0.25)
             break
-        if keyboard_info.is_pressed("f1"):
+        if KeyboardInfo().is_pressed("f1"):
             running = not running
             update_test_state(title, running)
             with sound.asynchronous() as sound_task: sound.play_beep_sound(1000, 0.25)
-            while keyboard_info.is_pressed("f1"): timing.wait(0.01)
+            while KeyboardInfo().is_pressed("f1"): Timing().wait(0.01)
             if running:
                 test_function()
                 running = False
                 update_test_state(title, running)
                 with sound.asynchronous() as sound_task: sound.play_beep_sound(500, 0.25)
-        timing.wait(0.05)
-    keyboard.unblock_key("f1")
-    keyboard.unblock_key("f2")
+        Timing().wait(0.05)
+    Keyboard().unblock_key("f1")
+    Keyboard().unblock_key("f2")

@@ -9,6 +9,7 @@ from ._scroll_until import _ScrollUntil
 from ._wander import _Wander
 from ._wander_until import _WanderUntil
 from .._queueable_controller import _QueueableController
+from .._typing import MouseButton, ScrollDirection
 from typing import Optional, Self, Callable
 
 class Mouse(_QueueableController):
@@ -58,7 +59,9 @@ class Mouse(_QueueableController):
         """
         return self._execute_or_queue(_Move(x = x, y = y, physics = self.physics))
     
-    def hold_click(self, x: Optional[int] = None, y: Optional[int] = None, button: str = "left") -> Self:
+    def hold_click(
+        self, x: Optional[int] = None, y: Optional[int] = None, button: MouseButton = "left"
+    ) -> Self:
         """
         **Description:**
 
@@ -83,7 +86,7 @@ class Mouse(_QueueableController):
         return self._execute_or_queue(_HoldClick(x = x, y = y, button = button, physics = self.physics))
     
     def release_click(
-        self, x: Optional[int] = None, y: Optional[int] = None, button: str = "left"
+        self, x: Optional[int] = None, y: Optional[int] = None, button: MouseButton = "left"
     ) -> Self:
         """
         **Description:**
@@ -110,7 +113,7 @@ class Mouse(_QueueableController):
             _ReleaseClick(x = x, y = y, button = button, physics = self.physics)
         )
 
-    def click(self, x: Optional[int] = None, y: Optional[int] = None, button: str = "left") -> Self:
+    def click(self, x: Optional[int] = None, y: Optional[int] = None, button: MouseButton = "left") -> Self:
         """
         **Description:**
 
@@ -138,7 +141,7 @@ class Mouse(_QueueableController):
         )
     
     def double_click(
-        self, x: Optional[int] = None, y: Optional[int] = None, button: str = "left"
+        self, x: Optional[int] = None, y: Optional[int] = None, button: MouseButton = "left"
     ) -> Self:
         """
         **Description:**
@@ -216,7 +219,7 @@ class Mouse(_QueueableController):
         )
     
     def drag_and_drop(
-        self, start_x: int, start_y: int, end_x: int, end_y: int, button: str = "left"
+        self, start_x: int, start_y: int, end_x: int, end_y: int, button: MouseButton = "left"
     ) -> Self:
         """
         **Description:**
@@ -252,7 +255,7 @@ class Mouse(_QueueableController):
             )
         )
     
-    def scroll(self, amount: int, direction: str = "down") -> Self:
+    def scroll(self, amount: int, direction: ScrollDirection = "down") -> Self:
         """
         **Description:**
 
@@ -281,7 +284,7 @@ class Mouse(_QueueableController):
         self,
         condition_function: Callable[[], bool],
         amount: int = 0,
-        direction: str = "down",
+        direction: ScrollDirection = "down",
         timeout: float = 0,
         poll_interval: float = 0.1
     ) -> Self:

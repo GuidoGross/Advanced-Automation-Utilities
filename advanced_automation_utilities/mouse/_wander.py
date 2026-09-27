@@ -2,7 +2,7 @@ from ._mouse_action import _MouseAction
 from typing import Optional
 from ._move import _Move
 from .mouse_info import MouseInfo
-from ..utilities import _validate_region, _validate_between_range, _apply_variation
+from .._utilities import _validate_region, _validate_between_range, _apply_variation
 from ..timing import Timing, TimingInfo
 from ..screen import ScreenInfo
 from .._kill_switch_event import KILL_SWITCH_EVENT

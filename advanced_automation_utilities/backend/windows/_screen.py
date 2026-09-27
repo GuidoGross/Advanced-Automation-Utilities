@@ -32,9 +32,9 @@ def _get_pixel_color(x, y):
     return (r, g, b)
 
 def _get_work_area():
-    rect = ctypes.wintypes.RECT()
-    ctypes.windll.user32.SystemParametersInfoW(_SPI_GETWORKAREA, 0, ctypes.byref(rect), 0)
-    return rect.left, rect.top, rect.right, rect.bottom
+    rectangle = ctypes.wintypes.RECT()
+    ctypes.windll.user32.SystemParametersInfoW(_SPI_GETWORKAREA, 0, ctypes.byref(rectangle), 0)
+    return rectangle.left, rectangle.top, rectangle.right, rectangle.bottom
 
 def _take_screenshot(region = None, monitor_index = 0):
     with mss.mss() as screen_capture_tool:

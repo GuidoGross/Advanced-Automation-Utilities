@@ -1,9 +1,9 @@
 [project]
 name = "advanced_automation_utilities"
-version = "1.2.1"
+version = "1.2.2"
 description = "Personal use automation utilities library."
 readme = "README.md"
-license = "MIT"
+license = {text = "GPL-3.0-or-later"}
 keywords = [
     "automation",
     "utilities",
@@ -40,7 +40,8 @@ classifiers = [
     "Intended Audience :: Developers",
     "Topic :: Software Development :: Libraries",
     "Topic :: Utilities",
-    "Topic :: Desktop Environment"
+    "Topic :: Desktop Environment",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)"
 ]
 
 [build-system]

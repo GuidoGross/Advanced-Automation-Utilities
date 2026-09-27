@@ -1,5 +1,5 @@
 from ._keyboard_action import _KeyboardAction
-from ..utilities import _apply_variation
+from .._utilities import _apply_variation
 from ..backend.windows._keyboard import _get_virtual_key_code, _send_key
 from ..timing import Timing
 

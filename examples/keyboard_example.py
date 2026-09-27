@@ -97,8 +97,7 @@ def test_write():
 def test_is_key_pressed():
     def is_key_pressed():
         header("¿Está presionada la tecla \"espacio\"?")
-        keyboard_info = KeyboardInfo()
-        is_pressed = keyboard_info.is_pressed("space")
+        is_pressed = KeyboardInfo().is_pressed("space")
         print([
             ("La tecla \"espacio\" ", {}),
             (

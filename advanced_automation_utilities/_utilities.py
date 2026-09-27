@@ -1,6 +1,5 @@
 import random
 import math
-from typing import Literal
 
 def _apply_variation(base_value, variation):
     if variation <= 0: return base_value
@@ -18,8 +17,6 @@ def _validate_between_range(minimum = 0, maximum = math.inf, **kwargs):
                 case (_, math.inf):
                     raise ValueError(f"{formatted_name} must be greater than or equal to {minimum}.")
                 case _: raise ValueError(f"{formatted_name} must be between {minimum} and {maximum}.")
-
-MouseButton = Literal["left", "right", "middle"]
 
 def _validate_mouse_button(button):
     if button not in ["left", "right", "middle"]:

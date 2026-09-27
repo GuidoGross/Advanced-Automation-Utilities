@@ -61,7 +61,7 @@ class System(_QueueableController):
         """
         **Description:**
 
-        Opens a process or file with optional arguments.
+        Opens a process or file.
 
         **Arguments:**
 

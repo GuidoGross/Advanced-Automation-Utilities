@@ -1,6 +1,6 @@
 from ._mouse_action import _MouseAction
 from .mouse_info import MouseInfo
-from ..utilities import _apply_variation
+from .._utilities import _apply_variation
 from ..backend.windows._mouse import _set_cursor_position
 import math
 import random

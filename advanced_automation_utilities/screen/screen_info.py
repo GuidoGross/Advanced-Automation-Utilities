@@ -1,5 +1,6 @@
 from typing import Union
 from ..backend.windows._screen import _get_screen_resolution, _get_pixel_color, _get_work_area
+from .._typing import ColorFormat
 
 class ScreenInfo:
     """
@@ -64,7 +65,9 @@ class ScreenInfo:
         """
         return self.resolution[1]
 
-    def pixel_color(self, x: int, y: int, format: str = "rgb") -> Union[tuple[int, int, int], str]:
+    def pixel_color(
+        self, x: int, y: int, format: ColorFormat = "rgb"
+    ) -> Union[tuple[int, int, int], str]:
         """
         **Description:**
 

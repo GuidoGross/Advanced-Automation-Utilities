@@ -33,25 +33,21 @@ def main():
 def test_play_beep_sound():
     header("Reproducir un pitido")
     print("Reproduciendo el pitido...", alignment = "center")
-    sound = Sound()
-    sound.play_beep_sound(1000, 0.5)
+    Sound().play_beep_sound(1000, 0.5)
 
 def test_play_audio():
     header("Reproducir un archivo de audio")
     print("Reproduciendo el archivo de audio...", alignment = "center")
-    sound = Sound()
-    sound.play_audio("")
+    Sound().play_audio("")
 
 def test_system_sound():
     header("Reproducir un sonido del sistema")
     print("Reproduciendo el sonido del sistema...", alignment = "center")
-    sound = Sound()
-    sound.play_system_sound("warning")
+    Sound().play_system_sound("warning")
 
 def test_speak():
     header("Sintetizar texto a voz")
     print("Reprodciendo el mensaje...", alignment = "center")
-    sound = Sound()
-    sound.speak("¡Hola, mundo!")
+    Sound().speak("¡Hola, mundo!")
 
 if __name__ == "__main__": main()

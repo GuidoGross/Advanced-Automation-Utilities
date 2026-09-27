@@ -1,10 +1,11 @@
 from ._mouse_action import _MouseAction
-from ..utilities import _validate_between_range, _apply_variation
+from .._utilities import _validate_between_range, _apply_variation
+from .._typing import ScrollDirection
 from ..timing import Timing
 from ..backend.windows._mouse import _scroll
 
 class _Scroll(_MouseAction):
-    def __init__(self, amount, direction = "down", physics = None):
+    def __init__(self, amount, direction: ScrollDirection = "down", physics = None):
         super().__init__(physics = physics)
         self.amount = amount
         self.direction = direction.lower()

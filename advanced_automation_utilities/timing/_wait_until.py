@@ -1,7 +1,7 @@
 from ._timing_action import _TimingAction
 from .timing_info import TimingInfo
 from ._wait import _Wait
-from ..utilities import _validate_between_range
+from .._utilities import _validate_between_range
 
 class _WaitUntil(_TimingAction):
     def __init__(self, condition_function, timeout = 0, poll_interval = 0.1):

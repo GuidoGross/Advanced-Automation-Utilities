@@ -14,6 +14,8 @@ class _QueueableController:
         self._queue: list[Any] = []
         self._task_queue: queue.Queue[Task] = queue.Queue()
         self._worker_thread: threading.Thread | None = None
+        self.results: list[Any] = []
+        self.last_result: Any = None
     
     def asynchronous(self):
         """
@@ -82,7 +84,7 @@ class _QueueableController:
 
         ```python
         with controller.asynchronous() as task:
-            controller.wait_random(minimum_duration = 1.0, maximum_duration = 3.0)
+            controller.wait_random(minimum_duration = 1, maximum_duration = 3)
         ```
         """
         return self._execute_or_queue(_WaitRandom(
@@ -137,10 +139,16 @@ class _QueueableController:
             try:
                 for action in task._actions:
                     if task._cancelled or KILL_SWITCH_EVENT.is_set(): break
-                    action.execute()
+                    result = action.execute()
+                    task.results.append(result)
+                    task.last_result = result
             except Exception as error: task._exception = error
             finally: task._done_event.set()
     
     def _execute_or_queue(self, action):
-        self._queue.append(action) if self._queue_mode else action.execute()
+        if self._queue_mode: self._queue.append(action)
+        else: 
+            result = action.execute()
+            self.results.append(result)
+            self.last_result = result
         return self

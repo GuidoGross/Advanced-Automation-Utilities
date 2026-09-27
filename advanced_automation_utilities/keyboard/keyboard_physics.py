@@ -1,4 +1,4 @@
-from ..utilities import _validate_between_range
+from .._utilities import _validate_between_range
 from dataclasses import dataclass
 
 @dataclass(frozen = True)

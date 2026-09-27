@@ -1,5 +1,5 @@
 from ._screen_action import _ScreenAction
-from ..utilities import _validate_region
+from .._utilities import _validate_region
 from ..backend.windows._screen import _locate_image
 import os
 

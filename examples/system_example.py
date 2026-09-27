@@ -58,26 +58,23 @@ def main():
 
 def test_get_clipboard_text_and_modify_it():
     header("Texto actual en el portapapeles")
-    system = System()
-    system_info = SystemInfo()
     print([
         ("Texto actual en el portapapeles:", {"bold": True}),
-        (f" {system_info.clipboard_text}", {"color": "#00bfff"})
+        (f" {SystemInfo().clipboard_text}", {"color": "#00bfff"})
     ])
     wait_for_key()
     header("Texto sobreescrito en el portapapeles")
-    system.set_clipboard_text("¡Hola mundo!")
+    System().set_clipboard_text("¡Hola mundo!")
     print([
         ("Se ha sobrescrito el portapapeles con:", {"bold": True}),
-        (f" {system_info.clipboard_text}", {"color": "#00bfff"})
+        (f" {SystemInfo().clipboard_text}", {"color": "#00bfff"})
     ])
     wait_for_key()
 
 def test_get_active_window_title():
     def get_active_window_title():
         header("Título de la ventana activa")
-        system_info = SystemInfo()
-        title = system_info.active_window_title
+        title = SystemInfo().active_window_title
         print([
             ("La ventana actualmente enfocada es: ", {"bold": True}),
             (f"{title}", {"color": "#00bfff"})
@@ -88,14 +85,13 @@ def test_get_active_window_title():
 
 def test_open_and_kill_process():
     header("Abrir un proceso")
-    system = System()
     process_name = "notepad.exe"
     print([
         ("Abriendo ", {}),
         (f"{process_name}", {"color": "#00bfff"})
     ], alignment = "center")
     try:
-        system.open_process(process_name)
+        System().open_process(process_name)
         success_message(f"{process_name.capitalize()} abierta con éxito.")
     except Exception as error: error_message(f"Error al abrir {process_name}: {error}")
     header("Matar un proceso")
@@ -104,77 +100,66 @@ def test_open_and_kill_process():
         (f"{process_name}", {"color": "#00bfff"})
     ], alignment = "center")
     try:
-        system.kill_process(process_name, force = True)
+        System().kill_process(process_name, force = True)
         success_message(f"{process_name.capitalize()} cerrado con éxito.")
     except Exception as error: error_message(f"Error al cerrar {process_name}: {error}")
 
 def test_resize_and_move_window():
     header("Mover y redimensionar ventana")
-    system = System()
-    system_info = SystemInfo()
-    timing = Timing()
     process_name = "notepad.exe"
     try:
-        system.open_process(process_name)
-        timing.wait(1)
-        window_title = system_info.active_window_title
-        system.resize_window(window_title, 500, 500)
-        system.move_window(window_title, 100, 100)
+        System().open_process(process_name)
+        Timing().wait(1)
+        window_title = SystemInfo().active_window_title
+        System().resize_window(window_title, 500, 500)
+        System().move_window(window_title, 100, 100)
         success_message(f"Se ha movido y redimensionado {process_name}")
-        system.kill_process(process_name)
+        System().kill_process(process_name)
     except Exception as error: error_message(f"Error: {error}")
 
 def test_screen_lock():
     header("Bloquear pantalla")
     print("Bloqueando la pantalla...", alignment = "center")
-    system = System()
-    system.lock_screen()
+    System().lock_screen()
 
 def test_sign_out():
     header("Cerrar sesión")
     print("Cerrando la sesión...", alignment = "center")
-    system = System()
-    system.sign_out()
+    System().sign_out()
 
 def test_sleep():
     header("Suspender el dispositivo")
     print("Suspendiendo el dispositivo...", alignment = "center")
-    system = System()
-    system.sleep()
+    System().sleep()
 
 def test_hibernate():
     header("Hibernar el dispositivo")
     print("Hibernando el dispositivo...", alignment = "center")
-    system = System()
-    system.hibernate()
+    System().hibernate()
 
 def test_shutdown():
     header("Apagar el dispositivo")
     print("Apagando el dispositivo...", alignment = "center")
-    system = System()
-    system.shutdown(delay = 15)
+    System().shutdown(delay = 15)
 
 def test_restart():
     header("Reiniciar el dispositivo")
     print("Reiniciando el dispositivo...", alignment = "center")
-    system = System()
-    system.restart(delay = 15)
+    System().restart(delay = 15)
 
 def test_kill_switch():
     header("Probar Kill Switch")
-    system = System()
-    timing = Timing()
-    system.enable_kill_switch()
+    System().enable_kill_switch()
     print([
         ("El Kill Switch está activado. Presione ", {}),
         ("Ctrl + Shift + Alt + K", {"color": "#00bfff"}),
         (" para abortar, o espere 10 segundos para que la prueba termine normalmente...", {})
     ], alignment = "center")
     try:
-        timing.wait(10)
-        system.disable_kill_switch()
+        Timing().wait(10)
+        System().disable_kill_switch()
         success_message("Prueba finalizada sin usar el Kill Switch")
     except KeyboardInterrupt: error_message("Prueba abortada")
-    finally: system.disable_kill_switch()
+    finally: System().disable_kill_switch()
 
 if __name__ == "__main__": main()

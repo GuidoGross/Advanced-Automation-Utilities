@@ -1,3 +1,4 @@
+from ...exceptions import WindowNotFoundError
 import pyperclip
 import pygetwindow
 import psutil
@@ -36,25 +37,29 @@ def _focus_window(title):
     for window in pygetwindow.getWindowsWithTitle(title):
         if window.title == title:
             window.activate()
-            break
+            return
+    raise WindowNotFoundError(f"Window with title \"{title}\" not found.")
 
 def _resize_window(title, width, height):
     for window in pygetwindow.getWindowsWithTitle(title):
         if window.title == title:
             window.resizeTo(int(width), int(height))
-            break
+            return
+    raise WindowNotFoundError(f"Window with title \"{title}\" not found.")
 
 def _move_window(title, x, y):
     for window in pygetwindow.getWindowsWithTitle(title):
         if window.title == title:
             window.moveTo(int(x), int(y))
-            break
+            return
+    raise WindowNotFoundError(f"Window with title \"{title}\" not found.")
 
 def _close_window(title):
     for window in pygetwindow.getWindowsWithTitle(title):
         if window.title == title:
             window.close()
-            break
+            return
+    raise WindowNotFoundError(f"Window with title \"{title}\" not found.")
 
 def _lock_screen(): ctypes.windll.user32.LockWorkStation()
 

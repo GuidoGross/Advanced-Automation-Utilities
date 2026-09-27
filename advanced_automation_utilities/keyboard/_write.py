@@ -1,6 +1,6 @@
 from ._press_key import _PressKey
 from ._keyboard_action import _KeyboardAction
-from ..utilities import _apply_variation
+from .._utilities import _apply_variation
 from ..timing import Timing
 from ..backend.windows._keyboard import _send_unicode
 import random

@@ -51,8 +51,7 @@ def test_wait():
         (f"{waiting_time}", {"color": "#00bfff"}),
         (" segundos...\n", {})
     ], alignment = "center")
-    timing = Timing()
-    timing.wait(waiting_time)
+    Timing().wait(waiting_time)
     print("\nEspera terminada", alignment = "center")
     wait_for_key()
 
@@ -67,11 +66,9 @@ def test_wait_random():
         (f"{upper_waiting_time}", {"color": "#00bfff"}),
         (" segundos...\n", {})
     ], alignment = "center")
-    timing = Timing()
-    timing_info = TimingInfo()
-    start_time = timing_info.time
-    timing.wait_random(lower_waiting_time, upper_waiting_time)
-    end_time = timing_info.time
+    start_time = TimingInfo().time
+    Timing().wait_random(lower_waiting_time, upper_waiting_time)
+    end_time = TimingInfo().time
     print([
         ("\nEspera terminada en ", {}),
         (f"{decimal_format((end_time - start_time) * 1000, decimals = 0)}ms", {"color": "#00bfff"})
@@ -86,27 +83,24 @@ def test_wait_until():
             ("Space", {"color": "#00bfff"}),
             ("...\n", {})
         ], alignment = "center")
-        keyboard_info = KeyboardInfo()
-        timing = Timing()
         
-        def condition(): return keyboard_info.is_pressed("space")
+        def condition(): return KeyboardInfo().is_pressed("space")
         
-        success = timing.wait_until(condition, timeout = 5)
+        success = Timing().wait_until(condition, timeout = 5)
         if success:
             wait_for_key(text = "")
             success_message("Ha pulsado la tecla \"Space\" a tiempo")
         else: error_message("No ha pulsado la tecla \"Space\" a tiempo")
-        while keyboard_info.is_pressed("space"): timing.wait(0.01)
+        while KeyboardInfo().is_pressed("space"): Timing().wait(0.01)
     start_stop_script(_test, "Esperar por condición")
 
 def test_measure_time():
     header("Medir tiempo de ejecución de una función")
-    timing = Timing()
     
     @measure_time
     def simulated_task():
         print("Iniciando una tarea simulada...\n", alignment = "center")
-        timing.wait_random(1, 3)
+        Timing().wait_random(1, 3)
     
     simulated_task()
     wait_for_key()

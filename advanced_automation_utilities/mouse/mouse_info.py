@@ -1,5 +1,6 @@
 from advanced_automation_utilities.screen import ScreenInfo
 from ..backend.windows._mouse import _get_cursor_position
+from .._typing import ColorFormat
 import mss
 
 class MouseInfo:
@@ -65,7 +66,7 @@ class MouseInfo:
         """
         return self.coordinates[1]
     
-    def pixel_color(self, format: str = "rgb") -> None:
+    def pixel_color(self, format: ColorFormat = "rgb") -> tuple[int, int, int] | str:
         """
         **Description:**
 

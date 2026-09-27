@@ -1,5 +1,5 @@
 from ._timing_action import _TimingAction
-from ..utilities import _validate_between_range
+from .._utilities import _validate_between_range
 import time
 
 class _Wait(_TimingAction):

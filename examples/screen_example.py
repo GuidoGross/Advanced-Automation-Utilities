@@ -45,23 +45,21 @@ def main():
 
 def test_get_resolution():
     header("Resolución de la pantalla")
-    screen_info = ScreenInfo()
     print([
         ("Resolución: ", {"bold": True}),
-        (f"{str(screen_info.resolution).replace(",", ";")}", {})
+        (f"{str(ScreenInfo().resolution).replace(",", ";")}", {})
     ])
-    print([("Ancho: ", {"bold": True}), (f"{screen_info.width}", {})])
-    print([("Alto: ", {"bold": True}), (f"{screen_info.height}", {})])
+    print([("Ancho: ", {"bold": True}), (f"{ScreenInfo().width}", {})])
+    print([("Alto: ", {"bold": True}), (f"{ScreenInfo().height}", {})])
     wait_for_key()
 
 def test_get_pixel_color():
     def get_pixel_color():
         header("Color del píxel")
-        screen_info = ScreenInfo()
         x = 300
         y = 600
-        pixel_color = screen_info.pixel_color(x, y)
-        hexadecimal_color = screen_info.pixel_color(x, y, format = "hexadecimal")
+        pixel_color = ScreenInfo().pixel_color(x, y)
+        hexadecimal_color = ScreenInfo().pixel_color(x, y, format = "hexadecimal")
         print(f"Color del píxel en ({x}; {y}): ", bold = True)
         print([("    - RGB: ", {"bold": True}), (f"■ {pixel_color}", {"color": hexadecimal_color})])
         print([
@@ -75,9 +73,9 @@ def test_get_pixel_color():
 def test_locate_image():
     def locate_image():
         header("Localizar imagen en pantalla")
-        screen = Screen()
-        x, y = screen.locate_image("", confidence = 0.9, monitor_index = 0)
-        if x is not None and y is not None: success_message(f"Imagen encontrada en la posición ({x}; {y})")
+        x, y = Screen().locate_image("", confidence = 0.9, monitor_index = 0)
+        if x is not None and y is not None:
+            success_message(f"Imagen encontrada en la posición ({x}; {y})")
         else: error_message("Imagen no encontrada")
     
     start_stop_script(locate_image, "Localizar imagen en pantalla")
@@ -85,8 +83,7 @@ def test_locate_image():
 def test_read_text():
     def read_text():
         header("Leer texto de la pantalla")
-        screen = Screen()
-        text = screen.read_text(monitor_index = 0)
+        text = Screen().read_text(monitor_index = 0)
         print([("Texto en la pantalla:", {"bold": True}), (f" {text}", {})])
         wait_for_key()
     
@@ -95,9 +92,8 @@ def test_read_text():
 def test_locate_text():
     def locate_text():
         header("Localizar texto en pantalla")
-        screen = Screen()
         text = "Prueba"
-        x, y = screen.locate_text(text, exact_match = False, monitor_index = 0)
+        x, y = Screen().locate_text(text, exact_match = False, monitor_index = 0)
         if x is not None and y is not None:
             success_message(f"Texto \"{text}\" encontrado en la posición ({x}; {y})")
         else: error_message(f"Texto \"{text}\" no encontrado")

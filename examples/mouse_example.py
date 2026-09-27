@@ -215,7 +215,7 @@ def test_scroll_until():
             scroll_pause_variation = 0.1
         )
         mouse = Mouse(physics)
-        mouse.scroll_until(condition_function = lambda: False, timeout = 2.5)
+        mouse.scroll_until(condition_function = lambda: False, direction = "down", timeout = 2.5)
         mouse.scroll_until(condition_function = lambda: False, direction = "up", timeout = 2.5)
         mouse.scroll_until(condition_function = lambda: False, direction = "right", timeout = 2.5)
         mouse.scroll_until(condition_function = lambda: False, direction = "left", timeout = 2.5)
@@ -265,10 +265,9 @@ def test_wander_until():
 def test_get_pointer_coordinates():
     def get_pointer_coordinates():
         header("Coordenadas del puntero")
-        mouse_info = MouseInfo()
-        coordinates = mouse_info.coordinates
-        x = mouse_info.x
-        y = mouse_info.y
+        coordinates = MouseInfo().coordinates
+        x = MouseInfo().x
+        y = MouseInfo().y
         print([("Coordenadas del puntero: ", {"bold": True}), (str(coordinates).replace(",", ";"), {})])
         print([("Coordenada x: ", {"bold": True}), (f"{x}", {})])
         print([("Coordenada y: ", {"bold": True}), (f"{y}", {})])
@@ -279,9 +278,8 @@ def test_get_pointer_coordinates():
 def test_get_pixel_color():
     def get_pixel_color():
         header("Color del pixel bajo el puntero")
-        mouse_info = MouseInfo()
-        pixel_color = mouse_info.pixel_color()
-        hexadecimal_pixel_color = mouse_info.pixel_color(format = "hexadecimal")
+        pixel_color = MouseInfo().pixel_color()
+        hexadecimal_pixel_color = MouseInfo().pixel_color(format = "hexadecimal")
         print("Color del pixel bajo el puntero:", bold = True)
         print([("    - RGB:", {"bold": True}), (f" ■ {pixel_color}", {"color": hexadecimal_pixel_color})])
         print([
@@ -295,12 +293,11 @@ def test_get_pixel_color():
 def test_is_pointer_on_screen():
     def is_pointer_on_screen():
         header("¿Está el puntero dentro de la pantalla?")
-        mouse_info = MouseInfo()
         print([
             ("El puntero ", {}),
             (
-                f"{"está" if mouse_info.on_screen else "no está"}",
-                {"color": f"{"#00ff00" if mouse_info.on_screen else "#ff0000"}"}
+                f"{"está" if MouseInfo().on_screen else "no está"}",
+                {"color": f"{"#00ff00" if MouseInfo().on_screen else "#ff0000"}"}
             ),
             (" dentro de la pantalla", {})
         ], alignment = "center")
