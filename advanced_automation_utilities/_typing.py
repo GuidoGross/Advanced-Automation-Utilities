@@ -2,4 +2,4 @@ from typing import Literal
 
 MouseButton = Literal["left", "right", "middle"]
 ScrollDirection = Literal["up", "down", "left", "right"]
-ColorFormat = Literal["rgb", "bgr", "hex"]
+ColorFormat = Literal["rgb", "hexadecimal"]

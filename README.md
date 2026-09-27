@@ -8,7 +8,6 @@
 [![Total Downloads](https://img.shields.io/pepy/dt/advanced-automation-utilities?color=blue&labelColor=grey&label=Total%20downloads&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTI4OCAzMmMwLTE3LjctMTQuMy0zMi0zMi0zMnMtMzIgMTQuMy0zMiAzMmwwIDI0Mi43LTczLjQtNzMuNGMtMTIuNS0xMi41LTMyLjgtMTIuNS00NS4zIDBzLTEyLjUgMzIuOCAwIDQ1LjNsMTI4IDEyOGMxMi41IDEyLjUgMzIuOCAxMi41IDQ1LjMgMGwxMjgtMTI4YzEyLjUtMTIuNSAxMi41LTMyLjggMC00NS4zcy0zMi44LTEyLjUtNDUuMyAwTDI4OCAyNzQuNyAyODggMzJ6TTY0IDM1MmMtMzUuMyAwLTY0IDI4LjctNjQgNjRsMCAzMmMwIDM1LjMgMjguNyA2NCA2NCA2NGwzODQgMGMzNS4zIDAgNjQtMjguNyA2NC02NGwwLTMyYzAtMzUuMy0yOC43LTY0LTY0LTY0bC0xMDEuNSAwLTQ1LjMgNDUuM2MtMjUgMjUtNjUuNSAyNS05MC41IDBMMTY1LjUgMzUyIDY0IDM1MnptMzY4IDU2YTI0IDI0IDAgMSAxIDAgNDggMjQgMjQgMCAxIDEgMC00OHoiLz48L3N2Zz4=&logoColor=white&style=flat-square)](https://pepy.tech/project/advanced-automation-utilities)
 
 **A powerful, native Python library for Windows automation, featuring Context Manager-based asynchronous chaining, advanced human-like physics, and zero dependence on heavy GUI automation libraries. It leverages native `ctypes` hooks for maximum speed, security, and lower overhead.**
-
 </div>
 
 ---
@@ -74,7 +73,8 @@ Windows 10 or higher.
 
 ## **Features**
 
-### **Asynchronous Execution**
+<details open>
+<summary><h3><b>Asynchronous execution</b></h3></summary>
 
 The library features a powerful Context Manager-based asynchronous execution system. All hardware-bound actions, such as Mouse, Keyboard, Screen, Sound, or System operations, can be seamlessly queued and executed in the background. This architecture allows you to perform heavy operations concurrently without blocking your main script's logic.
 
@@ -101,8 +101,9 @@ print(mouse_task.results) # E.g., [None, True]
 # Or fetch it instantly in synchronous mode
 result = Mouse().scroll_until(...).last_result 
 ```
-
-### **Physics (Human Simulation)**
+</details>
+<details open>
+<summary><h3><b>Physics (human simulation)</b></h3></summary>
 
 To evade bot-detection mechanisms and simulate real user interactions, both **Mouse** and **Keyboard** modules are governed by highly configurable, immutable dataclasses (`MousePhysics` and `KeyboardPhysics`). 
 
@@ -155,7 +156,7 @@ keyboard_physics = KeyboardPhysics(
 )
 keyboard = Keyboard(keyboard_physics)
 ```
-
+</details>
 <details open>
 <summary><h3><b>Mouse Utilities (mouse)</b></h3></summary>
 
@@ -235,9 +236,7 @@ keyboard = Keyboard(keyboard_physics)
   # Wanders around infinitely until the image is found
   Mouse().wander_until(condition_function = lambda: KeyboardInfo().is_pressed("shift"))
   ```
-
 </details>
-
 <details open>
 <summary><h3><b>Keyboard Utilities (keyboard)</b></h3></summary>
 
@@ -275,9 +274,7 @@ keyboard = Keyboard(keyboard_physics)
   ```python
   Keyboard().write("Hello, world!")
   ```
-
 </details>
-
 <details open>
 <summary><h3><b>Screen Utilities (screen)</b></h3></summary>
 
@@ -311,9 +308,7 @@ keyboard = Keyboard(keyboard_physics)
   ```python
   text = Screen().read_text(monitor_index = 0)
   ```
-
 </details>
-
 <details open>
 <summary><h3><b>Timing Utilities (timing)</b></h3></summary>
 
@@ -341,9 +336,7 @@ keyboard = Keyboard(keyboard_physics)
   @measure_time
   def heavy_task(): pass
   ```
-
 </details>
-
 <details open>
 <summary><h3><b>Sound Utilities (sound)</b></h3></summary>
 
@@ -365,9 +358,7 @@ keyboard = Keyboard(keyboard_physics)
   ```python
   Sound().speak("Hello, world!")
   ```
-
 </details>
-
 <details open>
 <summary><h3><b>System Utilities (system)</b></h3></summary>
 
@@ -445,5 +436,4 @@ keyboard = Keyboard(keyboard_physics)
   ```python
   System().restart()
   ```
-
 </details>

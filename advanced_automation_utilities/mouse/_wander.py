@@ -5,7 +5,6 @@ from .mouse_info import MouseInfo
 from .._utilities import _validate_region, _validate_between_range, _apply_variation
 from ..timing import Timing, TimingInfo
 from ..screen import ScreenInfo
-from .._kill_switch_event import KILL_SWITCH_EVENT
 import math
 import random
 
@@ -45,7 +44,7 @@ class _Wander(_MouseAction):
         while True:
             current_time = timing_info.time
             remaining = duration - (current_time - start_time)
-            if remaining <= 0 or KILL_SWITCH_EVENT.is_set(): break
+            if remaining <= 0: break
             if stop_event is not None and stop_event.is_set(): break
             if self.maximum_steps is not None and steps_taken >= self.maximum_steps: break
             distance_ratio = self.physics.wander_distance_ratio
@@ -79,7 +78,6 @@ class _Wander(_MouseAction):
             target_x, target_y = self._get_next_target(distance)
             _Move(target_x, target_y, physics = self.physics).execute()
             steps_taken += 1
-            if KILL_SWITCH_EVENT.is_set(): break
             if stop_event is not None:
                 if stop_event.wait(delay): break
             else: timing.wait(delay)

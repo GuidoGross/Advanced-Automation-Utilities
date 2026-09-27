@@ -28,7 +28,7 @@ from .screen import (Screen, ScreenInfo)
 from .timing import (Timing, TimingInfo, measure_time)
 from .sound import Sound
 from .system import (System, SystemInfo)
-from .exceptions import WindowNotFoundError
+from .exceptions import WindowNotFoundError, KillSwitchTriggered
 
 __all__ = [
     "Mouse",
@@ -52,4 +52,5 @@ __all__ = [
     "System",
     "SystemInfo",
     "WindowNotFoundError",
+    "KillSwitchTriggered",
 ]

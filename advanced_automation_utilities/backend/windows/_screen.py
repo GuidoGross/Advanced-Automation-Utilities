@@ -10,8 +10,6 @@ from winrt.windows.media.ocr import OcrEngine
 
 _SPI_GETWORKAREA = 48
 
-_ocr_loop = asyncio.new_event_loop()
-
 def _get_screen_resolution():
     with mss.mss() as screen_capture_tool:
         monitor = screen_capture_tool.monitors[1]
@@ -101,4 +99,4 @@ def _run_ocr_on_region(region = None, monitor_index = 0):
     
     async def recognize(): return await engine.recognize_async(software_bitmap)
     
-    return _ocr_loop.run_until_complete(recognize())
+    return asyncio.run(recognize())

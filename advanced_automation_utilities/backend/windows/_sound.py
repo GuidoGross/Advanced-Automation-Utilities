@@ -26,8 +26,8 @@ def _play_audio(audio_path):
     ctypes.windll.winmm.mciSendStringW(f"close {alias}", None, 0, None)
 
 def _speak(text):
-    safe_text = text.replace("\"", "\"\"")
-    command = f"Add-Type -AssemblyName System.Speech; (New-Object System.Speech.Synthesis.SpeechSynthesizer).Speak(\"{safe_text}\")"
+    safe_text = text.replace("'", "''")
+    command = f"Add-Type -AssemblyName System.Speech; (New-Object System.Speech.Synthesis.SpeechSynthesizer).Speak('{safe_text}')"
     encoded_command = base64.b64encode(command.encode("utf-16-le")).decode("utf-8")
     subprocess.run(
         ["powershell", "-EncodedCommand", encoded_command], creationflags = subprocess.CREATE_NO_WINDOW

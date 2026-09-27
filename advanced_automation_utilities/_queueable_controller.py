@@ -4,6 +4,7 @@ from .timing._wait import _Wait
 from .timing._wait_random import _WaitRandom
 from .timing._wait_until import _WaitUntil
 from ._kill_switch_event import KILL_SWITCH_EVENT
+from .exceptions import KillSwitchTriggered
 from typing import Any, Callable, Self
 import queue
 import threading
@@ -126,7 +127,9 @@ class _QueueableController:
     
     def _ensure_worker_running(self):
         if self._worker_thread is None or not self._worker_thread.is_alive():
-            self._worker_thread = threading.Thread(target = self._worker_loop, daemon = True)
+            self._worker_thread = threading.Thread(
+                target = self._worker_loop, daemon = True, name = f"worker_thread_{id(self)}"
+            )
             self._worker_thread.start()
     
     def _worker_loop(self):
@@ -142,7 +145,9 @@ class _QueueableController:
                     result = action.execute()
                     task.results.append(result)
                     task.last_result = result
-            except Exception as error: task._exception = error
+            except BaseException as error:
+                task._exception = error
+                if not isinstance(error, (Exception, KillSwitchTriggered)): raise
             finally: task._done_event.set()
     
     def _execute_or_queue(self, action):

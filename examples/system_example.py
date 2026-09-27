@@ -9,6 +9,7 @@ if parent_directory not in sys.path: sys.path.insert(0, parent_directory)
 from examples.examples_utilities import start_stop_script
 from advanced_automation_utilities.system import System, SystemInfo
 from advanced_automation_utilities.timing import Timing
+from advanced_automation_utilities import KillSwitchTriggered
 from tui_utilities import (
     set_window_title,
     maximize_window,
@@ -159,7 +160,7 @@ def test_kill_switch():
         Timing().wait(10)
         System().disable_kill_switch()
         success_message("Prueba finalizada sin usar el Kill Switch")
-    except KeyboardInterrupt: error_message("Prueba abortada")
+    except KillSwitchTriggered: error_message("Prueba abortada")
     finally: System().disable_kill_switch()
 
 if __name__ == "__main__": main()

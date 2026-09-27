@@ -1,7 +1,6 @@
-from ..._kill_switch_event import KILL_SWITCH_EVENT
+from ..._kill_switch_event import trigger_kill_switch
 import ctypes
 from ctypes import wintypes
-import _thread
 import threading
 
 _KEY_UP = 0x0002
@@ -235,9 +234,7 @@ def _hook_worker():
     global _hook_id, _hook_function
     def _low_level_keyboard_handler(hook_code, window_message, hook_data):
         if hook_code >= 0:
-            hook_struct = ctypes.cast(
-                hook_data, ctypes.POINTER(_KeyboardHookStruct)
-            ).contents
+            hook_struct = ctypes.cast(hook_data, ctypes.POINTER(_KeyboardHookStruct)).contents
             virtual_key = hook_struct.virtual_key_code
             flags = hook_struct.flags
             is_injected = (flags & _INJECTED) != 0
@@ -250,8 +247,7 @@ def _hook_worker():
                             all_modifiers_pressed = False
                             break
                     if all_modifiers_pressed:
-                        KILL_SWITCH_EVENT.set()
-                        _thread.interrupt_main()
+                        trigger_kill_switch()
                         return 1
             elif window_message in (_WINDOW_MESSAGE_KEY_UP, _WINDOW_MESSAGE_SYSTEM_KEY_UP):
                 _key_states[virtual_key] = False
