@@ -1,6 +1,6 @@
 from ._mouse_action import _MouseAction
 from ._move import _Move
-from .._utilities import _validate_mouse_button, _apply_variation
+from .._utilities import _validate_options, _apply_variation
 from .._typing import MouseButton
 from ..timing import Timing
 from typing import Optional
@@ -17,7 +17,7 @@ class _BaseClick(_MouseAction):
         self.x = x
         self.y = y
         self.button = button
-        _validate_mouse_button(self.button)
+        _validate_options(self.button, ["left", "right", "middle"], "mouse button")
     
     def _move_if_needed(self):
         if self.x is not None and self.y is not None:

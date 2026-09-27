@@ -1,5 +1,5 @@
 from ._mouse_action import _MouseAction
-from .._utilities import _validate_between_range, _apply_variation
+from .._utilities import _validate_between_range, _validate_options, _apply_variation
 from .._typing import ScrollDirection
 from ..timing import Timing
 from ..backend.windows._mouse import _scroll
@@ -10,10 +10,7 @@ class _Scroll(_MouseAction):
         self.amount = amount
         self.direction = direction.lower()
         _validate_between_range(scroll_amount = self.amount)
-        if self.direction not in ["up", "down", "left", "right"]:
-            raise ValueError(
-                "Invalid scroll direction. Valid options: \"up\", \"down\", \"left\", \"right\"."
-            )
+        _validate_options(self.direction, ["up", "down", "left", "right"], "scroll direction")
     
     def execute(self):
         timing = Timing()

@@ -22,6 +22,25 @@ class KeyboardPhysics:
     - **`typing_error_correction_delay_variation` (`float`):** Must be >= 0.
     - **`typing_error_delayed_realization_chance` (`float`):** Must be >= 0 and <= 1.
     - **`auto_repeat` (`bool`)**
+
+    **Example:**
+
+    ```python
+    keyboard_physics = KeyboardPhysics(
+        press_delay = 0.15,
+        press_delay_variation = 0.5,
+        press_duration = 0.05,
+        press_duration_variation = 0.1,
+        hotkey_delay = 0.01,
+        hotkey_delay_variation = 0.5,
+        typing_error_chance = 0.025,
+        typing_error_correction_delay = 0.25,
+        typing_error_correction_delay_variation = 0.5,
+        typing_error_delayed_realization_chance = 0.5,
+        auto_repeat = True
+    )
+    keyboard = Keyboard(keyboard_physics)
+    ```
     """
     press_delay: float = 0.05
     press_delay_variation: float = 0

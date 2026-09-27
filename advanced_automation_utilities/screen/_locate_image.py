@@ -1,7 +1,7 @@
 from ._screen_action import _ScreenAction
-from .._utilities import _validate_region
+from .._utilities import _validate_region, _validate_file_exists, _validate_between_range
 from ..backend.windows._screen import _locate_image
-import os
+import math
 
 class _LocateImage(_ScreenAction):
     def __init__(self, image_path, confidence = 0.9, region = None, monitor_index = 0):
@@ -10,12 +10,9 @@ class _LocateImage(_ScreenAction):
         self.region = region
         _validate_region(self.region)
         self.monitor_index = monitor_index
-        if not os.path.exists(self.image_path):
-            raise FileNotFoundError(
-                f"Image file \"{self.image_path}\" does not exist or could not be found."
-            )
-        if not (0 <= self.confidence <= 1): raise ValueError("Confidence must be between 0 and 1.")
-        if self.monitor_index < 0: raise ValueError("Monitor index must be greater than or equal to 0.")
+        _validate_file_exists(self.image_path, "Image file")
+        _validate_between_range(0, 1, confidence = self.confidence)
+        _validate_between_range(0, math.inf, monitor_index = self.monitor_index)
     
     def execute(self):
         return _locate_image(self.image_path, self.confidence, self.region, self.monitor_index)

@@ -28,8 +28,8 @@ class Task:
         **Example:**
 
         ```python
-        with mouse.asynchronous() as task: mouse.move(500, 500, speed = 100)
-        task.wait() # Blocks the main thread until the mouse finishes moving
+        with mouse.asynchronous() as mouse_task: mouse.move(x = 500, y = 500)
+        mouse_task.wait()
         ```
         """
         self._done_event.wait()
@@ -48,8 +48,14 @@ class Task:
         **Example:**
 
         ```python
-        with mouse.asynchronous() as task: mouse.move(500, 500, speed = 100)
-        if screen.locate_image("error.png"): task.cancel() # Aborts the mouse movement instantly
+        with mouse.asynchronous() as mouse_task: mouse.move(x = 250, y = 500)
+        image_found = screen.locate_image(
+            image_path = "error.png",
+            confidence = 0.9,
+            region = [250, 250, 500, 500],
+            monitor_index = 0
+        )
+        if image_found: mouse_task.cancel()
         ```
         """
         self._cancelled = True

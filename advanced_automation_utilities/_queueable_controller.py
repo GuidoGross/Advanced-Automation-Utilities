@@ -32,11 +32,9 @@ class _QueueableController:
         **Example:**
 
         ```python
-        with controller.asynchronous() as task:
-            controller.action_1()
-            controller.action_2()
-        
-        task.wait()
+        with mouse.asynchronous() as mouse_task:
+            mouse.click(x = 250, y = 500)
+            mouse.scroll(amount = 1000, direction = "down")
         ```
         """
         return _AsynchronousContext(self)
@@ -59,8 +57,7 @@ class _QueueableController:
         **Example:**
 
         ```python
-        with controller.asynchronous() as task:
-            controller.wait(2.5)
+        with mouse.asynchronous() as mouse_task: mouse.wait(duration = 2.5)
         ```
         """
         return self._execute_or_queue(_Wait(duration = duration))
@@ -84,8 +81,8 @@ class _QueueableController:
         **Example:**
 
         ```python
-        with controller.asynchronous() as task:
-            controller.wait_random(minimum_duration = 1, maximum_duration = 3)
+        with mouse.asynchronous() as mouse_task:
+            mouse.wait_random(minimum_duration = 1, maximum_duration = 3)
         ```
         """
         return self._execute_or_queue(_WaitRandom(
@@ -114,9 +111,12 @@ class _QueueableController:
         **Example:**
 
         ```python
-        with controller.asynchronous() as task:
-            # Waits until the shift key is pressed
-            controller.wait_until(lambda: KeyboardInfo().is_pressed("shift"))
+        with mouse.asynchronous() as mouse_task:
+            mouse.wait_until(
+                condition_function = lambda: KeyboardInfo().is_pressed(key = "shift"),
+                timeout = 5,
+                poll_interval = 0.1
+            )
         ```
         """
         return self._execute_or_queue(_WaitUntil(

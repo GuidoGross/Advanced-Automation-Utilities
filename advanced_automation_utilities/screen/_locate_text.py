@@ -1,5 +1,5 @@
 from ._screen_action import _ScreenAction
-from .._utilities import _validate_region
+from .._utilities import _validate_region, _validate_between_range
 from ..backend.windows._screen import _run_ocr_on_region, _adjust_coordinates_for_region
 import math
 
@@ -10,7 +10,7 @@ class _LocateText(_ScreenAction):
         _validate_region(self.region)
         self.exact_match = exact_match
         self.monitor_index = monitor_index
-        if self.monitor_index < 0: raise ValueError("Monitor index must be greater than or equal to 0.")
+        _validate_between_range(0, math.inf, monitor_index = self.monitor_index)
     
     def execute(self):
         if not self.text.strip(): raise ValueError("Text cannot be empty.")

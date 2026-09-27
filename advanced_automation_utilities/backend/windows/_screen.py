@@ -1,3 +1,4 @@
+from ..._utilities import _validate_between_range
 import asyncio
 import mss
 import ctypes
@@ -18,9 +19,8 @@ def _get_screen_resolution():
 def _get_pixel_color(x, y):
     with mss.mss() as screen_capture_tool:
         virtual = screen_capture_tool.monitors[0]
-        if not (virtual["left"] <= x < virtual["left"] + virtual["width"] and
-                virtual["top"] <= y < virtual["top"] + virtual["height"]):
-            raise ValueError(f"Coordinates ({x}, {y}) are out of screen bounds.")
+        _validate_between_range(virtual["left"], virtual["left"] + virtual["width"] - 1, x = x)
+        _validate_between_range(virtual["top"], virtual["top"] + virtual["height"] - 1, y = y)
     device_context = ctypes.windll.user32.GetDC(0)
     color = ctypes.windll.gdi32.GetPixel(device_context, x, y)
     ctypes.windll.user32.ReleaseDC(0, device_context)

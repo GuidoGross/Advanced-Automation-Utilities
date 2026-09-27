@@ -1,6 +1,6 @@
 from ._mouse_action import _MouseAction
 from ._scroll import _Scroll
-from .._utilities import _validate_between_range
+from .._utilities import _validate_between_range, _validate_options
 from .._typing import ScrollDirection
 from ..timing import Timing, TimingInfo
 import threading
@@ -25,10 +25,7 @@ class _ScrollUntil(_MouseAction):
         _validate_between_range(
             scroll_amount = self.amount, wait_time = self.timeout, poll_interval = self.poll_interval
         )
-        if self.direction not in ["up", "down", "left", "right"]:
-            raise ValueError(
-                "Invalid scroll direction. Valid options: \"up\", \"down\", \"left\", \"right\"."
-            )
+        _validate_options(self.direction, ["up", "down", "left", "right"], "scroll direction")
     
     def execute(self):
         stop_scroll = False

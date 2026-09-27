@@ -9,9 +9,11 @@ class SystemInfo:
     @property
     def clipboard_text(self) -> str:
         """
+        **SystemInfo().clipboard_text:** Gets the current text content of the Windows clipboard.
+
         **Description:**
 
-        Gets the current text content of the Windows clipboard.
+        Gets the current text content of the Windows clipboard. This allows your scripts to seamlessly read and process text that the user or other applications have recently copied.
 
         **Returns:**
 
@@ -28,9 +30,11 @@ class SystemInfo:
     @property
     def active_window_title(self) -> str:
         """
+        **SystemInfo().active_window_title:** Gets the title of the currently focused/active window.
+
         **Description:**
 
-        Gets the title of the currently focused/active window.
+        Gets the title of the currently focused/active window. This allows your scripts to interact with the active window or to determine which application the user is currently using.
 
         **Returns:**
 
@@ -46,9 +50,11 @@ class SystemInfo:
     
     def is_process_running(self, process: str) -> bool:
         """
+        **SystemInfo().is_process_running():** Checks if a specific process is currently running.
+
         **Description:**
 
-        Checks if a specific process is currently running.
+        Checks if a specific process is currently running. This allows your scripts to determine if an application is active or not.
 
         **Arguments:**
 
@@ -61,7 +67,7 @@ class SystemInfo:
         **Example:**
 
         ```python
-        is_running = SystemInfo().is_process_running("notepad.exe")
+        is_running = SystemInfo().is_process_running(process = "notepad.exe")
         ```
         """
         return _is_process_running(process)

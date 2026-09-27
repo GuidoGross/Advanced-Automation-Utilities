@@ -2,7 +2,7 @@ from ._mouse_action import _MouseAction
 from ._move import _Move
 from ._hold_click import _HoldClick
 from ._release_click import _ReleaseClick
-from .._utilities import _validate_mouse_button
+from .._utilities import _validate_options
 from .._typing import MouseButton
 from ..timing import Timing
 
@@ -14,7 +14,7 @@ class _DragAndDrop(_MouseAction):
         self.end_x = end_x
         self.end_y = end_y
         self.button = button
-        _validate_mouse_button(self.button)
+        _validate_options(self.button, ["left", "right", "middle"], "mouse button")
     
     def execute(self):
         timing = Timing()
@@ -22,9 +22,11 @@ class _DragAndDrop(_MouseAction):
         _HoldClick(
             x = self.start_x, y = self.start_y, button = self.button, physics = self.physics
         ).execute()
-        timing.wait(0.2)
-        _Move(x = self.end_x, y = self.end_y, physics = self.physics).execute()
-        timing.wait(0.2)
-        _ReleaseClick(
-            x = self.end_x, y = self.end_y, button = self.button, physics = self.physics
-        ).execute()
+        try:
+            timing.wait(0.2)
+            _Move(x = self.end_x, y = self.end_y, physics = self.physics).execute()
+            timing.wait(0.2)
+        finally:
+            _ReleaseClick(
+                x = self.end_x, y = self.end_y, button = self.button, physics = self.physics
+            ).execute()

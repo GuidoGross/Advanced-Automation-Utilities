@@ -37,9 +37,11 @@ class System(_QueueableController):
     
     def set_clipboard_text(self, text: str) -> Self:
         """
+        **System().set_clipboard_text():** Sets the text content of the Windows clipboard.
+
         **Description:**
 
-        Sets the text content of the Windows clipboard.
+        Sets the text content of the Windows clipboard. This is extremely useful for automating copy-paste workflows or seamlessly transferring data from your script to other applications.
 
         **Arguments:**
 
@@ -52,16 +54,18 @@ class System(_QueueableController):
         **Example:**
 
         ```python
-        System().set_clipboard_text("Text to paste later")
+        System().set_clipboard_text(text = "Text to paste later.")
         ```
         """
         return self._execute_or_queue(_SetClipboardText(text = text))
     
-    def open_process(self, executable_path: str) -> Self:
+    def open_process(self, process_path: str) -> Self:
         """
+        **System().open_process():** Opens a process or file.
+
         **Description:**
 
-        Opens a process or file.
+        Uses `os.startfile` internally to launch applications or open files with their default program.
 
         **Arguments:**
 
@@ -74,16 +78,18 @@ class System(_QueueableController):
         **Example:**
 
         ```python
-        System().open_process("notepad.exe")
+        System().open_process(process_path = "notepad.exe")
         ```
         """
-        return self._execute_or_queue(_OpenProcess(executable_path = executable_path))
+        return self._execute_or_queue(_OpenProcess(process_path = process_path))
     
     def kill_process(self, process: str, force: bool = True) -> Self:
         """
+        **System().kill_process():** Terminates an active process by its name.
+
         **Description:**
 
-        Terminates an active process by its name.
+        Terminates an active process by its name. This provides a robust way to clean up applications after an automation task finishes, or to forcefully close unresponsive programs.
 
         **Arguments:**
 
@@ -97,16 +103,18 @@ class System(_QueueableController):
         **Example:**
 
         ```python
-        System().kill_process("notepad.exe", force = True)
+        System().kill_process(process = "notepad.exe", force = True)
         ```
         """
         return self._execute_or_queue(_KillProcess(process = process, force = force))
     
     def focus_window(self, window_title: str) -> Self:
         """
+        **System().focus_window():** Brings a specific window to the foreground by its title.
+
         **Description:**
 
-        Brings a specific window to the foreground by its title.
+        Brings a specific window to the foreground by its title. This is essential for ensuring that subsequent mouse clicks and keyboard strokes are sent to the correct application, avoiding accidental interactions with background apps.
 
         **Arguments:**
 
@@ -119,16 +127,18 @@ class System(_QueueableController):
         **Example:**
 
         ```python
-        System().focus_window("Untitled - Notepad")
+        System().focus_window(window_title = "Untitled - Notepad")
         ```
         """
         return self._execute_or_queue(_FocusWindow(window_title = window_title))
     
     def resize_window(self, window_title: str, width: int, height: int) -> Self:
         """
+        **System().resize_window():** Resizes a specific window to the specified dimensions by its title.
+
         **Description:**
 
-        Resizes a specific window to the specified dimensions by its title.
+        Resizes a specific window to the specified dimensions by its title. This is extremely useful for automating GUI applications or ensuring that a window occupies the exact screen space required for subsequent automation steps.
 
         **Arguments:**
 
@@ -143,7 +153,7 @@ class System(_QueueableController):
         **Example:**
 
         ```python
-        System().resize_window("Untitled - Notepad", width = 800, height = 600)
+        System().resize_window(window_title = "Untitled - Notepad", width = 800, height = 600)
         ```
         """
         return self._execute_or_queue(
@@ -152,9 +162,11 @@ class System(_QueueableController):
     
     def move_window(self, window_title: str, x: int, y: int) -> Self:
         """
+        **System().move_window():** Moves a specific window to the specified coordinates by its title.
+
         **Description:**
 
-        Moves a specific window to the specified coordinates by its title.
+        Moves a specific window to the specified coordinates by its title. Similar to `resize_window()`, this helps guarantee that your automation target is perfectly positioned before executing coordinate-based mouse interactions.
 
         **Arguments:**
 
@@ -169,16 +181,18 @@ class System(_QueueableController):
         **Example:**
 
         ```python
-        System().move_window("Untitled - Notepad", x = 100, y = 100)
+        System().move_window(window_title = "Untitled - Notepad", x = 250, y = 500)
         ```
         """
         return self._execute_or_queue(_MoveWindow(window_title = window_title, x = x, y = y))
     
     def close_window(self, window_title: str) -> Self:
         """
+        **System().close_window():** Gently closes a specific window by its title.
+
         **Description:**
 
-        Gently closes a specific window by its title.
+        Sends a graceful WM_CLOSE signal to a specific window by its title.
 
         **Arguments:**
 
@@ -191,16 +205,18 @@ class System(_QueueableController):
         **Example:**
 
         ```python
-        System().close_window("Untitled - Notepad")
+        System().close_window(window_title = "Untitled - Notepad")
         ```
         """
         return self._execute_or_queue(_CloseWindow(window_title = window_title))
     
     def lock_screen(self) -> Self: 
         """
+        **System().lock_screen():** Locks the Windows session (Win+L).
+
         **Description:**
 
-        Locks the Windows session (Win+L).
+        Locks the Windows session (equivalent to pressing Win+L). This is ideal for scripts that handle sensitive information and need to secure the computer immediately after the automated task finishes.
 
         **Returns:**
 
@@ -216,9 +232,11 @@ class System(_QueueableController):
     
     def sign_out(self) -> Self: 
         """
+        **System().sign_out():** Signs out the current Windows user.
+
         **Description:**
 
-        Signs out the current Windows user.
+        Signs out the current Windows user. This gently closes all running applications and returns to the Windows login screen, making it useful for gracefully ending a day's worth of automated tasks.
 
         **Returns:**
 
@@ -234,9 +252,11 @@ class System(_QueueableController):
     
     def sleep(self) -> Self: 
         """
+        **System().sleep():** Puts the computer into sleep mode.
+
         **Description:**
 
-        Puts the computer into sleep mode.
+        Puts the computer into sleep mode (suspend to RAM). This is a great way to save energy when an automation task finishes running overnight without completely turning off the machine.
 
         **Returns:**
 
@@ -252,9 +272,11 @@ class System(_QueueableController):
     
     def hibernate(self) -> Self: 
         """
+        **System().hibernate():** Puts the computer into hibernation mode.
+
         **Description:**
 
-        Puts the computer into hibernation mode.
+        Puts the computer into hibernation mode (suspend to disk). This completely powers off the machine while saving the exact state of all open applications, allowing you to seamlessly resume your work later.
 
         **Returns:**
 
@@ -270,9 +292,11 @@ class System(_QueueableController):
     
     def shutdown(self, delay: int = 0) -> Self:
         """
+        **System().shutdown():** Turns off the computer.
+
         **Description:**
 
-        Turns off the computer.
+        Turns off the computer, optionally waiting for a specified delay before powering down. This is perfect for cleanly shutting down a remote or unattended machine after a long-running automation process finishes.
 
         **Arguments:**
 
@@ -285,16 +309,18 @@ class System(_QueueableController):
         **Example:**
 
         ```python
-        System().shutdown()
+        System().shutdown(delay = 60)
         ```
         """
         return self._execute_or_queue(_Shutdown(delay = delay))
     
     def restart(self, delay: int = 0) -> Self:
         """
+        **System().restart():** Restarts the computer.
+
         **Description:**
 
-        Restarts the computer.
+        Restarts the computer, optionally waiting for a specified delay before rebooting. This is useful for applying system updates or resetting the environment before starting a fresh automation cycle.
 
         **Arguments:**
 
@@ -307,16 +333,18 @@ class System(_QueueableController):
         **Example:**
 
         ```python
-        System().restart()
+        System().restart(delay = 60)
         ```
         """
         return self._execute_or_queue(_Restart(delay = delay))
     
     def enable_kill_switch(self, *keys: str) -> Self:
         """
+        **System().enable_kill_switch():** Enables a global kill switch to abort execution instantly.
+
         **Description:**
 
-        Enables a global kill switch (Ctrl + Shift + Alt + K by default) to abort execution instantly.
+        Injects a high-priority hardware hook to listen for the abort shortcut.
 
         **Arguments:**
 
@@ -329,17 +357,23 @@ class System(_QueueableController):
         **Example:**
 
         ```python
-        System().enable_kill_switch()
+        System().enable_kill_switch("ctrl", "shift", "alt", "k")
         ```
+
+        **Important:**
+
+        When triggered, an asynchronous `KillSwitchTriggered` exception is raised in all automation threads, completely aborting execution safely.
         """
         if not keys: keys = ("ctrl", "shift", "alt", "k")
         return self._execute_or_queue(_EnableKillSwitch(*keys))
     
     def disable_kill_switch(self) -> Self: 
         """
+        **System().disable_kill_switch():** Disables the global kill switch.
+
         **Description:**
 
-        Disables the global kill switch.
+        Safely unregisters the hook to disable the kill switch.
 
         **Returns:**
 

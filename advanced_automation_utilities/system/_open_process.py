@@ -1,14 +1,15 @@
 from ._system_action import _SystemAction
+from .._utilities import _validate_file_exists
 from ..backend.windows._system import _open_process
 import os
 import shutil
 
 class _OpenProcess(_SystemAction):
-    def __init__(self, executable_path):
-        self.executable_path = executable_path
-        if not (os.path.exists(self.executable_path) or shutil.which(self.executable_path)):
+    def __init__(self, process_path):
+        self.process_path = process_path
+        if not (os.path.exists(self.process_path) or shutil.which(self.process_path)):
             raise FileNotFoundError(
-                f"The executable file \"{self.executable_path}\" does not exist or could not be found."
+                f"The executable file \"{self.process_path}\" does not exist or could not be found."
             )
     
-    def execute(self): _open_process(self.executable_path)
+    def execute(self): _open_process(self.process_path)

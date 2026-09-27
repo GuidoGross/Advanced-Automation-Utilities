@@ -37,6 +37,35 @@ class MousePhysics:
     - **`wander_delay_variation` (`float`):** Must be >= 0.
     - **`wander_distance_ratio` (`float`):** Must be >= 0.
     - **`wander_distance_ratio_variation` (`float`):** Must be >= 0.
+
+    **Example:**
+
+    ```python
+    mouse_physics = MousePhysics(
+        speed = 1500,
+        minimum_speed = 0,
+        maximum_speed = 0,
+        speed_variation = 0.1,
+        duration = 0,
+        duration_variation = 0,
+        base_duration = 0.1,
+        base_duration_variation = 0.1,
+        inconsistency = 0.25,
+        target_radius = 25,
+        readjustment_duration_ratio = 0.25,
+        click_delay = 0.05,
+        click_delay_variation = 0.1,
+        click_duration = 0.05,
+        click_duration_variation = 0.1,
+        scroll_speed = 1000,
+        scroll_speed_variation = 0.1,
+        scroll_duration = 0,
+        scroll_duration_variation = 0,
+        scroll_step = 120,
+        scroll_pause_variation = 0.1
+    )
+    mouse = Mouse(mouse_physics)
+    ```
     """
     speed: float = 0
     minimum_speed: float = 0

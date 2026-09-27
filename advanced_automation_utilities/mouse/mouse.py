@@ -38,9 +38,11 @@ class Mouse(_QueueableController):
     
     def move(self, x: int, y: int) -> Self:
         """
+        **Mouse().move():** Moves the pointer to the specified coordinates smoothly based on the configured physics.
+
         **Description:**
 
-        Moves the pointer to the specified coordinates smoothly based on the configured physics.
+        Generates a realistic Bézier curve from the current pointer location to the target. The trajectory, speed, and overshoots are governed by `MousePhysics`.
 
         **Arguments:**
 
@@ -56,6 +58,10 @@ class Mouse(_QueueableController):
         ```python
         Mouse().move(x = 250, y = 500)
         ```
+
+        **Note:**
+
+        Because it uses Bézier curves, the mouse will naturally curve and accelerate/decelerate just like a real human hand.
         """
         return self._execute_or_queue(_Move(x = x, y = y, physics = self.physics))
     
@@ -63,9 +69,11 @@ class Mouse(_QueueableController):
         self, x: Optional[int] = None, y: Optional[int] = None, button: MouseButton = "left"
     ) -> Self:
         """
+        **Mouse().hold_click():** Holds down a mouse button at specified coordinates.
+
         **Description:**
 
-        Holds down a mouse button.
+        Sends the physical DOWN signal for the mouse button without releasing it.
 
         **Arguments:**
 
@@ -80,8 +88,12 @@ class Mouse(_QueueableController):
         **Example:**
 
         ```python
-        Mouse().hold_click()
+        Mouse().hold_click(x = 250, y = 500, button = "left")
         ```
+
+        **Warning:**
+
+        Always ensure you eventually call `release_click()` to avoid leaving the system in a locked state.
         """
         return self._execute_or_queue(_HoldClick(x = x, y = y, button = button, physics = self.physics))
     
@@ -89,9 +101,11 @@ class Mouse(_QueueableController):
         self, x: Optional[int] = None, y: Optional[int] = None, button: MouseButton = "left"
     ) -> Self:
         """
+        **Mouse().release_click():** Releases a previously held mouse button at specified coordinates.
+
         **Description:**
 
-        Releases a previously held mouse button.
+        Sends the physical UP signal for the mouse button.
 
         **Arguments:**
 
@@ -106,18 +120,26 @@ class Mouse(_QueueableController):
         **Example:**
 
         ```python
-        Mouse().release_click()
+        Mouse().release_click(x = 250, y = 500, button = "left")
         ```
         """
         return self._execute_or_queue(
             _ReleaseClick(x = x, y = y, button = button, physics = self.physics)
         )
 
-    def click(self, x: Optional[int] = None, y: Optional[int] = None, button: MouseButton = "left") -> Self:
+    def click(
+        self,
+        x: Optional[int] = None,
+        y: Optional[int] = None,
+        button: MouseButton = "left",
+        clicks: int = 1
+    ) -> Self:
         """
+        **Mouse().click():** Clicks the mouse at specified coordinates.
+
         **Description:**
 
-        Clicks the mouse at its current position or at specified coordinates.
+        Simulates a physical click (DOWN and UP events) with a customizable, randomized delay in between.
 
         **Arguments:**
 
@@ -132,21 +154,26 @@ class Mouse(_QueueableController):
         **Example:**
 
         ```python
-        Mouse().click()
-        Mouse().click(x = 100, y = 200) # Moves before clicking
+        Mouse().click(x = 250, y = 500, button = "left", clicks = 1)
         ```
+
+        **Tip:**
+
+        Passing `x` and `y` automatically moves the pointer to that location before clicking. It is exactly equivalent to `Mouse().move(x, y).click()`.
         """
         return self._execute_or_queue(
-            _Click(x = x, y = y, button = button, clicks = 1, physics = self.physics)
+            _Click(x = x, y = y, button = button, clicks = clicks, physics = self.physics)
         )
     
     def double_click(
         self, x: Optional[int] = None, y: Optional[int] = None, button: MouseButton = "left"
     ) -> Self:
         """
+        **Mouse().double_click():** Performs a double click at specified coordinates.
+
         **Description:**
 
-        Performs a double click.
+        A convenient wrapper around `click()` that forces `clicks = 2`.
 
         **Arguments:**
 
@@ -161,18 +188,20 @@ class Mouse(_QueueableController):
         **Example:**
 
         ```python
-        Mouse().double_click()
+        Mouse().double_click(x = 250, y = 500, button = "left")
         ```
         """
-        return self._execute_or_queue(
-            _Click(x = x, y = y, button = button, clicks = 2, physics = self.physics)
-        )
+        return self.click(x = x, y = y, button = button, clicks = 2)
     
-    def right_click(self, x: Optional[int] = None, y: Optional[int] = None) -> Self:
+    def right_click(
+        self, x: Optional[int] = None, y: Optional[int] = None, clicks: int = 1
+    ) -> Self:
         """
+        **Mouse().right_click():** Performs a right click at specified coordinates.
+
         **Description:**
 
-        Performs a right click.
+        A convenient wrapper around `click()` that forces `button = "right"`.
 
         **Arguments:**
 
@@ -186,18 +215,20 @@ class Mouse(_QueueableController):
         **Example:**
 
         ```python
-        Mouse().right_click()
+        Mouse().right_click(x = 250, y = 500, clicks = 1)
         ```
         """
-        return self._execute_or_queue(
-            _Click(x = x, y = y, button = "right", clicks = 1, physics = self.physics)
-        )
+        return self.click(x = x, y = y, button = "right", clicks = clicks)
     
-    def middle_click(self, x: Optional[int] = None, y: Optional[int] = None) -> Self:
+    def middle_click(
+        self, x: Optional[int] = None, y: Optional[int] = None, clicks: int = 1
+    ) -> Self:
         """
+        **Mouse().middle_click():** Performs a middle click at specified coordinates.
+
         **Description:**
 
-        Performs a middle click.
+        A convenient wrapper around `click()` that forces `button = "middle"`.
 
         **Arguments:**
 
@@ -211,20 +242,20 @@ class Mouse(_QueueableController):
         **Example:**
 
         ```python
-        Mouse().middle_click()
+        Mouse().middle_click(x = 100, y = 200, clicks = 1)
         ```
         """
-        return self._execute_or_queue(
-            _Click(x = x, y = y, button = "middle", clicks = 1, physics = self.physics)
-        )
+        return self.click(x = x, y = y, button = "middle", clicks = clicks)
     
     def drag_and_drop(
         self, start_x: int, start_y: int, end_x: int, end_y: int, button: MouseButton = "left"
     ) -> Self:
         """
+        **Mouse().drag_and_drop():** Drags an item from start to end coordinates smoothly, based on the configured physics.
+
         **Description:**
 
-        Drags an item from start to end coordinates smoothly.
+        Moves to the start coordinates, holds the specified button, waits, smoothly moves to the end coordinates, waits again, and releases the button.
 
         **Arguments:**
 
@@ -241,8 +272,12 @@ class Mouse(_QueueableController):
         **Example:**
 
         ```python
-        Mouse().drag_and_drop(start_x = 100, start_y = 100, end_x = 500, end_y = 500)
+        Mouse().drag_and_drop(start_x = 250, start_y = 500, end_x = 750, end_y = 250, button = "left")
         ```
+
+        **Note:**
+
+        Short pauses are automatically inserted before moving and before releasing to simulate a human confirming the grab and drop actions.
         """
         return self._execute_or_queue(
             _DragAndDrop(
@@ -257,9 +292,11 @@ class Mouse(_QueueableController):
     
     def scroll(self, amount: int, direction: ScrollDirection = "down") -> Self:
         """
+        **Mouse().scroll():** Scrolls the mouse wheel by the specified amount in the specified direction.
+
         **Description:**
 
-        Scrolls the mouse wheel by the specified amount in the specified direction.
+        Sends discrete mouse wheel signals to scroll the active window.
 
         **Arguments:**
 
@@ -289,9 +326,11 @@ class Mouse(_QueueableController):
         poll_interval: float = 0.1
     ) -> Self:
         """
+        **Mouse().scroll_until():** Scrolls the mouse wheel continuously until a condition is met.
+
         **Description:**
 
-        Scrolls the mouse wheel continuously in the background until a given condition function evaluates to True, or an amount limit / timeout is reached.
+        Executes in a loop, scrolling step by step while periodically until either the `condition_function` is met or the `amount`/`timeout` is reached.
 
         **Arguments:**
 
@@ -308,10 +347,12 @@ class Mouse(_QueueableController):
         **Example:**
 
         ```python
-        # Scrolls down infinitely until the image is found
         Mouse().scroll_until(
             condition_function = lambda: KeyboardInfo().is_pressed("shift"),
-            direction = "down"
+            amount = 1000,
+            direction = "down",
+            timeout = 5,
+            poll_interval = 0.1
         )
         ```
         """
@@ -333,9 +374,11 @@ class Mouse(_QueueableController):
         maximum_steps: Optional[int] = None
     ) -> Self:
         """
+        **Mouse().wander():** Simulates idle mouse wandering by moving the pointer around randomly.
+
         **Description:**
 
-        Simulates idle mouse wandering by moving the pointer around randomly.
+        Generates erratic but smooth Bézier movements around a specific region, to keep the computer awake or simulate idle human activity.
 
         **Arguments:**
 
@@ -350,8 +393,12 @@ class Mouse(_QueueableController):
         **Example:**
 
         ```python
-        Mouse().wander(duration = 10)
+        Mouse().wander(duration = 10, region = (250, 250, 500, 500), maximum_steps = 3)
         ```
+
+        **Note:**
+
+        Although random, the movements generally tend toward the center of the region.
         """
         return self._execute_or_queue(_Wander(duration, region, maximum_steps, physics = self.physics))
     
@@ -364,9 +411,11 @@ class Mouse(_QueueableController):
         poll_interval: float = 0.1
     ) -> Self:
         """
+        **Mouse().wander_until():** Simulates idle mouse wandering continuously until a condition is met.
+
         **Description:**
 
-        Simulates idle mouse wandering continuously in the background until a given condition function evaluates to True, or a maximum steps / timeout is reached.
+        Executes the wander logic until the `condition_function` is met or the `maximum_steps`/`timeout` is reached.
 
         **Arguments:**
 
@@ -383,8 +432,13 @@ class Mouse(_QueueableController):
         **Example:**
 
         ```python
-        # Wanders around infinitely until the image is found
-        Mouse().wander_until(condition_function = lambda: KeyboardInfo().is_pressed("shift"))
+        Mouse().wander_until(
+            condition_function = lambda: KeyboardInfo().is_pressed("shift"),
+            region = (250, 250, 500, 500),
+            maximum_steps = 3,
+            timeout = 5,
+            poll_interval = 0.1
+        )
         ```
         """
         return self._execute_or_queue(

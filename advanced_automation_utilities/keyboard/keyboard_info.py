@@ -8,9 +8,11 @@ class KeyboardInfo:
     """
     def is_pressed(self, key: str) -> bool: 
         """
+        **KeyboardInfo().is_pressed():** Returns True if the specified key is currently physically held down.
+
         **Description:**
 
-        Returns True if the specified key is currently physically pressed down.
+        Reads the hardware state asynchronously, capturing even keys pressed outside the script.
 
         **Arguments:**
 
@@ -23,8 +25,12 @@ class KeyboardInfo:
         **Example:**
 
         ```python
-        is_shift_down = KeyboardInfo().is_pressed("shift")
+        is_shift_down = KeyboardInfo().is_pressed(key = "shift")
         ```
+
+        ### **Screen Utilities (screen)**
+
+        **Advanced computer vision leveraging OpenCV and Windows OCR:**
         """
         if not _get_virtual_key_code(key):
             raise KeyError(f"The \"{key}\" key is not valid or supported.")

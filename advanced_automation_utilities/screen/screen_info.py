@@ -1,4 +1,5 @@
 from typing import Union
+from .._utilities import _validate_options
 from ..backend.windows._screen import _get_screen_resolution, _get_pixel_color, _get_work_area
 from .._typing import ColorFormat
 
@@ -11,9 +12,11 @@ class ScreenInfo:
     @property
     def resolution(self) -> tuple[int, int]:
         """
+        **ScreenInfo().resolution:** Gets the resolution of the primary screen.
+
         **Description:**
 
-        Gets the (width, height) resolution of the primary screen.
+        Returns the resolution of the primary screen as a tuple.
 
         **Returns:**
 
@@ -30,9 +33,11 @@ class ScreenInfo:
     @property
     def width(self) -> int:
         """
+        **ScreenInfo().width:** Gets the width of the primary screen.
+
         **Description:**
 
-        Gets the width of the primary screen.
+        Returns only the width of the primary screen as an integer.
 
         **Returns:**
 
@@ -49,9 +54,11 @@ class ScreenInfo:
     @property
     def height(self) -> int:
         """
+        **ScreenInfo().height:** Gets the height of the primary screen.
+
         **Description:**
 
-        Gets the height of the primary screen.
+        Returns only the height of the primary screen as an integer.
 
         **Returns:**
 
@@ -69,9 +76,11 @@ class ScreenInfo:
         self, x: int, y: int, format: ColorFormat = "rgb"
     ) -> Union[tuple[int, int, int], str]:
         """
+        **ScreenInfo().pixel_color():** Gets the RGB or hexadecimal color of a specific pixel coordinate.
+
         **Description:**
 
-        Gets the RGB color of a specific pixel coordinate.
+        Returns the color of the pixel at the specified coordinates on RGB or hexadecimal format.
 
         **Arguments:**
 
@@ -86,11 +95,14 @@ class ScreenInfo:
         **Example:**
 
         ```python
-        r, g, b = ScreenInfo().pixel_color(250, 500)
+        color = ScreenInfo().pixel_color(x = 250, y = 500, format = "hexadecimal")
         ```
+
+        ### **Timing Utilities (timing)**
+
+        **Delays, chronometers, and condition-based execution flow:**
         """
-        if format.lower() not in ["rgb", "hexadecimal"]:
-            raise ValueError("Invalid color format. Valid options: \"rgb\", \"hexadecimal\".")
+        _validate_options(format.lower(), ["rgb", "hexadecimal"], "color format")
         rgb_color = _get_pixel_color(x, y)
         hexadecimal_color = "#{:02x}{:02x}{:02x}".format(rgb_color[0], rgb_color[1], rgb_color[2])
         match format.lower():

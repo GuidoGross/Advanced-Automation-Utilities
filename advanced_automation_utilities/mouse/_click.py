@@ -16,13 +16,14 @@ class _Click(_BaseClick):
         hold_click = _HoldClick(button = self.button, physics = self.physics)
         release_click = _ReleaseClick(button = self.button, physics = self.physics)
         for i in range(self.clicks):
-            hold_click.execute()
-            release_click.execute()
-            if i < self.clicks - 1:
-                click_duration = self.physics.click_duration
-                if self.physics.click_duration_variation > 0:
-                    click_duration = _apply_variation(
-                        click_duration, self.physics.click_duration_variation
-                    )
-                click_duration = max(0, click_duration)
-                Timing().wait(click_duration)
+            try:
+                hold_click.execute()
+                if i < self.clicks - 1:
+                    click_duration = self.physics.click_duration
+                    if self.physics.click_duration_variation > 0:
+                        click_duration = _apply_variation(
+                            click_duration, self.physics.click_duration_variation
+                        )
+                    click_duration = max(0, click_duration)
+                    Timing().wait(click_duration)
+            finally: release_click.execute()

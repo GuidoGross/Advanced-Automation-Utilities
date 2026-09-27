@@ -18,9 +18,11 @@ class Screen:
         monitor_index: int = 0
     ) -> tuple[Optional[int], Optional[int]]:
         """
+        **Screen().locate_image():** Searches for a template image on the screen and returns its central coordinates.
+
         **Description:**
 
-        Searches for a template image on the screen and returns its central coordinates. Supports multi-monitor setups.
+        Takes a fast screenshot and uses OpenCV Template Matching (`TM_CCOEFF_NORMED`) to find the image in the specified region.
 
         **Arguments:**
 
@@ -36,7 +38,12 @@ class Screen:
         **Example:**
 
         ```python
-        x, y = Screen().locate_image("button.png", monitor_index = 0)
+        x, y = Screen().locate_image(
+            image_path = "button.png",
+            confidence = 0.9,
+            region = (250, 250, 500, 500),
+            monitor_index = 0
+        )
         ```
         """
         return _LocateImage(
@@ -50,9 +57,11 @@ class Screen:
         self, region: Optional[tuple[int, int, int, int]] = None, monitor_index: int = 0
     ) -> str:
         """
+        **Screen().read_text():** Uses OCR to extract all readable text from the screen or a specific region.
+
         **Description:**
 
-        Uses OCR to extract all readable text from the screen or a specific region. Supports multi-monitor setups.
+        Leverages the blazing-fast native Windows OCR API to extract all readable text from the screen or a specific region.
 
         **Arguments:**
 
@@ -66,7 +75,7 @@ class Screen:
         **Example:**
 
         ```python
-        text = Screen().read_text(monitor_index = 0)
+        text = Screen().read_text(region = (250, 250, 500, 500), monitor_index = 0)
         ```
         """
         return _ReadText(region = region, monitor_index = monitor_index).execute()
@@ -79,9 +88,11 @@ class Screen:
         monitor_index: int = 0
     ) -> tuple[Optional[int], Optional[int]]:
         """
+        **Screen().locate_text():** Uses OCR to find specific text on the screen and returns its central coordinates.
+
         **Description:**
 
-        Uses OCR to find specific text on the screen and returns its central coordinates. Supports multi-monitor setups.
+        Leverages the blazing-fast native Windows OCR API to find the location of specific text within the specified region.
 
         **Arguments:**
 
@@ -97,7 +108,12 @@ class Screen:
         **Example:**
 
         ```python
-        x, y = Screen().locate_text("Submit", monitor_index = 0)
+        x, y = Screen().locate_text(
+            text = "Submit",
+            region = (250, 250, 500, 500),
+            exact_match = True,
+            monitor_index = 0
+        )
         ```
         """
         return _LocateText(

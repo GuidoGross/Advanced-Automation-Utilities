@@ -12,9 +12,11 @@ class Timing:
     """
     def wait(self, duration: float) -> None:
         """
+        **Timing().wait():** Pauses execution for an exact amount of seconds.
+
         **Description:**
 
-        Pauses execution for an exact amount of seconds.
+        Pauses execution for an exact amount of seconds. It acts as a safe, responsive wrapper around standard sleep mechanisms, ensuring that long pauses can still be instantly interrupted if the global kill switch is triggered.
 
         **Arguments:**
 
@@ -27,16 +29,22 @@ class Timing:
         **Example:**
 
         ```python
-        Timing().wait(2.5)
+        Timing().wait(duration = 2.5)
         ```
+
+        **Note:**
+
+        This internally uses the global `KILL_SWITCH_EVENT`, meaning if the Kill Switch is triggered during a wait, the wait is aborted instantly.
         """
         return _Wait(duration = duration).execute()
     
     def wait_random(self, minimum_duration: float, maximum_duration: float) -> None:
         """
+        **Timing().wait_random():** Pauses execution for a random duration between two limits.
+
         **Description:**
 
-        Pauses execution for a random duration between two limits.
+        Pauses execution for a random duration between two limits. This is particularly useful for simulating human unpredictability and preventing strict pattern recognition in automated tasks.
 
         **Arguments:**
 
@@ -64,9 +72,11 @@ class Timing:
         poll_interval: float = 0.1
     ) -> bool:
         """
+        **Timing().wait_until():** Pauses execution until a given condition function is met.
+
         **Description:**
 
-        Halts execution until a given function or lambda condition evaluates to True.
+        Continuously polls the condition function at a specified interval until is met or the timeout is reached.
 
         **Arguments:**
 
@@ -81,8 +91,11 @@ class Timing:
         **Example:**
 
         ```python
-        # Waits until the shift key is pressed
-        Timing().wait_until(lambda: KeyboardInfo().is_pressed("shift"))
+        Timing().wait_until(
+            condition_function = lambda: KeyboardInfo().is_pressed("shift"),
+            timeout = 10,
+            poll_interval = 0.1
+        )
         ```
         """
         return _WaitUntil(

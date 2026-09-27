@@ -1,12 +1,13 @@
 from ._sound_action import _SoundAction
+from .._utilities import _validate_options
+from .._typing import SystemSound
 from ..backend.windows._sound import _play_system_sound
 
 class _PlaySystemSound(_SoundAction):
-    def __init__(self, sound_type):
+    def __init__(self, sound_type: SystemSound):
         self.sound_type = sound_type
-        if self.sound_type.lower() not in ["info", "warning", "error", "question", "ok"]:
-            raise ValueError(
-                "Invalid sound type. Valid options: \"info\", \"warning\", \"error\", \"question\", \"ok\"."
-            )
+        _validate_options(
+            self.sound_type.lower(), ["info", "warning", "error", "question", "ok"], "system sound type"
+        )
     
     def execute(self): _play_system_sound(self.sound_type)

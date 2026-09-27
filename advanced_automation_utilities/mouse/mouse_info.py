@@ -12,9 +12,11 @@ class MouseInfo:
     @property
     def coordinates(self) -> tuple[int, int]:
         """
+        **MouseInfo().coordinates:** Gets the current (X, Y) coordinates of the pointer.
+
         **Description:**
 
-        Gets the current (X, Y) coordinates of the pointer.
+        Reads the system's pointer position and returns it as a tuple. This is an instantaneous, non-blocking hardware read.
 
         **Returns:**
 
@@ -31,9 +33,11 @@ class MouseInfo:
     @property
     def x(self) -> int:
         """
+        **MouseInfo().x:** Gets the current X coordinate of the pointer.
+
         **Description:**
 
-        Gets the current X coordinate of the pointer.
+        Reads the system's pointer position and extracts only the horizontal axis value.
 
         **Returns:**
 
@@ -50,9 +54,11 @@ class MouseInfo:
     @property
     def y(self) -> int:
         """
+        **MouseInfo().y:** Gets the current Y coordinate of the pointer.
+
         **Description:**
 
-        Gets the current Y coordinate of the pointer.
+        Reads the system's pointer position and extracts only the vertical axis value.
 
         **Returns:**
 
@@ -68,9 +74,11 @@ class MouseInfo:
     
     def pixel_color(self, format: ColorFormat = "rgb") -> tuple[int, int, int] | str:
         """
+        **MouseInfo().pixel_color():** Gets the RGB or hexadecimal color of the pixel currently under the pointer.
+
         **Description:**
 
-        Gets the RGB color of the pixel currently under the pointer.
+        Takes a micro-screenshot of the exact pixel the mouse is hovering over and extracts its color.
 
         **Arguments:**
 
@@ -83,7 +91,7 @@ class MouseInfo:
         **Example:**
 
         ```python
-        r, g, b = MouseInfo().pixel_color()
+        color = MouseInfo().pixel_color(format = "rgb")
         ```
         """
         return ScreenInfo().pixel_color(self.x, self.y, format = format)
@@ -91,9 +99,11 @@ class MouseInfo:
     @property
     def on_screen(self) -> bool:
         """
+        **MouseInfo().on_screen:** Checks if the pointer is currently within the bounds of any screen.
+
         **Description:**
 
-        Checks if the pointer is currently within the bounds of any screen.
+        Verifies if the current mouse coordinates fall inside the desktop's virtual screen boundaries. Useful for multi-monitor setups.
 
         **Returns:**
 
@@ -102,8 +112,12 @@ class MouseInfo:
         **Example:**
 
         ```python
-        is_visible = MouseInfo().on_screen
+        is_pointer_on_screen = MouseInfo().on_screen
         ```
+
+        ### **Keyboard Utilities (keyboard)**
+
+        **Low-level keyboard interaction and information retrieval:**
         """
         x, y = self.coordinates
         with mss.mss() as screen_capture_tool:

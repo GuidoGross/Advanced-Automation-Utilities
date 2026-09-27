@@ -11,5 +11,5 @@ class _PressKey(_KeyboardAction):
             raise KeyError(f"The \"{self.key}\" key is not valid or supported.")
     
     def execute(self):
-        _HoldKey(self.key, self.physics).execute()
-        _ReleaseKey(self.key, self.physics).execute()
+        try: _HoldKey(self.key, self.physics).execute()
+        finally: _ReleaseKey(self.key, self.physics).execute()

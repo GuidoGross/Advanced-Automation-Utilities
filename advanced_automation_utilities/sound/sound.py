@@ -3,6 +3,7 @@ from ._play_audio import _PlayAudio
 from ._play_system_sound import _PlaySystemSound
 from ._speak import _Speak
 from .._queueable_controller import _QueueableController
+from .._typing import SystemSound
 from typing import Self
 
 class Sound(_QueueableController):
@@ -26,9 +27,11 @@ class Sound(_QueueableController):
     
     def play_beep_sound(self, frequency: int, duration: float) -> Self:
         """
+        **Sound().play_beep_sound():** Plays a motherboard beep with a specific frequency and duration.
+
         **Description:**
 
-        Plays a motherboard beep with a specific frequency and duration.
+        Plays a beep sound using the Windows API. Useful for audible notifications.
 
         **Arguments:**
 
@@ -49,9 +52,11 @@ class Sound(_QueueableController):
     
     def play_audio(self, file_path: str) -> Self:
         """
+        **Sound().play_audio():** Plays an audio file from the file system.
+
         **Description:**
 
-        Plays an audio file from the file system.
+        Uses the native Windows MCI API for lightweight audio playback.
 
         **Arguments:**
 
@@ -64,16 +69,18 @@ class Sound(_QueueableController):
         **Example:**
 
         ```python
-        Sound().play_audio("alert.wav")
+        Sound().play_audio(file_path = "alert.wav")
         ```
         """
         return self._execute_or_queue(_PlayAudio(file_path = file_path))
     
-    def play_system_sound(self, sound_type: str) -> Self:
+    def play_system_sound(self, sound_type: SystemSound) -> Self:
         """
+        **Sound().play_system_sound():** Plays a default Windows system sound.
+
         **Description:**
 
-        Plays a default Windows system sound.
+        Plays a default Windows system sound between the given options.
 
         **Arguments:**
 
@@ -86,16 +93,18 @@ class Sound(_QueueableController):
         **Example:**
 
         ```python
-        Sound().play_system_sound("warning")
+        Sound().play_system_sound(sound = "warning")
         ```
         """
         return self._execute_or_queue(_PlaySystemSound(sound_type = sound_type))
     
     def speak(self, text: str) -> Self:
         """
+        **Sound().speak():** Synthesizes text to speech using the default Windows voice.
+
         **Description:**
 
-        Synthesizes text to speech using the default Windows voice.
+        Uses native PowerShell SAPI integration for zero-dependency TTS to synthesize text to speech.
 
         **Arguments:**
 
@@ -108,7 +117,11 @@ class Sound(_QueueableController):
         **Example:**
 
         ```python
-        Sound().speak("Hello, world!")
+        Sound().speak(text = "Automation task completed successfully.")
         ```
+
+        ### **System Utilities (system)**
+
+        **High-level operating system actions and process management:**
         """
         return self._execute_or_queue(_Speak(text = text))
