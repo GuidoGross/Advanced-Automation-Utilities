@@ -31,10 +31,10 @@ def measure_time(function: Callable) -> Callable:
         result = function(*args, **kwargs)
         end_time = timing_info.time
         print([
-            ("Ejecución de ", {}),
+            ("Execution of ", {}),
             (f"{function.__name__}()", {"color": "#00bfff"}),
-            (" finalizada en ", {}),
-            (f"{decimal_format((end_time - start_time) * 1000, decimals = 0)}ms", {"color": "#00bfff"})
+            (" finished in ", {}),
+            (f"{decimal_format((end_time - start_time), decimals = 5)}s", {"color": "#00bfff"})
         ], alignment = "center")
         return result
     
