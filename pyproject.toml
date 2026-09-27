@@ -1,6 +1,6 @@
 [project]
 name = "advanced_automation_utilities"
-version = "1.2.12"
+version = "1.2.13"
 description = "Personal use automation utilities library."
 readme = "README.md"
 license = "GPL-3.0-or-later"
@@ -42,6 +42,11 @@ classifiers = [
     "Topic :: Utilities",
     "Topic :: Desktop Environment"
 ]
+
+[project.urls]
+Homepage = "https://github.com/GuidoGross/Advanced-Automation-Utilities"
+Repository = "https://github.com/GuidoGross/Advanced-Automation-Utilities"
+"Bug Tracker" = "https://github.com/GuidoGross/Advanced-Automation-Utilities/issues"
 
 [build-system]
 requires = ["setuptools >= 61.0"]

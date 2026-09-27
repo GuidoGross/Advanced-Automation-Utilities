@@ -63,6 +63,12 @@ Windows 10 or higher.
   pip install advanced_automation_utilities
   ```
 
+- **Show:**
+
+  ```bash
+  pip show advanced_automation_utilities
+  ```
+
 - **Update:**
 
   ```bash
