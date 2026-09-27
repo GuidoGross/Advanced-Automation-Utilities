@@ -209,7 +209,7 @@ keyboard = Keyboard(keyboard_physics)
   - **`x` (`Optional[int]`)**
   - **`y` (`Optional[int]`)**
   - **`button` (`str`):** Valid options: "left", "right", "middle".
-  - **`clicks` (`int`):** Must be >= 0.
+  - **`clicks` (`int`):** Must be ≥ 0.
 
   **Returns:**
 
@@ -256,7 +256,7 @@ keyboard = Keyboard(keyboard_physics)
 
   - **`x` (`Optional[int]`)**
   - **`y` (`Optional[int]`)**
-  - **`clicks` (`int`):** Must be >= 0.
+  - **`clicks` (`int`):** Must be ≥ 0.
 
   **Returns:**
 
@@ -278,7 +278,7 @@ keyboard = Keyboard(keyboard_physics)
 
   - **`x` (`Optional[int]`)**
   - **`y` (`Optional[int]`)**
-  - **`clicks` (`int`):** Must be >= 0.
+  - **`clicks` (`int`):** Must be ≥ 0.
 
   **Returns:**
 
@@ -372,7 +372,7 @@ keyboard = Keyboard(keyboard_physics)
   
   **Arguments:**
 
-  - **`amount` (`int`):** Must be >= 0.
+  - **`amount` (`int`):** Must be ≥ 0.
   - **`direction` (`str`):** Valid options: "up", "down", "left", "right".
 
   **Returns:**
@@ -423,9 +423,9 @@ keyboard = Keyboard(keyboard_physics)
   
   **Arguments:**
 
-  - **`duration` (`float`):** Seconds. Must be >= 0.
+  - **`duration` (`float`):** Seconds. Must be ≥ 0.
   - **`region` (`Optional[tuple[int, int, int, int]]`):** Format: (left, top, right, bottom).
-  - **`maximum_steps` (`Optional[int]`):** Must be >= 0.
+  - **`maximum_steps` (`Optional[int]`):** Must be ≥ 0.
 
   **Returns:**
 
@@ -450,7 +450,7 @@ keyboard = Keyboard(keyboard_physics)
 
   - **`condition_function` (`Callable[[], bool]`)**
   - **`region` (`Optional[tuple[int, int, int, int]]`):** Format: (left, top, right, bottom).
-  - **`maximum_steps` (`Optional[int]`):** Must be >= 0.
+  - **`maximum_steps` (`Optional[int]`):** Must be ≥ 0.
   - **`timeout` (`float`)**
   - **`poll_interval` (`float`)**
 
@@ -737,7 +737,7 @@ keyboard = Keyboard(keyboard_physics)
   **Arguments:**
 
   - **`image_path` (`str`):** Must be a valid file path.
-  - **`confidence` (`float`):** Must be >= 0 and <= 1.
+  - **`confidence` (`float`):** Must be ≥ 0 and ≤ 1.
   - **`region` (`Optional[tuple[int, int, int, int]]`):** Format: (left, top, right, bottom).
   - **`monitor_index` (`int`)**
 
@@ -903,7 +903,7 @@ keyboard = Keyboard(keyboard_physics)
 
   **Arguments:**
 
-  - **`duration` (`float`):** Seconds. Must be >= 0.
+  - **`duration` (`float`):** Seconds. Must be ≥ 0.
 
   **Returns:**
 
@@ -926,8 +926,8 @@ keyboard = Keyboard(keyboard_physics)
 
   **Arguments:**
 
-  - **`minimum_duration` (`float`):** Seconds. Must be >= 0.
-  - **`maximum_duration` (`float`):** Seconds. Must be >= 0.
+  - **`minimum_duration` (`float`):** Seconds. Must be ≥ 0.
+  - **`maximum_duration` (`float`):** Seconds. Must be ≥ 0.
 
   **Returns:**
 
@@ -948,7 +948,7 @@ keyboard = Keyboard(keyboard_physics)
   **Arguments:**
 
   - **`condition_function` (`Callable[[], bool]`)**
-  - **`timeout` (`float`):** Seconds. Must be >= 0.
+  - **`timeout` (`float`):** Seconds. Must be ≥ 0.
   - **`poll_interval` (`float`):** Seconds. Must be > 0.
 
   **Returns:**
@@ -1300,7 +1300,7 @@ keyboard = Keyboard(keyboard_physics)
   
   **Arguments:**
 
-  - **`delay` (`int`):** Seconds. Must be >= 0.
+  - **`delay` (`int`):** Seconds. Must be ≥ 0.
 
   **Returns:**
 
@@ -1320,7 +1320,7 @@ keyboard = Keyboard(keyboard_physics)
   
   **Arguments:**
 
-  - **`delay` (`int`):** Seconds. Must be >= 0.
+  - **`delay` (`int`):** Seconds. Must be ≥ 0.
 
   **Returns:**
 

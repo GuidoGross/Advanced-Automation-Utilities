@@ -146,7 +146,7 @@ class Mouse(_QueueableController):
         - **`x` (`Optional[int]`)**
         - **`y` (`Optional[int]`)**
         - **`button` (`str`):** Valid options: "left", "right", "middle".
-        - **`clicks` (`int`):** Must be >= 0.
+        - **`clicks` (`int`):** Must be ≥ 0.
 
         **Returns:**
 
@@ -208,7 +208,7 @@ class Mouse(_QueueableController):
 
         - **`x` (`Optional[int]`)**
         - **`y` (`Optional[int]`)**
-        - **`clicks` (`int`):** Must be >= 0.
+        - **`clicks` (`int`):** Must be ≥ 0.
 
         **Returns:**
 
@@ -236,7 +236,7 @@ class Mouse(_QueueableController):
 
         - **`x` (`Optional[int]`)**
         - **`y` (`Optional[int]`)**
-        - **`clicks` (`int`):** Must be >= 0.
+        - **`clicks` (`int`):** Must be ≥ 0.
 
         **Returns:**
 
@@ -303,7 +303,7 @@ class Mouse(_QueueableController):
 
         **Arguments:**
 
-        - **`amount` (`int`):** Must be >= 0.
+        - **`amount` (`int`):** Must be ≥ 0.
         - **`direction` (`str`):** Valid options: "up", "down", "left", "right".
 
         **Returns:**
@@ -385,9 +385,9 @@ class Mouse(_QueueableController):
 
         **Arguments:**
 
-        - **`duration` (`float`):** Seconds. Must be >= 0.
+        - **`duration` (`float`):** Seconds. Must be ≥ 0.
         - **`region` (`Optional[tuple[int, int, int, int]]`):** Format: (left, top, right, bottom).
-        - **`maximum_steps` (`Optional[int]`):** Must be >= 0.
+        - **`maximum_steps` (`Optional[int]`):** Must be ≥ 0.
 
         **Returns:**
 
@@ -424,7 +424,7 @@ class Mouse(_QueueableController):
 
         - **`condition_function` (`Callable[[], bool]`)**
         - **`region` (`Optional[tuple[int, int, int, int]]`):** Format: (left, top, right, bottom).
-        - **`maximum_steps` (`Optional[int]`):** Must be >= 0.
+        - **`maximum_steps` (`Optional[int]`):** Must be ≥ 0.
         - **`timeout` (`float`)**
         - **`poll_interval` (`float`)**
 

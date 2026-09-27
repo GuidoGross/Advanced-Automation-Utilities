@@ -27,7 +27,7 @@ class Screen:
         **Arguments:**
 
         - **`image_path` (`str`):** Must be a valid file path.
-        - **`confidence` (`float`):** Must be >= 0 and <= 1.
+        - **`confidence` (`float`):** Must be ≥ 0 and ≤ 1.
         - **`region` (`Optional[tuple[int, int, int, int]]`):** Format: (left, top, right, bottom).
         - **`monitor_index` (`int`)**
 

@@ -20,7 +20,7 @@ class Timing:
 
         **Arguments:**
 
-        - **`duration` (`float`):** Seconds. Must be >= 0.
+        - **`duration` (`float`):** Seconds. Must be ≥ 0.
 
         **Returns:**
 
@@ -48,8 +48,8 @@ class Timing:
 
         **Arguments:**
 
-        - **`minimum_duration` (`float`):** Seconds. Must be >= 0.
-        - **`maximum_duration` (`float`):** Seconds. Must be >= 0.
+        - **`minimum_duration` (`float`):** Seconds. Must be ≥ 0.
+        - **`maximum_duration` (`float`):** Seconds. Must be ≥ 0.
 
         **Returns:**
 
@@ -81,7 +81,7 @@ class Timing:
         **Arguments:**
 
         - **`condition_function` (`Callable[[], bool]`)**
-        - **`timeout` (`float`):** Seconds. Must be >= 0.
+        - **`timeout` (`float`):** Seconds. Must be ≥ 0.
         - **`poll_interval` (`float`):** Seconds. Must be > 0.
 
         **Returns:**

@@ -300,7 +300,7 @@ class System(_QueueableController):
 
         **Arguments:**
 
-        - **`delay` (`int`):** Seconds. Must be >= 0.
+        - **`delay` (`int`):** Seconds. Must be ≥ 0.
 
         **Returns:**
 
@@ -324,7 +324,7 @@ class System(_QueueableController):
 
         **Arguments:**
 
-        - **`delay` (`int`):** Seconds. Must be >= 0.
+        - **`delay` (`int`):** Seconds. Must be ≥ 0.
 
         **Returns:**
 

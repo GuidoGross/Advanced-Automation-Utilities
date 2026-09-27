@@ -11,16 +11,16 @@ class KeyboardPhysics:
 
     **Arguments:**
 
-    - **`press_delay` (`float`):** Seconds. Must be >= 0.
-    - **`press_delay_variation` (`float`):** Must be >= 0.
-    - **`press_duration` (`float`):** Seconds. Must be >= 0.
-    - **`press_duration_variation` (`float`):** Must be >= 0.
-    - **`hotkey_delay` (`float`):** Seconds. Must be >= 0.
-    - **`hotkey_delay_variation` (`float`):** Must be >= 0.
-    - **`typing_error_chance` (`float`):** Must be >= 0 and <= 1.
-    - **`typing_error_correction_delay` (`float`):** Seconds. Must be >= 0.
-    - **`typing_error_correction_delay_variation` (`float`):** Must be >= 0.
-    - **`typing_error_delayed_realization_chance` (`float`):** Must be >= 0 and <= 1.
+    - **`press_delay` (`float`):** Seconds. Must be ≥ 0.
+    - **`press_delay_variation` (`float`):** Must be ≥ 0.
+    - **`press_duration` (`float`):** Seconds. Must be ≥ 0.
+    - **`press_duration_variation` (`float`):** Must be ≥ 0.
+    - **`hotkey_delay` (`float`):** Seconds. Must be ≥ 0.
+    - **`hotkey_delay_variation` (`float`):** Must be ≥ 0.
+    - **`typing_error_chance` (`float`):** Must be ≥ 0 and ≤ 1.
+    - **`typing_error_correction_delay` (`float`):** Seconds. Must be ≥ 0.
+    - **`typing_error_correction_delay_variation` (`float`):** Must be ≥ 0.
+    - **`typing_error_delayed_realization_chance` (`float`):** Must be ≥ 0 and ≤ 1.
     - **`auto_repeat` (`bool`)**
 
     **Example:**

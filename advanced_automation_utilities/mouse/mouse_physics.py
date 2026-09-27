@@ -12,31 +12,31 @@ class MousePhysics:
 
     **Arguments:**
 
-    - **`speed` (`float`):** Must be >= 0.
-    - **`minimum_speed` (`float`):** Must be >= 0.
-    - **`maximum_speed` (`float`):** Must be >= 0.
-    - **`speed_variation` (`float`):** Must be >= 0.
-    - **`duration` (`float`):** Seconds. Must be >= 0.
-    - **`duration_variation` (`float`):** Must be >= 0.
-    - **`base_duration` (`float`):** Seconds. Must be >= 0.
-    - **`base_duration_variation` (`float`):** Must be >= 0.
-    - **`inconsistency` (`float`):** Must be >= 0.
-    - **`target_radius` (`float`):** Must be >= 0.
-    - **`readjustment_duration_ratio` (`float`):** Must be >= 0 and <= 1.
-    - **`click_delay` (`float`):** Seconds. Must be >= 0.
-    - **`click_delay_variation` (`float`):** Must be >= 0.
-    - **`click_duration` (`float`):** Seconds. Must be >= 0.
-    - **`click_duration_variation` (`float`):** Must be >= 0.
-    - **`scroll_speed` (`float`):** Must be >= 0.
-    - **`scroll_speed_variation` (`float`):** Must be >= 0.
-    - **`scroll_duration` (`float`):** Seconds. Must be >= 0.
-    - **`scroll_duration_variation` (`float`):** Must be >= 0.
-    - **`scroll_step` (`int`):** Must be >= 1.
-    - **`scroll_pause_variation` (`float`):** Must be >= 0.
-    - **`wander_delay` (`float`):** Seconds. Must be >= 0.
-    - **`wander_delay_variation` (`float`):** Must be >= 0.
-    - **`wander_distance_ratio` (`float`):** Must be >= 0.
-    - **`wander_distance_ratio_variation` (`float`):** Must be >= 0.
+    - **`speed` (`float`):** Must be ≥ 0.
+    - **`minimum_speed` (`float`):** Must be ≥ 0.
+    - **`maximum_speed` (`float`):** Must be ≥ 0.
+    - **`speed_variation` (`float`):** Must be ≥ 0.
+    - **`duration` (`float`):** Seconds. Must be ≥ 0.
+    - **`duration_variation` (`float`):** Must be ≥ 0.
+    - **`base_duration` (`float`):** Seconds. Must be ≥ 0.
+    - **`base_duration_variation` (`float`):** Must be ≥ 0.
+    - **`inconsistency` (`float`):** Must be ≥ 0.
+    - **`target_radius` (`float`):** Must be ≥ 0.
+    - **`readjustment_duration_ratio` (`float`):** Must be ≥ 0 and ≤ 1.
+    - **`click_delay` (`float`):** Seconds. Must be ≥ 0.
+    - **`click_delay_variation` (`float`):** Must be ≥ 0.
+    - **`click_duration` (`float`):** Seconds. Must be ≥ 0.
+    - **`click_duration_variation` (`float`):** Must be ≥ 0.
+    - **`scroll_speed` (`float`):** Must be ≥ 0.
+    - **`scroll_speed_variation` (`float`):** Must be ≥ 0.
+    - **`scroll_duration` (`float`):** Seconds. Must be ≥ 0.
+    - **`scroll_duration_variation` (`float`):** Must be ≥ 0.
+    - **`scroll_step` (`int`):** Must be ≥ 1.
+    - **`scroll_pause_variation` (`float`):** Must be ≥ 0.
+    - **`wander_delay` (`float`):** Seconds. Must be ≥ 0.
+    - **`wander_delay_variation` (`float`):** Must be ≥ 0.
+    - **`wander_distance_ratio` (`float`):** Must be ≥ 0.
+    - **`wander_distance_ratio_variation` (`float`):** Must be ≥ 0.
 
     **Example:**
 
