@@ -86,7 +86,7 @@ class MouseInfo:
 
         **Returns:**
 
-        **`None`**
+        **`tuple[int, int, int]` | `str`**
 
         **Example:**
 

@@ -3,8 +3,8 @@
 # **Advanced Automation Utilities**
 
 [![Version](https://img.shields.io/pypi/v/advanced-automation-utilities?color=blue&labelColor=grey&label=Version&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NDggNTEyIj48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTAgODBWMjI5LjVjMCAxNyA2LjcgMzMuMyAxOC43IDQ1LjNsMTc2IDE3NmMyNSAyNSA2NS41IDI1IDkwLjUgMEw0MTguNyAzMTcuM2MyNS0yNSAyNS02NS41IDAtOTAuNWwtMTc2LTE3NmMtMTItMTItMjguMy0xOC43LTQ1LjMtMTguN0g0OEMyMS41IDMyIDAgNTMuNSAwIDgwem0xMTIgMzJhMzIgMzIgMCAxIDEgMCA2NCAzMiAzMiAwIDEgMSAwLTY0eiIvPjwvc3ZnPg==&logoColor=white&style=flat-square)](https://pypi.org/project/advanced-automation-utilities/)
-[![Python Version](https://img.shields.io/badge/Python_version-%E2%89%A5_v3.10-blue?labelColor=grey&logo=python&logoColor=white&style=flat-square)](https://pypi.org/project/advanced-automation-utilities/)
-[![Windows Version](https://img.shields.io/badge/Windows_version-%E2%89%A5_10-blue?labelColor=grey&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4OCA4OCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0wIDEyLjQgTDM1LjcgNy42IFY0MS42IEgwIFogTTM5LjYgNyBMODggMCBWNDEuNiBIMzkuNiBaIE0wIDQ2LjQgSDM1LjcgVjgwLjQgTDAgNzUuNiBaIE0zOS42IDQ2LjQgSDg4IFY4OCBMMzkuNiA4MSBaIi8+PC9zdmc+&logoColor=white&style=flat-square)](https://pypi.org/project/advanced-automation-utilities/)
+[![Python Version](https://img.shields.io/badge/Python_version-%E2%89%A5_v3.10-blue?labelColor=grey&logo=python&logoColor=white&style=flat-square)](https://www.python.org/downloads/)
+[![Windows Version](https://img.shields.io/badge/Windows_version-%E2%89%A5_10-blue?labelColor=grey&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4OCA4OCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0wIDEyLjQgTDM1LjcgNy42IFY0MS42IEgwIFogTTM5LjYgNyBMODggMCBWNDEuNiBIMzkuNiBaIE0wIDQ2LjQgSDM1LjcgVjgwLjQgTDAgNzUuNiBaIE0zOS42IDQ2LjQgSDg4IFY4OCBMMzkuNiA4MSBaIi8+PC9zdmc+&logoColor=white&style=flat-square)](https://www.microsoft.com/software-download/windows10)
 [![Total Downloads](https://img.shields.io/pepy/dt/advanced-automation-utilities?color=blue&labelColor=grey&label=Total%20downloads&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTI4OCAzMmMwLTE3LjctMTQuMy0zMi0zMi0zMnMtMzIgMTQuMy0zMiAzMmwwIDI0Mi43LTczLjQtNzMuNGMtMTIuNS0xMi41LTMyLjgtMTIuNS00NS4zIDBzLTEyLjUgMzIuOCAwIDQ1LjNsMTI4IDEyOGMxMi41IDEyLjUgMzIuOCAxMi41IDQ1LjMgMGwxMjgtMTI4YzEyLjUtMTIuNSAxMi41LTMyLjggMC00NS4zcy0zMi44LTEyLjUtNDUuMyAwTDI4OCAyNzQuNyAyODggMzJ6TTY0IDM1MmMtMzUuMyAwLTY0IDI4LjctNjQgNjRsMCAzMmMwIDM1LjMgMjguNyA2NCA2NCA2NGwzODQgMGMzNS4zIDAgNjQtMjguNyA2NC02NGwwLTMyYzAtMzUuMy0yOC43LTY0LTY0LTY0bC0xMDEuNSAwLTQ1LjMgNDUuM2MtMjUgMjUtNjUuNSAyNS05MC41IDBMMTY1LjUgMzUyIDY0IDM1MnptMzY4IDU2YTI0IDI0IDAgMSAxIDAgNDggMjQgMjQgMCAxIDEgMC00OHoiLz48L3N2Zz4=&logoColor=white&style=flat-square)](https://pepy.tech/project/advanced-automation-utilities)
 
 **A powerful, native Python library for Windows automation, featuring Context Manager-based asynchronous chaining, advanced human-like physics, and zero dependence on heavy GUI automation libraries. It leverages native `ctypes` hooks for maximum speed, security, and lower overhead.**
@@ -57,14 +57,19 @@ Windows 10 or higher.
 ## **Installation**
 
 - **Install:**
+
   ```bash
   pip install advanced_automation_utilities
   ```
+
 - **Update:**
+
   ```bash
   pip install -U advanced_automation_utilities
   ```
+
 - **Uninstall:**
+
   ```bash
   pip uninstall -y advanced_automation_utilities
   ```
@@ -183,8 +188,8 @@ keyboard = Keyboard(keyboard_physics)
   Mouse().move(x = 250, y = 500)
   ```
 
-  > [!NOTE]
-  > Because it uses Bézier curves, the mouse will naturally curve and accelerate/decelerate just like a real human hand.
+> [!NOTE]
+> Because it uses Bézier curves, the mouse will naturally curve and accelerate/decelerate just like a real human hand.
 
 - **Mouse().click():** Clicks the mouse at specified coordinates.
   
@@ -208,8 +213,8 @@ keyboard = Keyboard(keyboard_physics)
   Mouse().click(x = 250, y = 500, button = "left", clicks = 1)
   ```
 
-  > [!TIP]
-  > Passing `x` and `y` automatically moves the pointer to that location before clicking. It is exactly equivalent to `Mouse().move(x, y).click()`.
+> [!TIP]
+> Passing `x` and `y` automatically moves the pointer to that location before clicking. It is exactly equivalent to `Mouse().move(x, y).click()`.
 
 - **Mouse().double_click():** Performs a double click at specified coordinates.
   
@@ -297,8 +302,8 @@ keyboard = Keyboard(keyboard_physics)
   Mouse().hold_click(x = 250, y = 500, button = "left")
   ```
 
-  > [!WARNING]
-  > Always ensure you eventually call `release_click()` to avoid leaving the system in a locked state.
+> [!WARNING]
+> Always ensure you eventually call `release_click()` to avoid leaving the system in a locked state.
 
 - **Mouse().release_click():** Releases a previously held mouse button at specified coordinates.
   
@@ -346,8 +351,8 @@ keyboard = Keyboard(keyboard_physics)
   Mouse().drag_and_drop(start_x = 250, start_y = 500, end_x = 750, end_y = 250, button = "left")
   ```
 
-  > [!NOTE]
-  > Short pauses are automatically inserted before moving and before releasing to simulate a human confirming the grab and drop actions.
+> [!NOTE]
+> Short pauses are automatically inserted before moving and before releasing to simulate a human confirming the grab and drop actions.
 
 - **Mouse().scroll():** Scrolls the mouse wheel by the specified amount in the specified direction.
   
@@ -422,8 +427,8 @@ keyboard = Keyboard(keyboard_physics)
   Mouse().wander(duration = 10, region = (250, 250, 500, 500), maximum_steps = 3)
   ```
 
-  > [!NOTE]
-  > Although random, the movements generally tend toward the center of the region.
+> [!NOTE]
+> Although random, the movements generally tend toward the center of the region.
 
 - **Mouse().wander_until():** Simulates idle mouse wandering continuously until a condition is met.
   
@@ -515,7 +520,7 @@ keyboard = Keyboard(keyboard_physics)
 
   **Returns:**
 
-  **`None`**
+  **`tuple[int, int, int]` | `str`**
 
   **Example:**
   
@@ -583,8 +588,8 @@ keyboard = Keyboard(keyboard_physics)
   Keyboard().hold_key(key = "shift")
   ```
 
-  > [!WARNING]
-  > Make sure to call `release_key()` to prevent the key from getting physically stuck.
+> [!WARNING]
+> Make sure to call `release_key()` to prevent the key from getting physically stuck.
 
 - **Keyboard().release_key():** Releases a previously held key.
   
@@ -646,8 +651,8 @@ keyboard = Keyboard(keyboard_physics)
   Keyboard().block_key(key = "esc")
   ```
 
-  > [!TIP]
-  > This blocks PHYSICAL input. The script can still simulate presses for this key perfectly fine.
+> [!TIP]
+> This blocks PHYSICAL input. The script can still simulate presses for this key perfectly fine.
 
 - **Keyboard().unblock_key():** Unblocks a previously blocked key.
   
@@ -884,8 +889,8 @@ keyboard = Keyboard(keyboard_physics)
   Timing().wait(duration = 2.5)
   ```
 
-  > [!NOTE]
-  > This internally uses the global `KILL_SWITCH_EVENT`, meaning if the Kill Switch is triggered during a wait, the wait is aborted instantly.
+> [!NOTE]
+> This internally uses the global `KILL_SWITCH_EVENT`, meaning if the Kill Switch is triggered during a wait, the wait is aborted instantly.
 
 - **Timing().wait_random():** Pauses execution for a random duration between two limits.
 
@@ -1321,8 +1326,8 @@ keyboard = Keyboard(keyboard_physics)
   System().enable_kill_switch("ctrl", "shift", "alt", "k")
   ```
 
-  > [!IMPORTANT]
-  > When triggered, an asynchronous `KillSwitchTriggered` exception is raised in all automation threads, completely aborting execution safely.
+> [!IMPORTANT]
+> When triggered, an asynchronous `KillSwitchTriggered` exception is raised in all automation threads, completely aborting execution safely.
 
 - **System().disable_kill_switch():** Disables the global kill switch.
   

@@ -48,12 +48,14 @@ class _ScrollUntil(_MouseAction):
         scroll_thread.start()
         start_time = timing_info.time
         condition_met = False
-        while self.timeout == 0 or timing_info.time - start_time < self.timeout:
-            if self.condition_function():
-                condition_met = True
-                break
-            if not scroll_thread.is_alive(): break
-            timing.wait(self.poll_interval)
-        stop_scroll = True
-        scroll_thread.join()
+        try:
+            while self.timeout == 0 or timing_info.time - start_time < self.timeout:
+                if self.condition_function():
+                    condition_met = True
+                    break
+                if not scroll_thread.is_alive(): break
+                timing.wait(self.poll_interval)
+        finally:
+            stop_scroll = True
+            scroll_thread.join()
         return condition_met
