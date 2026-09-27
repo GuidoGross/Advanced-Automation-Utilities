@@ -209,6 +209,7 @@ keyboard = Keyboard(keyboard_physics)
   - **`x` (`Optional[int]`)**
   - **`y` (`Optional[int]`)**
   - **`button` (`str`):** Valid options: "left", "right", "middle".
+  - **`clicks` (`int`):** Must be >= 0.
 
   **Returns:**
 
@@ -255,6 +256,7 @@ keyboard = Keyboard(keyboard_physics)
 
   - **`x` (`Optional[int]`)**
   - **`y` (`Optional[int]`)**
+  - **`clicks` (`int`):** Must be >= 0.
 
   **Returns:**
 
@@ -276,6 +278,7 @@ keyboard = Keyboard(keyboard_physics)
 
   - **`x` (`Optional[int]`)**
   - **`y` (`Optional[int]`)**
+  - **`clicks` (`int`):** Must be >= 0.
 
   **Returns:**
 
@@ -284,7 +287,7 @@ keyboard = Keyboard(keyboard_physics)
   **Example:**
   
   ```python
-  Mouse().middle_click(x = 100, y = 200, clicks = 1)
+  Mouse().middle_click(x = 250, y = 500, clicks = 1)
   ```
 
 - **`Mouse().hold_click()`:** Holds down a mouse button at specified coordinates.

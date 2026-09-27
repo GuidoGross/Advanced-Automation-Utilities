@@ -146,6 +146,7 @@ class Mouse(_QueueableController):
         - **`x` (`Optional[int]`)**
         - **`y` (`Optional[int]`)**
         - **`button` (`str`):** Valid options: "left", "right", "middle".
+        - **`clicks` (`int`):** Must be >= 0.
 
         **Returns:**
 
@@ -207,6 +208,7 @@ class Mouse(_QueueableController):
 
         - **`x` (`Optional[int]`)**
         - **`y` (`Optional[int]`)**
+        - **`clicks` (`int`):** Must be >= 0.
 
         **Returns:**
 
@@ -234,6 +236,7 @@ class Mouse(_QueueableController):
 
         - **`x` (`Optional[int]`)**
         - **`y` (`Optional[int]`)**
+        - **`clicks` (`int`):** Must be >= 0.
 
         **Returns:**
 

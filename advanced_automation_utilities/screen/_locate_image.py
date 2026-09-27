@@ -1,7 +1,6 @@
 from ._screen_action import _ScreenAction
 from .._utilities import _validate_region, _validate_file_exists, _validate_between_range
 from ..backend.windows._screen import _locate_image
-import math
 
 class _LocateImage(_ScreenAction):
     def __init__(self, image_path, confidence = 0.9, region = None, monitor_index = 0):
@@ -12,7 +11,7 @@ class _LocateImage(_ScreenAction):
         self.monitor_index = monitor_index
         _validate_file_exists(self.image_path, "Image file")
         _validate_between_range(0, 1, confidence = self.confidence)
-        _validate_between_range(0, math.inf, monitor_index = self.monitor_index)
+        _validate_between_range(monitor_index = self.monitor_index)
     
     def execute(self):
         return _locate_image(self.image_path, self.confidence, self.region, self.monitor_index)

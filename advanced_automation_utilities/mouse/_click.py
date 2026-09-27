@@ -1,7 +1,7 @@
 from ._base_click import _BaseClick
 from ._hold_click import _HoldClick
 from ._release_click import _ReleaseClick
-from .._utilities import _apply_variation
+from .._utilities import _validate_between_range, _apply_variation
 from .._typing import MouseButton
 from ..timing import Timing
 from typing import Optional
@@ -10,6 +10,7 @@ class _Click(_BaseClick):
     def __init__(self, x: Optional[int] = None, y: Optional[int] = None, button: MouseButton = "left", clicks: int = 1, physics = None):
         super().__init__(x, y, button, physics)
         self.clicks = clicks
+        _validate_between_range(self.clicks)
     
     def execute(self):
         self._move_if_needed()

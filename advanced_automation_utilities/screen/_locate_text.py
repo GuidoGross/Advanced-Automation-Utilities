@@ -10,7 +10,7 @@ class _LocateText(_ScreenAction):
         _validate_region(self.region)
         self.exact_match = exact_match
         self.monitor_index = monitor_index
-        _validate_between_range(0, math.inf, monitor_index = self.monitor_index)
+        _validate_between_range(monitor_index = self.monitor_index)
     
     def execute(self):
         if not self.text.strip(): raise ValueError("Text cannot be empty.")
