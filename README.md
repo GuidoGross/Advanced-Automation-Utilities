@@ -73,8 +73,7 @@ Windows 10 or higher.
 
 ## **Features**
 
-<details open>
-<summary><h3><b>Asynchronous execution</b></h3></summary>
+### **Asynchronous execution**
 
 The library features a powerful Context Manager-based asynchronous execution system. All hardware-bound actions, such as Mouse, Keyboard, Screen, Sound, or System operations, can be seamlessly queued and executed in the background. This architecture allows you to perform heavy operations concurrently without blocking your main script's logic.
 
@@ -102,10 +101,7 @@ print(mouse_task.results) # E.g., [None, True]
 result = Mouse().scroll_until(...).last_result 
 ```
 
-</details>
-
-<details open>
-<summary><h3><b>Physics (human simulation)</b></h3></summary>
+### **Physics (human simulation)**
 
 To evade bot-detection mechanisms and simulate real user interactions, both **Mouse** and **Keyboard** modules are governed by highly configurable, immutable dataclasses (`MousePhysics` and `KeyboardPhysics`). 
 
@@ -159,10 +155,7 @@ keyboard_physics = KeyboardPhysics(
 keyboard = Keyboard(keyboard_physics)
 ```
 
-</details>
-
-<details open>
-<summary><h3><b>Mouse Utilities (mouse)</b></h3></summary>
+### **Mouse Utilities (mouse)**
 
 **Native pointer manipulation with Bézier-curve physics for human-like behavior:**
 
@@ -241,10 +234,7 @@ keyboard = Keyboard(keyboard_physics)
   Mouse().wander_until(condition_function = lambda: KeyboardInfo().is_pressed("shift"))
   ```
 
-</details>
-
-<details open>
-<summary><h3><b>Keyboard Utilities (keyboard)</b></h3></summary>
+### **Keyboard Utilities (keyboard)**
 
 **Low-level keyboard interaction and information retrieval:**
 
@@ -281,10 +271,7 @@ keyboard = Keyboard(keyboard_physics)
   Keyboard().write("Hello, world!")
   ```
 
-</details>
-
-<details open>
-<summary><h3><b>Screen Utilities (screen)</b></h3></summary>
+### **Screen Utilities (screen)**
 
 **Advanced computer vision leveraging OpenCV and Windows OCR:**
 
@@ -317,10 +304,7 @@ keyboard = Keyboard(keyboard_physics)
   text = Screen().read_text(monitor_index = 0)
   ```
 
-</details>
-
-<details open>
-<summary><h3><b>Timing Utilities (timing)</b></h3></summary>
+### **Timing Utilities (timing)**
 
 **Delays, chronometers, and condition-based execution flow:**
 
@@ -347,10 +331,7 @@ keyboard = Keyboard(keyboard_physics)
   def heavy_task(): pass
   ```
 
-</details>
-
-<details open>
-<summary><h3><b>Sound Utilities (sound)</b></h3></summary>
+### **Sound Utilities (sound)**
 
 **Audio playback and text-to-speech features:**
 
@@ -371,10 +352,7 @@ keyboard = Keyboard(keyboard_physics)
   Sound().speak("Hello, world!")
   ```
 
-</details>
-
-<details open>
-<summary><h3><b>System Utilities (system)</b></h3></summary>
+### **System Utilities (system)**
 
 **High-level operating system actions and process management:**
 
@@ -450,5 +428,3 @@ keyboard = Keyboard(keyboard_physics)
   ```python
   System().restart()
   ```
-
-</details>
