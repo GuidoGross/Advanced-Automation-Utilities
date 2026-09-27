@@ -8,7 +8,7 @@ class KeyboardInfo:
     """
     def is_pressed(self, key: str) -> bool: 
         """
-        **KeyboardInfo().is_pressed():** Returns True if the specified key is currently physically held down.
+        **`KeyboardInfo().is_pressed()`:** Returns True if the specified key is currently physically held down.
 
         **Description:**
 

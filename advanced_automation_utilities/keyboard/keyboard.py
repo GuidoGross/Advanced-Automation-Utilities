@@ -35,7 +35,7 @@ class Keyboard(_QueueableController):
     
     def hold_key(self, key: str) -> Self:
         """
-        **Keyboard().hold_key():** Holds a key down.
+        **`Keyboard().hold_key()`:** Holds a key down.
 
         **Description:**
 
@@ -63,7 +63,7 @@ class Keyboard(_QueueableController):
     
     def release_key(self, key: str) -> Self:
         """
-        **Keyboard().release_key():** Releases a previously held key.
+        **`Keyboard().release_key()`:** Releases a previously held key.
 
         **Description:**
 
@@ -87,7 +87,7 @@ class Keyboard(_QueueableController):
     
     def press_key(self, key: str) -> Self:
         """
-        **Keyboard().press_key():** Presses and releases a single key.
+        **`Keyboard().press_key()`:** Presses and releases a single key.
 
         **Description:**
 
@@ -111,7 +111,7 @@ class Keyboard(_QueueableController):
     
     def hotkey(self, *keys: str) -> Self:
         """
-        **Keyboard().hotkey():** Holds down a combination of keys and releases them in reverse order.
+        **`Keyboard().hotkey()`:** Holds down a combination of keys and releases them in reverse order.
 
         **Description:**
 
@@ -135,7 +135,7 @@ class Keyboard(_QueueableController):
     
     def block_key(self, key: str) -> Self:
         """
-        **Keyboard().block_key():** Blocks all physical input from a specific key.
+        **`Keyboard().block_key()`:** Blocks all physical input from a specific key.
 
         **Description:**
 
@@ -163,7 +163,7 @@ class Keyboard(_QueueableController):
     
     def unblock_key(self, key: str) -> Self:
         """
-        **Keyboard().unblock_key():** Unblocks a previously blocked key.
+        **`Keyboard().unblock_key()`:** Unblocks a previously blocked key.
 
         **Description:**
 
@@ -187,7 +187,7 @@ class Keyboard(_QueueableController):
     
     def write(self, text: str) -> Self:
         """
-        **Keyboard().write():** Types a string character by character with advanced, human-like typing error simulations and delays, based on the configured physics.
+        **`Keyboard().write()`:** Types a string character by character with advanced, human-like typing error simulations and delays, based on the configured physics.
 
         **Description:**
 

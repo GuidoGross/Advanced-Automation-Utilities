@@ -9,7 +9,7 @@ class TimingInfo:
     @property
     def time(self) -> float:
         """
-        **TimingInfo().time:** Gets the current time in seconds.
+        **`TimingInfo().time`:** Gets the current time in seconds.
 
         **Description:**
 

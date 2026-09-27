@@ -27,7 +27,7 @@ class Sound(_QueueableController):
     
     def play_beep_sound(self, frequency: int, duration: float) -> Self:
         """
-        **Sound().play_beep_sound():** Plays a motherboard beep with a specific frequency and duration.
+        **`Sound().play_beep_sound()`:** Plays a motherboard beep with a specific frequency and duration.
 
         **Description:**
 
@@ -52,7 +52,7 @@ class Sound(_QueueableController):
     
     def play_audio(self, file_path: str) -> Self:
         """
-        **Sound().play_audio():** Plays an audio file from the file system.
+        **`Sound().play_audio()`:** Plays an audio file from the file system.
 
         **Description:**
 
@@ -76,7 +76,7 @@ class Sound(_QueueableController):
     
     def play_system_sound(self, sound_type: SystemSound) -> Self:
         """
-        **Sound().play_system_sound():** Plays a default Windows system sound.
+        **`Sound().play_system_sound()`:** Plays a default Windows system sound.
 
         **Description:**
 
@@ -100,7 +100,7 @@ class Sound(_QueueableController):
     
     def speak(self, text: str) -> Self:
         """
-        **Sound().speak():** Synthesizes text to speech using the default Windows voice.
+        **`Sound().speak()`:** Synthesizes text to speech using the default Windows voice.
 
         **Description:**
 

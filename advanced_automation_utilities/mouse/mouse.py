@@ -38,7 +38,7 @@ class Mouse(_QueueableController):
     
     def move(self, x: int, y: int) -> Self:
         """
-        **Mouse().move():** Moves the pointer to the specified coordinates smoothly based on the configured physics.
+        **`Mouse().move()`:** Moves the pointer to the specified coordinates smoothly based on the configured physics.
 
         **Description:**
 
@@ -69,7 +69,7 @@ class Mouse(_QueueableController):
         self, x: Optional[int] = None, y: Optional[int] = None, button: MouseButton = "left"
     ) -> Self:
         """
-        **Mouse().hold_click():** Holds down a mouse button at specified coordinates.
+        **`Mouse().hold_click()`:** Holds down a mouse button at specified coordinates.
 
         **Description:**
 
@@ -101,7 +101,7 @@ class Mouse(_QueueableController):
         self, x: Optional[int] = None, y: Optional[int] = None, button: MouseButton = "left"
     ) -> Self:
         """
-        **Mouse().release_click():** Releases a previously held mouse button at specified coordinates.
+        **`Mouse().release_click()`:** Releases a previously held mouse button at specified coordinates.
 
         **Description:**
 
@@ -135,7 +135,7 @@ class Mouse(_QueueableController):
         clicks: int = 1
     ) -> Self:
         """
-        **Mouse().click():** Clicks the mouse at specified coordinates.
+        **`Mouse().click()`:** Clicks the mouse at specified coordinates.
 
         **Description:**
 
@@ -169,7 +169,7 @@ class Mouse(_QueueableController):
         self, x: Optional[int] = None, y: Optional[int] = None, button: MouseButton = "left"
     ) -> Self:
         """
-        **Mouse().double_click():** Performs a double click at specified coordinates.
+        **`Mouse().double_click()`:** Performs a double click at specified coordinates.
 
         **Description:**
 
@@ -197,7 +197,7 @@ class Mouse(_QueueableController):
         self, x: Optional[int] = None, y: Optional[int] = None, clicks: int = 1
     ) -> Self:
         """
-        **Mouse().right_click():** Performs a right click at specified coordinates.
+        **`Mouse().right_click()`:** Performs a right click at specified coordinates.
 
         **Description:**
 
@@ -224,7 +224,7 @@ class Mouse(_QueueableController):
         self, x: Optional[int] = None, y: Optional[int] = None, clicks: int = 1
     ) -> Self:
         """
-        **Mouse().middle_click():** Performs a middle click at specified coordinates.
+        **`Mouse().middle_click()`:** Performs a middle click at specified coordinates.
 
         **Description:**
 
@@ -251,7 +251,7 @@ class Mouse(_QueueableController):
         self, start_x: int, start_y: int, end_x: int, end_y: int, button: MouseButton = "left"
     ) -> Self:
         """
-        **Mouse().drag_and_drop():** Drags an item from start to end coordinates smoothly, based on the configured physics.
+        **`Mouse().drag_and_drop()`:** Drags an item from start to end coordinates smoothly, based on the configured physics.
 
         **Description:**
 
@@ -292,7 +292,7 @@ class Mouse(_QueueableController):
     
     def scroll(self, amount: int, direction: ScrollDirection = "down") -> Self:
         """
-        **Mouse().scroll():** Scrolls the mouse wheel by the specified amount in the specified direction.
+        **`Mouse().scroll()`:** Scrolls the mouse wheel by the specified amount in the specified direction.
 
         **Description:**
 
@@ -326,7 +326,7 @@ class Mouse(_QueueableController):
         poll_interval: float = 0.1
     ) -> Self:
         """
-        **Mouse().scroll_until():** Scrolls the mouse wheel continuously until a condition is met.
+        **`Mouse().scroll_until()`:** Scrolls the mouse wheel continuously until a condition is met.
 
         **Description:**
 
@@ -374,7 +374,7 @@ class Mouse(_QueueableController):
         maximum_steps: Optional[int] = None
     ) -> Self:
         """
-        **Mouse().wander():** Simulates idle mouse wandering by moving the pointer around randomly.
+        **`Mouse().wander()`:** Simulates idle mouse wandering by moving the pointer around randomly.
 
         **Description:**
 
@@ -411,7 +411,7 @@ class Mouse(_QueueableController):
         poll_interval: float = 0.1
     ) -> Self:
         """
-        **Mouse().wander_until():** Simulates idle mouse wandering continuously until a condition is met.
+        **`Mouse().wander_until()`:** Simulates idle mouse wandering continuously until a condition is met.
 
         **Description:**
 

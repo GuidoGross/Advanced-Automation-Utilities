@@ -12,7 +12,7 @@ class MouseInfo:
     @property
     def coordinates(self) -> tuple[int, int]:
         """
-        **MouseInfo().coordinates:** Gets the current (X, Y) coordinates of the pointer.
+        **`MouseInfo().coordinates`:** Gets the current (X, Y) coordinates of the pointer.
 
         **Description:**
 
@@ -33,7 +33,7 @@ class MouseInfo:
     @property
     def x(self) -> int:
         """
-        **MouseInfo().x:** Gets the current X coordinate of the pointer.
+        **`MouseInfo().x`:** Gets the current X coordinate of the pointer.
 
         **Description:**
 
@@ -54,7 +54,7 @@ class MouseInfo:
     @property
     def y(self) -> int:
         """
-        **MouseInfo().y:** Gets the current Y coordinate of the pointer.
+        **`MouseInfo().y`:** Gets the current Y coordinate of the pointer.
 
         **Description:**
 
@@ -74,7 +74,7 @@ class MouseInfo:
     
     def pixel_color(self, format: ColorFormat = "rgb") -> tuple[int, int, int] | str:
         """
-        **MouseInfo().pixel_color():** Gets the RGB or hexadecimal color of the pixel currently under the pointer.
+        **`MouseInfo().pixel_color()`:** Gets the RGB or hexadecimal color of the pixel currently under the pointer.
 
         **Description:**
 
@@ -99,7 +99,7 @@ class MouseInfo:
     @property
     def on_screen(self) -> bool:
         """
-        **MouseInfo().on_screen:** Checks if the pointer is currently within the bounds of any screen.
+        **`MouseInfo().on_screen`:** Checks if the pointer is currently within the bounds of any screen.
 
         **Description:**
 

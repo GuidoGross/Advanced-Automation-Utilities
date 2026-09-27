@@ -9,7 +9,7 @@ class SystemInfo:
     @property
     def clipboard_text(self) -> str:
         """
-        **SystemInfo().clipboard_text:** Gets the current text content of the Windows clipboard.
+        **`SystemInfo().clipboard_text`:** Gets the current text content of the Windows clipboard.
 
         **Description:**
 
@@ -30,7 +30,7 @@ class SystemInfo:
     @property
     def active_window_title(self) -> str:
         """
-        **SystemInfo().active_window_title:** Gets the title of the currently focused/active window.
+        **`SystemInfo().active_window_title`:** Gets the title of the currently focused/active window.
 
         **Description:**
 
@@ -50,7 +50,7 @@ class SystemInfo:
     
     def is_process_running(self, process: str) -> bool:
         """
-        **SystemInfo().is_process_running():** Checks if a specific process is currently running.
+        **`SystemInfo().is_process_running()`:** Checks if a specific process is currently running.
 
         **Description:**
 

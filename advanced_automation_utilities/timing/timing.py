@@ -12,7 +12,7 @@ class Timing:
     """
     def wait(self, duration: float) -> None:
         """
-        **Timing().wait():** Pauses execution for an exact amount of seconds.
+        **`Timing().wait()`:** Pauses execution for an exact amount of seconds.
 
         **Description:**
 
@@ -40,7 +40,7 @@ class Timing:
     
     def wait_random(self, minimum_duration: float, maximum_duration: float) -> None:
         """
-        **Timing().wait_random():** Pauses execution for a random duration between two limits.
+        **`Timing().wait_random()`:** Pauses execution for a random duration between two limits.
 
         **Description:**
 
@@ -72,7 +72,7 @@ class Timing:
         poll_interval: float = 0.1
     ) -> bool:
         """
-        **Timing().wait_until():** Pauses execution until a given condition function is met.
+        **`Timing().wait_until()`:** Pauses execution until a given condition function is met.
 
         **Description:**
 

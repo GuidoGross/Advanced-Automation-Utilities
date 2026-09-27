@@ -18,7 +18,7 @@ class Screen:
         monitor_index: int = 0
     ) -> tuple[Optional[int], Optional[int]]:
         """
-        **Screen().locate_image():** Searches for a template image on the screen and returns its central coordinates.
+        **`Screen().locate_image()`:** Searches for a template image on the screen and returns its central coordinates.
 
         **Description:**
 
@@ -57,7 +57,7 @@ class Screen:
         self, region: Optional[tuple[int, int, int, int]] = None, monitor_index: int = 0
     ) -> str:
         """
-        **Screen().read_text():** Uses OCR to extract all readable text from the screen or a specific region.
+        **`Screen().read_text()`:** Uses OCR to extract all readable text from the screen or a specific region.
 
         **Description:**
 
@@ -88,7 +88,7 @@ class Screen:
         monitor_index: int = 0
     ) -> tuple[Optional[int], Optional[int]]:
         """
-        **Screen().locate_text():** Uses OCR to find specific text on the screen and returns its central coordinates.
+        **`Screen().locate_text()`:** Uses OCR to find specific text on the screen and returns its central coordinates.
 
         **Description:**
 

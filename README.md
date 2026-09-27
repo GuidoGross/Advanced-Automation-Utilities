@@ -3,9 +3,9 @@
 # **Advanced Automation Utilities**
 
 [![Version](https://img.shields.io/pypi/v/advanced-automation-utilities?color=blue&labelColor=grey&label=Version&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NDggNTEyIj48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTAgODBWMjI5LjVjMCAxNyA2LjcgMzMuMyAxOC43IDQ1LjNsMTc2IDE3NmMyNSAyNSA2NS41IDI1IDkwLjUgMEw0MTguNyAzMTcuM2MyNS0yNSAyNS02NS41IDAtOTAuNWwtMTc2LTE3NmMtMTItMTItMjguMy0xOC43LTQ1LjMtMTguN0g0OEMyMS41IDMyIDAgNTMuNSAwIDgwem0xMTIgMzJhMzIgMzIgMCAxIDEgMCA2NCAzMiAzMiAwIDEgMSAwLTY0eiIvPjwvc3ZnPg==&logoColor=white&style=flat-square)](https://pypi.org/project/advanced-automation-utilities/)
-[![Python Version](https://img.shields.io/badge/Python_version-%E2%89%A5_v3.10-blue?labelColor=grey&logo=python&logoColor=white&style=flat-square)](https://www.python.org/downloads/)
-[![Windows Version](https://img.shields.io/badge/Windows_version-%E2%89%A5_10-blue?labelColor=grey&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4OCA4OCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0wIDEyLjQgTDM1LjcgNy42IFY0MS42IEgwIFogTTM5LjYgNyBMODggMCBWNDEuNiBIMzkuNiBaIE0wIDQ2LjQgSDM1LjcgVjgwLjQgTDAgNzUuNiBaIE0zOS42IDQ2LjQgSDg4IFY4OCBMMzkuNiA4MSBaIi8+PC9zdmc+&logoColor=white&style=flat-square)](https://www.microsoft.com/software-download/windows10)
-[![Total Downloads](https://img.shields.io/pepy/dt/advanced-automation-utilities?color=blue&labelColor=grey&label=Total%20downloads&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTI4OCAzMmMwLTE3LjctMTQuMy0zMi0zMi0zMnMtMzIgMTQuMy0zMiAzMmwwIDI0Mi43LTczLjQtNzMuNGMtMTIuNS0xMi41LTMyLjgtMTIuNS00NS4zIDBzLTEyLjUgMzIuOCAwIDQ1LjNsMTI4IDEyOGMxMi41IDEyLjUgMzIuOCAxMi41IDQ1LjMgMGwxMjgtMTI4YzEyLjUtMTIuNSAxMi41LTMyLjggMC00NS4zcy0zMi44LTEyLjUtNDUuMyAwTDI4OCAyNzQuNyAyODggMzJ6TTY0IDM1MmMtMzUuMyAwLTY0IDI4LjctNjQgNjRsMCAzMmMwIDM1LjMgMjguNyA2NCA2NCA2NGwzODQgMGMzNS4zIDAgNjQtMjguNyA2NC02NGwwLTMyYzAtMzUuMy0yOC43LTY0LTY0LTY0bC0xMDEuNSAwLTQ1LjMgNDUuM2MtMjUgMjUtNjUuNSAyNS05MC41IDBMMTY1LjUgMzUyIDY0IDM1MnptMzY4IDU2YTI0IDI0IDAgMSAxIDAgNDggMjQgMjQgMCAxIDEgMC00OHoiLz48L3N2Zz4=&logoColor=white&style=flat-square)](https://pepy.tech/project/advanced-automation-utilities)
+[![Python version](https://img.shields.io/badge/Python_version-%E2%89%A5_v3.10-blue?labelColor=grey&logo=python&logoColor=white&style=flat-square)](https://www.python.org/downloads/)
+[![Windows version](https://img.shields.io/badge/Windows_version-%E2%89%A5_10-blue?labelColor=grey&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4OCA4OCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0wIDEyLjQgTDM1LjcgNy42IFY0MS42IEgwIFogTTM5LjYgNyBMODggMCBWNDEuNiBIMzkuNiBaIE0wIDQ2LjQgSDM1LjcgVjgwLjQgTDAgNzUuNiBaIE0zOS42IDQ2LjQgSDg4IFY4OCBMMzkuNiA4MSBaIi8+PC9zdmc+&logoColor=white&style=flat-square)](https://www.microsoft.com/software-download/windows10)
+[![Total downloads](https://img.shields.io/pepy/dt/advanced-automation-utilities?color=blue&labelColor=grey&label=Total%20downloads&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTI4OCAzMmMwLTE3LjctMTQuMy0zMi0zMi0zMnMtMzIgMTQuMy0zMiAzMmwwIDI0Mi43LTczLjQtNzMuNGMtMTIuNS0xMi41LTMyLjgtMTIuNS00NS4zIDBzLTEyLjUgMzIuOCAwIDQ1LjNsMTI4IDEyOGMxMi41IDEyLjUgMzIuOCAxMi41IDQ1LjMgMGwxMjgtMTI4YzEyLjUtMTIuNSAxMi41LTMyLjggMC00NS4zcy0zMi44LTEyLjUtNDUuMyAwTDI4OCAyNzQuNyAyODggMzJ6TTY0IDM1MmMtMzUuMyAwLTY0IDI4LjctNjQgNjRsMCAzMmMwIDM1LjMgMjguNyA2NCA2NCA2NGwzODQgMGMzNS4zIDAgNjQtMjguNyA2NC02NGwwLTMyYzAtMzUuMy0yOC43LTY0LTY0LTY0bC0xMDEuNSAwLTQ1LjMgNDUuM2MtMjUgMjUtNjUuNSAyNS05MC41IDBMMTY1LjUgMzUyIDY0IDM1MnptMzY4IDU2YTI0IDI0IDAgMSAxIDAgNDggMjQgMjQgMCAxIDEgMC00OHoiLz48L3N2Zz4=&logoColor=white&style=flat-square)](https://pepy.tech/project/advanced-automation-utilities)
 
 **A powerful, native Python library for Windows automation, featuring Context Manager-based asynchronous chaining, advanced human-like physics, and zero dependence on heavy automation libraries. It leverages native `ctypes` hooks for maximum speed, security, and lower overhead.**
 </div>
@@ -163,11 +163,11 @@ keyboard_physics = KeyboardPhysics(
 keyboard = Keyboard(keyboard_physics)
 ```
 
-### **Mouse Utilities (mouse)**
+### **Mouse utilities (`mouse`)**
 
 **Native pointer manipulation with Bézier-curve physics for human-like behavior:**
 
-- **Mouse().move():** Moves the pointer to the specified coordinates smoothly based on the configured physics.
+- **`Mouse().move()`:** Moves the pointer to the specified coordinates smoothly based on the configured physics.
   
   **Description:**
   
@@ -191,7 +191,7 @@ keyboard = Keyboard(keyboard_physics)
 > [!NOTE]
 > Because it uses Bézier curves, the mouse will naturally curve and accelerate/decelerate just like a real human hand.
 
-- **Mouse().click():** Clicks the mouse at specified coordinates.
+- **`Mouse().click()`:** Clicks the mouse at specified coordinates.
   
   **Description:**
   
@@ -216,7 +216,7 @@ keyboard = Keyboard(keyboard_physics)
 > [!TIP]
 > Passing `x` and `y` automatically moves the pointer to that location before clicking. It is exactly equivalent to `Mouse().move(x, y).click()`.
 
-- **Mouse().double_click():** Performs a double click at specified coordinates.
+- **`Mouse().double_click()`:** Performs a double click at specified coordinates.
   
   **Description:**
   
@@ -238,7 +238,7 @@ keyboard = Keyboard(keyboard_physics)
   Mouse().double_click(x = 250, y = 500, button = "left")
   ```
 
-- **Mouse().right_click():** Performs a right click at specified coordinates.
+- **`Mouse().right_click()`:** Performs a right click at specified coordinates.
   
   **Description:**
   
@@ -259,7 +259,7 @@ keyboard = Keyboard(keyboard_physics)
   Mouse().right_click(x = 250, y = 500, clicks = 1)
   ```
 
-- **Mouse().middle_click():** Performs a middle click at specified coordinates.
+- **`Mouse().middle_click()`:** Performs a middle click at specified coordinates.
   
   **Description:**
   
@@ -280,7 +280,7 @@ keyboard = Keyboard(keyboard_physics)
   Mouse().middle_click(x = 100, y = 200, clicks = 1)
   ```
 
-- **Mouse().hold_click():** Holds down a mouse button at specified coordinates.
+- **`Mouse().hold_click()`:** Holds down a mouse button at specified coordinates.
   
   **Description:**
   
@@ -305,7 +305,7 @@ keyboard = Keyboard(keyboard_physics)
 > [!WARNING]
 > Always ensure you eventually call `release_click()` to avoid leaving the system in a locked state.
 
-- **Mouse().release_click():** Releases a previously held mouse button at specified coordinates.
+- **`Mouse().release_click()`:** Releases a previously held mouse button at specified coordinates.
   
   **Description:**
   
@@ -327,7 +327,7 @@ keyboard = Keyboard(keyboard_physics)
   Mouse().release_click(x = 250, y = 500, button = "left")
   ```
 
-- **Mouse().drag_and_drop():** Drags an item from start to end coordinates smoothly, based on the configured physics.
+- **`Mouse().drag_and_drop()`:** Drags an item from start to end coordinates smoothly, based on the configured physics.
   
   **Description:**
   
@@ -354,7 +354,7 @@ keyboard = Keyboard(keyboard_physics)
 > [!NOTE]
 > Short pauses are automatically inserted before moving and before releasing to simulate a human confirming the grab and drop actions.
 
-- **Mouse().scroll():** Scrolls the mouse wheel by the specified amount in the specified direction.
+- **`Mouse().scroll()`:** Scrolls the mouse wheel by the specified amount in the specified direction.
   
   **Description:**
   
@@ -375,7 +375,7 @@ keyboard = Keyboard(keyboard_physics)
   Mouse().scroll(amount = 1000, direction = "down")
   ```
 
-- **Mouse().scroll_until():** Scrolls the mouse wheel continuously until a condition is met.
+- **`Mouse().scroll_until()`:** Scrolls the mouse wheel continuously until a condition is met.
   
   **Description:**
   
@@ -405,7 +405,7 @@ keyboard = Keyboard(keyboard_physics)
   )
   ```
 
-- **Mouse().wander():** Simulates idle mouse wandering by moving the pointer around randomly.
+- **`Mouse().wander()`:** Simulates idle mouse wandering by moving the pointer around randomly.
   
   **Description:**
   
@@ -430,7 +430,7 @@ keyboard = Keyboard(keyboard_physics)
 > [!NOTE]
 > Although random, the movements generally tend toward the center of the region.
 
-- **Mouse().wander_until():** Simulates idle mouse wandering continuously until a condition is met.
+- **`Mouse().wander_until()`:** Simulates idle mouse wandering continuously until a condition is met.
   
   **Description:**
   
@@ -460,7 +460,7 @@ keyboard = Keyboard(keyboard_physics)
   )
   ```
 
-- **MouseInfo().coordinates:** Gets the current (X, Y) coordinates of the pointer.
+- **`MouseInfo().coordinates`:** Gets the current (X, Y) coordinates of the pointer.
   
   **Description:**
   
@@ -476,7 +476,7 @@ keyboard = Keyboard(keyboard_physics)
   x, y = MouseInfo().coordinates
   ```
 
-- **MouseInfo().x:** Gets the current X coordinate of the pointer.
+- **`MouseInfo().x`:** Gets the current X coordinate of the pointer.
   
   **Description:**
   
@@ -492,7 +492,7 @@ keyboard = Keyboard(keyboard_physics)
   x = MouseInfo().x
   ```
 
-- **MouseInfo().y:** Gets the current Y coordinate of the pointer.
+- **`MouseInfo().y`:** Gets the current Y coordinate of the pointer.
   
   **Description:**
   
@@ -508,7 +508,7 @@ keyboard = Keyboard(keyboard_physics)
   y = MouseInfo().y
   ```
 
-- **MouseInfo().pixel_color():** Gets the RGB or hexadecimal color of the pixel currently under the pointer.
+- **`MouseInfo().pixel_color()`:** Gets the RGB or hexadecimal color of the pixel currently under the pointer.
   
   **Description:**
   
@@ -528,7 +528,7 @@ keyboard = Keyboard(keyboard_physics)
   color = MouseInfo().pixel_color(format = "rgb")
   ```
 
-- **MouseInfo().on_screen:** Checks if the pointer is currently within the bounds of any screen.
+- **`MouseInfo().on_screen`:** Checks if the pointer is currently within the bounds of any screen.
   
   **Description:**
   
@@ -544,11 +544,11 @@ keyboard = Keyboard(keyboard_physics)
   is_pointer_on_screen = MouseInfo().on_screen
   ```
 
-### **Keyboard Utilities (keyboard)**
+### **Keyboard utilities (`keyboard`)**
 
 **Low-level keyboard interaction and information retrieval:**
 
-- **Keyboard().press_key():** Presses and releases a single key.
+- **`Keyboard().press_key()`:** Presses and releases a single key.
   
   **Description:**
   
@@ -568,7 +568,7 @@ keyboard = Keyboard(keyboard_physics)
   Keyboard().press_key(key = "a")
   ```
 
-- **Keyboard().hold_key():** Holds a key down.
+- **`Keyboard().hold_key()`:** Holds a key down.
   
   **Description:**
   
@@ -591,7 +591,7 @@ keyboard = Keyboard(keyboard_physics)
 > [!WARNING]
 > Make sure to call `release_key()` to prevent the key from getting physically stuck.
 
-- **Keyboard().release_key():** Releases a previously held key.
+- **`Keyboard().release_key()`:** Releases a previously held key.
   
   **Description:**
   
@@ -611,7 +611,7 @@ keyboard = Keyboard(keyboard_physics)
   Keyboard().release_key(key = "shift")
   ```
 
-- **Keyboard().hotkey():** Holds down a combination of keys and releases them in reverse order.
+- **`Keyboard().hotkey()`:** Holds down a combination of keys and releases them in reverse order.
   
   **Description:**
   
@@ -631,7 +631,7 @@ keyboard = Keyboard(keyboard_physics)
   Keyboard().hotkey("ctrl", "shift", "esc")
   ```
 
-- **Keyboard().block_key():** Blocks all physical input from a specific key.
+- **`Keyboard().block_key()`:** Blocks all physical input from a specific key.
   
   **Description:**
   
@@ -654,7 +654,7 @@ keyboard = Keyboard(keyboard_physics)
 > [!TIP]
 > This blocks PHYSICAL input. The script can still simulate presses for this key perfectly fine.
 
-- **Keyboard().unblock_key():** Unblocks a previously blocked key.
+- **`Keyboard().unblock_key()`:** Unblocks a previously blocked key.
   
   **Description:**
   
@@ -674,7 +674,7 @@ keyboard = Keyboard(keyboard_physics)
   Keyboard().unblock_key(key = "esc")
   ```
 
-- **Keyboard().write():** Types a string character by character with advanced, human-like typing error simulations and delays, based on the configured physics.
+- **`Keyboard().write()`:** Types a string character by character with advanced, human-like typing error simulations and delays, based on the configured physics.
   
   **Description:**
   
@@ -694,7 +694,7 @@ keyboard = Keyboard(keyboard_physics)
   Keyboard().write(text = "Hello, world!")
   ```
 
-- **KeyboardInfo().is_pressed():** Returns True if the specified key is currently physically held down.
+- **`KeyboardInfo().is_pressed()`:** Returns True if the specified key is currently physically held down.
   
   **Description:**
   
@@ -714,11 +714,11 @@ keyboard = Keyboard(keyboard_physics)
   is_shift_down = KeyboardInfo().is_pressed(key = "shift")
   ```
 
-### **Screen Utilities (screen)**
+### **Screen utilities (`screen`)**
 
 **Advanced computer vision leveraging OpenCV and Windows OCR:**
 
-- **Screen().locate_image():** Searches for a template image on the screen and returns its central coordinates.
+- **`Screen().locate_image()`:** Searches for a template image on the screen and returns its central coordinates.
   
   **Description:**
   
@@ -746,7 +746,7 @@ keyboard = Keyboard(keyboard_physics)
   )
   ```
 
-- **Screen().locate_text():** Uses OCR to find specific text on the screen and returns its central coordinates.
+- **`Screen().locate_text()`:** Uses OCR to find specific text on the screen and returns its central coordinates.
   
   **Description:**
   
@@ -774,7 +774,7 @@ keyboard = Keyboard(keyboard_physics)
   )
   ```
 
-- **Screen().read_text():** Uses OCR to extract all readable text from the screen or a specific region.
+- **`Screen().read_text()`:** Uses OCR to extract all readable text from the screen or a specific region.
   
   **Description:**
 
@@ -795,7 +795,7 @@ keyboard = Keyboard(keyboard_physics)
   text = Screen().read_text(region = (250, 250, 500, 500), monitor_index = 0)
   ```
 
-- **ScreenInfo().resolution:** Gets the resolution of the primary screen.
+- **`ScreenInfo().resolution`:** Gets the resolution of the primary screen.
 
   **Description:**
 
@@ -811,7 +811,7 @@ keyboard = Keyboard(keyboard_physics)
   width, height = ScreenInfo().resolution
   ```
 
-- **ScreenInfo().width:** Gets the width of the primary screen.
+- **`ScreenInfo().width`:** Gets the width of the primary screen.
 
   **Description:**
 
@@ -827,7 +827,7 @@ keyboard = Keyboard(keyboard_physics)
   width = ScreenInfo().width
   ```
 
-- **ScreenInfo().height:** Gets the height of the primary screen.
+- **`ScreenInfo().height`:** Gets the height of the primary screen.
 
   **Description:**
 
@@ -843,7 +843,7 @@ keyboard = Keyboard(keyboard_physics)
   height = ScreenInfo().height
   ```
 
-- **ScreenInfo().pixel_color():** Gets the RGB or hexadecimal color of a specific pixel coordinate.
+- **`ScreenInfo().pixel_color()`:** Gets the RGB or hexadecimal color of a specific pixel coordinate.
   
   **Description:**
 
@@ -865,11 +865,27 @@ keyboard = Keyboard(keyboard_physics)
   color = ScreenInfo().pixel_color(x = 250, y = 500, format = "hexadecimal")
   ```
 
-### **Timing Utilities (timing)**
+- **`ScreenInfo().work_area`:** Gets the primary screen's work area, excluding the taskbar.
+
+  **Description:**
+
+  Returns the boundaries of the primary screen's usable work area. This excludes the Windows taskbar and any other docked desktop toolbars, providing the exact coordinates of the space available for applications and windows.
+
+  **Returns:**
+
+  **`tuple[int, int, int, int]`:** Format: (left, top, right, bottom).
+
+  **Example:**
+
+  ```python
+  left, top, right, bottom = ScreenInfo().work_area
+  ```
+
+### **Timing utilities (`timing`)**
 
 **Delays, chronometers, and condition-based execution flow:**
 
-- **Timing().wait():** Pauses execution for an exact amount of seconds.
+- **`Timing().wait()`:** Pauses execution for an exact amount of seconds.
 
   **Description:**
 
@@ -892,7 +908,7 @@ keyboard = Keyboard(keyboard_physics)
 > [!NOTE]
 > This internally uses the global `KILL_SWITCH_EVENT`, meaning if the Kill Switch is triggered during a wait, the wait is aborted instantly.
 
-- **Timing().wait_random():** Pauses execution for a random duration between two limits.
+- **`Timing().wait_random()`:** Pauses execution for a random duration between two limits.
 
   **Description:**
 
@@ -913,7 +929,7 @@ keyboard = Keyboard(keyboard_physics)
   Timing().wait_random(minimum_duration = 1, maximum_duration = 3)
   ```
 
-- **Timing().wait_until():** Pauses execution until a given condition function is met.
+- **`Timing().wait_until()`:** Pauses execution until a given condition function is met.
   
   **Description:**
   
@@ -939,7 +955,7 @@ keyboard = Keyboard(keyboard_physics)
   )
   ```
 
-- **TimingInfo().time:** Gets the current time in seconds.
+- **`TimingInfo().time`:** Gets the current time in seconds.
   
   **Description:**
   
@@ -955,7 +971,7 @@ keyboard = Keyboard(keyboard_physics)
   current_time = TimingInfo().time
   ```
 
-- **@measure_time:** A decorator to automatically measure and print the execution time of any function.
+- **`@measure_time`:** A decorator to automatically measure and print the execution time of any function.
   
   **Description:**
   
@@ -968,11 +984,11 @@ keyboard = Keyboard(keyboard_physics)
   def heavy_task(): pass
   ```
 
-### **Sound Utilities (sound)**
+### **Sound utilities (`sound`)**
 
 **Audio playback and text-to-speech features:**
 
-- **Sound().play_beep_sound():** Plays a motherboard beep with a specific frequency and duration.
+- **`Sound().play_beep_sound()`:** Plays a motherboard beep with a specific frequency and duration.
 
   **Description:**
 
@@ -993,7 +1009,7 @@ keyboard = Keyboard(keyboard_physics)
   Sound().play_beep_sound(frequency = 1000, duration = 0.5)
   ```
 
-- **Sound().play_audio():** Plays an audio file from the file system.
+- **`Sound().play_audio()`:** Plays an audio file from the file system.
   
   **Description:**
   
@@ -1013,7 +1029,7 @@ keyboard = Keyboard(keyboard_physics)
   Sound().play_audio(file_path = "alert.wav")
   ```
 
-- **Sound().play_system_sound():** Plays a default Windows system sound.
+- **`Sound().play_system_sound()`:** Plays a default Windows system sound.
 
   **Description:**
 
@@ -1033,7 +1049,7 @@ keyboard = Keyboard(keyboard_physics)
   Sound().play_system_sound(sound_type = "warning")
   ```
 
-- **Sound().speak():** Synthesizes text to speech using the default Windows voice.
+- **`Sound().speak()`:** Synthesizes text to speech using the default Windows voice.
   
   **Description:**
   
@@ -1053,11 +1069,11 @@ keyboard = Keyboard(keyboard_physics)
   Sound().speak(text = "Automation task completed successfully.")
   ```
 
-### **System Utilities (system)**
+### **System utilities (`system`)**
 
 **High-level operating system actions and process management:**
 
-- **System().set_clipboard_text():** Sets the text content of the Windows clipboard.
+- **`System().set_clipboard_text()`:** Sets the text content of the Windows clipboard.
 
   **Description:**
 
@@ -1077,7 +1093,7 @@ keyboard = Keyboard(keyboard_physics)
   System().set_clipboard_text(text = "Text to paste later.")
   ```
 
-- **System().open_process():** Opens a process or file.
+- **`System().open_process()`:** Opens a process or file.
   
   **Description:**
   
@@ -1097,7 +1113,7 @@ keyboard = Keyboard(keyboard_physics)
   System().open_process(process_path = "notepad.exe")
   ```
 
-- **System().kill_process():** Terminates an active process by its name.
+- **`System().kill_process()`:** Terminates an active process by its name.
 
   **Description:**
 
@@ -1118,7 +1134,7 @@ keyboard = Keyboard(keyboard_physics)
   System().kill_process(process = "notepad.exe", force = True)
   ```
 
-- **System().focus_window():** Brings a specific window to the foreground by its title.
+- **`System().focus_window()`:** Brings a specific window to the foreground by its title.
 
   **Description:**
 
@@ -1138,7 +1154,7 @@ keyboard = Keyboard(keyboard_physics)
   System().focus_window(window_title = "Untitled - Notepad")
   ```
 
-- **System().resize_window():** Resizes a specific window to the specified dimensions by its title.
+- **`System().resize_window()`:** Resizes a specific window to the specified dimensions by its title.
 
   **Description:**
 
@@ -1160,7 +1176,7 @@ keyboard = Keyboard(keyboard_physics)
   System().resize_window(window_title = "Untitled - Notepad", width = 800, height = 600)
   ```
 
-- **System().move_window():** Moves a specific window to the specified coordinates by its title.
+- **`System().move_window()`:** Moves a specific window to the specified coordinates by its title.
 
   **Description:**
 
@@ -1182,7 +1198,7 @@ keyboard = Keyboard(keyboard_physics)
   System().move_window(window_title = "Untitled - Notepad", x = 250, y = 500)
   ```
 
-- **System().close_window():** Gently closes a specific window by its title.
+- **`System().close_window()`:** Gently closes a specific window by its title.
   
   **Description:**
   
@@ -1202,7 +1218,7 @@ keyboard = Keyboard(keyboard_physics)
   System().close_window(window_title = "Untitled - Notepad")
   ```
 
-- **System().lock_screen():** Locks the Windows session (Win+L).
+- **`System().lock_screen()`:** Locks the Windows session (Win+L).
 
   **Description:**
 
@@ -1218,7 +1234,7 @@ keyboard = Keyboard(keyboard_physics)
   System().lock_screen()
   ```
 
-- **System().sign_out():** Signs out the current Windows user.
+- **`System().sign_out()`:** Signs out the current Windows user.
 
   **Description:**
 
@@ -1234,7 +1250,7 @@ keyboard = Keyboard(keyboard_physics)
   System().sign_out()
   ```
 
-- **System().sleep():** Puts the computer into sleep mode.
+- **`System().sleep()`:** Puts the computer into sleep mode.
 
   **Description:**
 
@@ -1250,7 +1266,7 @@ keyboard = Keyboard(keyboard_physics)
   System().sleep()
   ```
 
-- **System().hibernate():** Puts the computer into hibernation mode.
+- **`System().hibernate()`:** Puts the computer into hibernation mode.
 
   **Description:**
 
@@ -1266,7 +1282,7 @@ keyboard = Keyboard(keyboard_physics)
   System().hibernate()
   ```
 
-- **System().shutdown():** Turns off the computer.
+- **`System().shutdown()`:** Turns off the computer.
   
   **Description:**
 
@@ -1286,7 +1302,7 @@ keyboard = Keyboard(keyboard_physics)
   System().shutdown(delay = 60)
   ```
 
-- **System().restart():** Restarts the computer.
+- **`System().restart()`:** Restarts the computer.
 
   **Description:**
 
@@ -1306,7 +1322,7 @@ keyboard = Keyboard(keyboard_physics)
   System().restart(delay = 60)
   ```
 
-- **System().enable_kill_switch():** Enables a global kill switch to abort execution instantly.
+- **`System().enable_kill_switch()`:** Enables a global kill switch to abort execution instantly.
   
   **Description:**
   
@@ -1329,7 +1345,7 @@ keyboard = Keyboard(keyboard_physics)
 > [!IMPORTANT]
 > When triggered, an asynchronous `KillSwitchTriggered` exception is raised in all automation threads, completely aborting execution safely.
 
-- **System().disable_kill_switch():** Disables the global kill switch.
+- **`System().disable_kill_switch()`:** Disables the global kill switch.
   
   **Description:**
   
@@ -1345,7 +1361,7 @@ keyboard = Keyboard(keyboard_physics)
   System().disable_kill_switch()
   ```
 
-- **SystemInfo().clipboard_text:** Gets the current text content of the Windows clipboard.
+- **`SystemInfo().clipboard_text`:** Gets the current text content of the Windows clipboard.
 
   **Description:**
 
@@ -1361,7 +1377,7 @@ keyboard = Keyboard(keyboard_physics)
   text = SystemInfo().clipboard_text
   ```
 
-- **SystemInfo().active_window_title:** Gets the title of the currently focused/active window.
+- **`SystemInfo().active_window_title`:** Gets the title of the currently focused/active window.
 
   **Description:**
 
@@ -1377,7 +1393,7 @@ keyboard = Keyboard(keyboard_physics)
   title = SystemInfo().active_window_title
   ```
 
-- **SystemInfo().is_process_running():** Checks if a specific process is currently running.
+- **`SystemInfo().is_process_running()`:** Checks if a specific process is currently running.
 
   **Description:**
 
@@ -1396,3 +1412,30 @@ keyboard = Keyboard(keyboard_physics)
   ```python
   is_running = SystemInfo().is_process_running(process = "notepad.exe")
   ```
+
+### **Custom exceptions (`exceptions`)**
+
+**Custom error classes to handle dynamic edge cases and abort execution safely:**
+
+- **`WindowNotFoundError`:** Raised when a window cannot be found.
+  
+  **Description:**
+  
+  Raised when an operation attempts to interact with a window that cannot be found or is no longer available. This usually happens if a window is abruptly closed or changes its title during execution. You can catch this exception in dynamic scenarios to trigger a retry or to fail gracefully.
+  
+  **Inherits from:**
+  
+  **`Exception`**
+
+- **`KillSwitchTriggered`:** Raised when the global kill switch is triggered.
+  
+  **Description:**
+  
+  Raised asynchronously across all automation threads when the global kill switch shortcut is triggered.
+  
+  **Inherits from:**
+  
+  **`BaseException`**
+
+> [!IMPORTANT]
+> Because it inherits directly from `BaseException` (rather than standard `Exception`), generic `except Exception:` blocks in your code will not accidentally swallow it. This design guarantees that the kill switch will always instantly and safely abort the automation sequence, no matter what your script is doing.

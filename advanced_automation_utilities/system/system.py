@@ -37,7 +37,7 @@ class System(_QueueableController):
     
     def set_clipboard_text(self, text: str) -> Self:
         """
-        **System().set_clipboard_text():** Sets the text content of the Windows clipboard.
+        **`System().set_clipboard_text()`:** Sets the text content of the Windows clipboard.
 
         **Description:**
 
@@ -61,7 +61,7 @@ class System(_QueueableController):
     
     def open_process(self, process_path: str) -> Self:
         """
-        **System().open_process():** Opens a process or file.
+        **`System().open_process()`:** Opens a process or file.
 
         **Description:**
 
@@ -85,7 +85,7 @@ class System(_QueueableController):
     
     def kill_process(self, process: str, force: bool = True) -> Self:
         """
-        **System().kill_process():** Terminates an active process by its name.
+        **`System().kill_process()`:** Terminates an active process by its name.
 
         **Description:**
 
@@ -110,7 +110,7 @@ class System(_QueueableController):
     
     def focus_window(self, window_title: str) -> Self:
         """
-        **System().focus_window():** Brings a specific window to the foreground by its title.
+        **`System().focus_window()`:** Brings a specific window to the foreground by its title.
 
         **Description:**
 
@@ -134,7 +134,7 @@ class System(_QueueableController):
     
     def resize_window(self, window_title: str, width: int, height: int) -> Self:
         """
-        **System().resize_window():** Resizes a specific window to the specified dimensions by its title.
+        **`System().resize_window()`:** Resizes a specific window to the specified dimensions by its title.
 
         **Description:**
 
@@ -162,7 +162,7 @@ class System(_QueueableController):
     
     def move_window(self, window_title: str, x: int, y: int) -> Self:
         """
-        **System().move_window():** Moves a specific window to the specified coordinates by its title.
+        **`System().move_window()`:** Moves a specific window to the specified coordinates by its title.
 
         **Description:**
 
@@ -188,7 +188,7 @@ class System(_QueueableController):
     
     def close_window(self, window_title: str) -> Self:
         """
-        **System().close_window():** Gently closes a specific window by its title.
+        **`System().close_window()`:** Gently closes a specific window by its title.
 
         **Description:**
 
@@ -212,7 +212,7 @@ class System(_QueueableController):
     
     def lock_screen(self) -> Self: 
         """
-        **System().lock_screen():** Locks the Windows session (Win+L).
+        **`System().lock_screen()`:** Locks the Windows session (Win+L).
 
         **Description:**
 
@@ -232,7 +232,7 @@ class System(_QueueableController):
     
     def sign_out(self) -> Self: 
         """
-        **System().sign_out():** Signs out the current Windows user.
+        **`System().sign_out()`:** Signs out the current Windows user.
 
         **Description:**
 
@@ -252,7 +252,7 @@ class System(_QueueableController):
     
     def sleep(self) -> Self: 
         """
-        **System().sleep():** Puts the computer into sleep mode.
+        **`System().sleep()`:** Puts the computer into sleep mode.
 
         **Description:**
 
@@ -272,7 +272,7 @@ class System(_QueueableController):
     
     def hibernate(self) -> Self: 
         """
-        **System().hibernate():** Puts the computer into hibernation mode.
+        **`System().hibernate()`:** Puts the computer into hibernation mode.
 
         **Description:**
 
@@ -292,7 +292,7 @@ class System(_QueueableController):
     
     def shutdown(self, delay: int = 0) -> Self:
         """
-        **System().shutdown():** Turns off the computer.
+        **`System().shutdown()`:** Turns off the computer.
 
         **Description:**
 
@@ -316,7 +316,7 @@ class System(_QueueableController):
     
     def restart(self, delay: int = 0) -> Self:
         """
-        **System().restart():** Restarts the computer.
+        **`System().restart()`:** Restarts the computer.
 
         **Description:**
 
@@ -340,7 +340,7 @@ class System(_QueueableController):
     
     def enable_kill_switch(self, *keys: str) -> Self:
         """
-        **System().enable_kill_switch():** Enables a global kill switch to abort execution instantly.
+        **`System().enable_kill_switch()`:** Enables a global kill switch to abort execution instantly.
 
         **Description:**
 
@@ -369,7 +369,7 @@ class System(_QueueableController):
     
     def disable_kill_switch(self) -> Self: 
         """
-        **System().disable_kill_switch():** Disables the global kill switch.
+        **`System().disable_kill_switch()`:** Disables the global kill switch.
 
         **Description:**
 

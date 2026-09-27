@@ -12,7 +12,7 @@ class ScreenInfo:
     @property
     def resolution(self) -> tuple[int, int]:
         """
-        **ScreenInfo().resolution:** Gets the resolution of the primary screen.
+        **`ScreenInfo().resolution`:** Gets the resolution of the primary screen.
 
         **Description:**
 
@@ -33,7 +33,7 @@ class ScreenInfo:
     @property
     def width(self) -> int:
         """
-        **ScreenInfo().width:** Gets the width of the primary screen.
+        **`ScreenInfo().width`:** Gets the width of the primary screen.
 
         **Description:**
 
@@ -54,7 +54,7 @@ class ScreenInfo:
     @property
     def height(self) -> int:
         """
-        **ScreenInfo().height:** Gets the height of the primary screen.
+        **`ScreenInfo().height`:** Gets the height of the primary screen.
 
         **Description:**
 
@@ -76,7 +76,7 @@ class ScreenInfo:
         self, x: int, y: int, format: ColorFormat = "rgb"
     ) -> Union[tuple[int, int, int], str]:
         """
-        **ScreenInfo().pixel_color():** Gets the RGB or hexadecimal color of a specific pixel coordinate.
+        **`ScreenInfo().pixel_color()`:** Gets the RGB or hexadecimal color of a specific pixel coordinate.
 
         **Description:**
 
@@ -112,9 +112,11 @@ class ScreenInfo:
     @property
     def work_area(self) -> tuple[int, int, int, int]:
         """
+        **`ScreenInfo().work_area`:** Gets the primary screen's work area, excluding the taskbar.
+
         **Description:**
 
-        Gets the primary screen's work area, excluding the taskbar.
+        Returns the boundaries of the primary screen's usable work area. This excludes the Windows taskbar and any other docked desktop toolbars, providing the exact coordinates of the space available for applications and windows.
 
         **Returns:**
 
