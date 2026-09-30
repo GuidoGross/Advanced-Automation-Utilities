@@ -88,7 +88,7 @@ Windows 10 or higher.
 
 The full documentation, API references, and examples are in the **[GitHub Wiki](https://github.com/GuidoGross/Advanced-Automation-Utilities/wiki)**.
 
-**Choose a module to explore:**
+**Choose a section to explore:**
 
 - **[Mouse](https://github.com/GuidoGross/Advanced-Automation-Utilities/wiki/Mouse)**: movement, clicks, scrolling and physics.
 - **[Keyboard](https://github.com/GuidoGross/Advanced-Automation-Utilities/wiki/Keyboard)**: typing, hotkeys, blocking and physics.
