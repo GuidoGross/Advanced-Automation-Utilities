@@ -30,9 +30,6 @@
 
 ### **Dependencies**
 
-> [!NOTE]
-> Standard library modules are used where possible; only external dependencies are listed.
-
 - `mss` (v6.1.0 or higher)
 - `numpy` (v1.21.0 or higher)
 - `opencv-python` (v4.5.5 or higher)
@@ -45,6 +42,9 @@
 - `winrt-Windows.Graphics.Imaging` (v3.0 or higher)
 - `winrt-Windows.Media.Ocr` (v3.0 or higher)
 - `winrt-Windows.Storage.Streams` (v3.0 or higher)
+
+> [!NOTE]
+> Standard library modules are used where possible; only external dependencies are listed.
 
 ### **Python version**
 
