@@ -7,8 +7,7 @@ class Screen:
     """
     **Description:**
 
-    Main controller for screen interaction.
-    Allows locating images, reading text (OCR), and finding text coordinates on the screen.
+    Advanced computer vision leveraging OpenCV and native Windows OCR. Read text from specific regions, locate UI elements via template matching, and interact with pixel-perfect accuracy across multi-monitor setups without requiring external cloud services.
     """
     def locate_image(
         self,

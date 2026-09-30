@@ -91,7 +91,7 @@ class MouseInfo:
         **Example:**
 
         ```python
-        color = MouseInfo().pixel_color(format = "rgb")
+        pixel_color = MouseInfo().pixel_color(format = "rgb")
         ```
         """
         return ScreenInfo().pixel_color(self.x, self.y, format = format)

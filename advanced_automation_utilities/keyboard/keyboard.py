@@ -13,8 +13,7 @@ class Keyboard(_QueueableController):
     """
     **Description:**
 
-    Main controller for keyboard automation.
-    Allows pressing keys, typing text, and managing key states.
+    Low-level keyboard interaction and hardware state retrieval. Simulates human typing with configurable physics, handles complex hotkey combinations, and can selectively block physical hardware inputs to prevent interference during critical automation tasks.
     """
     def __init__(self, physics: Optional[KeyboardPhysics] = None) -> None:
         """

@@ -10,8 +10,7 @@ class Sound(_QueueableController):
     """
     **Description:**
 
-    Main controller for audio operations.
-    Allows playing beeps, audio files, system sounds, and text-to-speech.
+    Audio playback and text-to-speech features. Easily integrate audible alerts using motherboard beeps, play local audio files, trigger native Windows notification sounds, or use the built-in Text-To-Speech engine without external dependencies.
     """
     def __init__(self) -> None:
         """

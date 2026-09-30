@@ -26,3 +26,6 @@ venv.bak/
 # Operating System
 .DS_Store
 Thumbs.db
+
+# Documentation
+wiki/

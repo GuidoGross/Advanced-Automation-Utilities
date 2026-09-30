@@ -16,8 +16,7 @@ class Mouse(_QueueableController):
     """
     **Description:**
 
-    Main controller for mouse automation.
-    Allows moving the cursor, clicking, dragging, and scrolling.
+    Native pointer manipulation governed by Bézier-curve physics to simulate authentic human behavior. Perform smooth movements, random wandering, and complex dragging operations while remaining undetected by simple anti-bot mechanisms.
     """
     def __init__(self, physics: Optional[MousePhysics] = None) -> None:
         """

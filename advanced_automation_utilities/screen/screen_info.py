@@ -95,7 +95,7 @@ class ScreenInfo:
         **Example:**
 
         ```python
-        color = ScreenInfo().pixel_color(x = 250, y = 500, format = "hexadecimal")
+        pixel_color = ScreenInfo().pixel_color(x = 250, y = 500, format = "hexadecimal")
         ```
 
         ### **Timing Utilities (timing)**

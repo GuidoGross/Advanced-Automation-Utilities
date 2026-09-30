@@ -7,8 +7,7 @@ class Timing:
     """
     **Description:**
 
-    Main controller for time-related operations.
-    Allows pausing execution, waiting for conditions, and randomized delays.
+    Precise delays, chronometers, and condition-based execution flow. Use this module to introduce smart waits that continuously poll for conditions, simulate human-like random pauses, or precisely benchmark the execution time of your functions.
     """
     def wait(self, duration: float) -> None:
         """
