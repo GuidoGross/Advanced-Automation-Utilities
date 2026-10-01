@@ -12,8 +12,6 @@
 
 </div>
 
----
-
 ## **Purpose**
 
 **This library is designed for scripts and applications that need:**
@@ -23,8 +21,6 @@
 - Fast and accurate screen vision (OCR and image matching).
 - Asynchronous execution and method chaining.
 - Reliable timing, sound, and system-level operations.
-
----
 
 ## **Requirements**
 
@@ -54,8 +50,6 @@ Python (v3.10 or higher)
 
 Windows 10 or higher.
 
----
-
 ## **Installation**
 
 - **Install:**
@@ -82,8 +76,6 @@ Windows 10 or higher.
   pip uninstall -y advanced_automation_utilities
   ```
 
----
-
 ## **Features**
 
 The full documentation, API references, and examples are in the **[GitHub Wiki](https://github.com/GuidoGross/Advanced-Automation-Utilities/wiki)**.
@@ -99,8 +91,6 @@ The full documentation, API references, and examples are in the **[GitHub Wiki](
 - **[Asynchrony](https://github.com/GuidoGross/Advanced-Automation-Utilities/wiki/Asynchrony)**: non-blocking parallel executions.
 - **[Physics](https://github.com/GuidoGross/Advanced-Automation-Utilities/wiki/Physics)**: human-like mouse and keyboard behaviors.
 - **[Exceptions](https://github.com/GuidoGross/Advanced-Automation-Utilities/wiki/Exceptions)**: library-specific errors.
-
----
 
 ## **Support**
 
