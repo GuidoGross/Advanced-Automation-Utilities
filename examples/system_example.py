@@ -7,9 +7,7 @@ parent_directory = os.path.dirname(script_directory)
 if parent_directory not in sys.path: sys.path.insert(0, parent_directory)
 
 from examples.examples_utilities import start_stop_script
-from advanced_automation_utilities.system import System, SystemInfo
-from advanced_automation_utilities.timing import Timing
-from advanced_automation_utilities import KillSwitchTriggered
+from advanced_automation_utilities import Timing, System, SystemInfo, KillSwitchTriggered
 from tui_utilities import (
     set_window_title,
     maximize_window,
@@ -23,144 +21,139 @@ from tui_utilities import (
 )
 
 def main():
-    set_window_title("Prueba de System")
+    set_window_title("System Test")
     maximize_window()
     while True:
         selection = menu(
-            title = "Prueba de System",
+            title = "System Test",
             options = {
-                "1": "Obtener texto del portapapeles y modificarlo",
-                "2": "Obtener el título de la ventana activa",
-                "3": "Abrir y matar un proceso",
-                "4": "Redimensionar y mover ventana",
-                "5": "Bloquear la pantalla",
-                "6": "Cerrar sesión",
-                "7": "Suspender el dispositivo",
-                "8": "Hibernar el dispositivo",
-                "9": "Apagar el dispositivo",
-                "10": "Reiniciar el dispositivo",
-                "11": "Probar Kill Switch",
-                "S": "Salir"
+                "1": "Get clipboard text and modify it",
+                "2": "Get active window title",
+                "3": "Process and window management",
+                "4": "Lock the screen",
+                "5": "Sign out",
+                "6": "Sleep the device",
+                "7": "Hibernate the device",
+                "8": "Shutdown the device",
+                "9": "Restart the device",
+                "10": "Test Kill Switch",
+                "E": "Exit"
             }
         )
         match selection:
             case "1": test_get_clipboard_text_and_modify_it()
             case "2": test_get_active_window_title()
-            case "3": test_open_and_kill_process()
-            case "4": test_resize_and_move_window()
-            case "5": test_screen_lock()
-            case "6": test_sign_out()
-            case "7": test_sleep()
-            case "8": test_hibernate()
-            case "9": test_shutdown()
-            case "10": test_restart()
-            case "11": test_kill_switch()
-            case "S": confirm_exit()
+            case "3": test_process_and_window_management()
+            case "4": test_screen_lock()
+            case "5": test_sign_out()
+            case "6": test_sleep()
+            case "7": test_hibernate()
+            case "8": test_shutdown()
+            case "9": test_restart()
+            case "10": test_kill_switch()
+            case "E": confirm_exit()
 
 def test_get_clipboard_text_and_modify_it():
-    header("Texto actual en el portapapeles")
+    system = System()
+    system_info = SystemInfo()
+    header("Current clipboard text")
     print([
-        ("Texto actual en el portapapeles:", {"bold": True}),
-        (f" {SystemInfo().clipboard_text}", {"color": "#00bfff"})
+        ("Current clipboard text:", {"bold": True}),
+        (f" {system_info.clipboard_text}", {"color": "#00bfff"})
     ])
     wait_for_key()
-    header("Texto sobreescrito en el portapapeles")
-    System().set_clipboard_text("¡Hola mundo!")
+    header("Overwritten clipboard text")
+    system.set_clipboard_text("Hello, world!")
     print([
-        ("Se ha sobrescrito el portapapeles con:", {"bold": True}),
-        (f" {SystemInfo().clipboard_text}", {"color": "#00bfff"})
+        ("Clipboard has been overwritten with:", {"bold": True}),
+        (f" {system_info.clipboard_text}", {"color": "#00bfff"})
     ])
     wait_for_key()
 
 def test_get_active_window_title():
     def get_active_window_title():
-        header("Título de la ventana activa")
-        title = SystemInfo().active_window_title
-        print([
-            ("La ventana actualmente enfocada es: ", {"bold": True}),
-            (f"{title}", {"color": "#00bfff"})
-        ])
+        system_info = SystemInfo()
+        header("Active window title")
+        title = system_info.active_window_title
+        print([("Currently focused window is: ", {"bold": True}), (f"{title}", {"color": "#00bfff"})])
         wait_for_key()
     
-    start_stop_script(get_active_window_title, "Obtener el título de la ventana activa")
+    start_stop_script(get_active_window_title, "Get active window title")
 
-def test_open_and_kill_process():
-    header("Abrir un proceso")
+def test_process_and_window_management():
+    system = System()
+    system_info = SystemInfo()
+    timing = Timing()
+    header("Process and window management")
     process_name = "notepad.exe"
-    print([
-        ("Abriendo ", {}),
-        (f"{process_name}", {"color": "#00bfff"})
-    ], alignment = "center")
+    print([("Opening ", {}), (f"{process_name}", {"color": "#00bfff"})], alignment = "center")
     try:
-        System().open_process(process_name)
-        success_message(f"{process_name.capitalize()} abierta con éxito.")
-    except Exception as error: error_message(f"Error al abrir {process_name}: {error}")
-    header("Matar un proceso")
-    print([
-        ("Cerrando ", {}),
-        (f"{process_name}", {"color": "#00bfff"})
-    ], alignment = "center")
+        system.open_process(process_name)
+        success_message(f"{process_name.capitalize()} opened successfully.")
+        timing.wait(1)
+        window_title = system_info.active_window_title
+        system.resize_window(window_title, 500, 500)
+        system.move_window(window_title, 100, 100)
+        success_message(f"Moved and resized {process_name}")
+        wait_for_key()
+    except Exception as error: error_message(f"Error opening or manipulating {process_name}: {error}")
+    print([("Closing ", {}), (f"{process_name}", {"color": "#00bfff"})], alignment = "center")
     try:
-        System().kill_process(process_name, force = True)
-        success_message(f"{process_name.capitalize()} cerrado con éxito.")
-    except Exception as error: error_message(f"Error al cerrar {process_name}: {error}")
-
-def test_resize_and_move_window():
-    header("Mover y redimensionar ventana")
-    process_name = "notepad.exe"
-    try:
-        System().open_process(process_name)
-        Timing().wait(1)
-        window_title = SystemInfo().active_window_title
-        System().resize_window(window_title, 500, 500)
-        System().move_window(window_title, 100, 100)
-        success_message(f"Se ha movido y redimensionado {process_name}")
-        System().kill_process(process_name)
-    except Exception as error: error_message(f"Error: {error}")
+        system.kill_process(process_name, force = True)
+        success_message(f"{process_name.capitalize()} closed successfully.")
+    except Exception as error: error_message(f"Error closing {process_name}: {error}")
 
 def test_screen_lock():
-    header("Bloquear pantalla")
-    print("Bloqueando la pantalla...", alignment = "center")
-    System().lock_screen()
+    system = System()
+    header("Lock screen")
+    print("Locking screen...", alignment = "center")
+    system.lock_screen()
 
 def test_sign_out():
-    header("Cerrar sesión")
-    print("Cerrando la sesión...", alignment = "center")
-    System().sign_out()
+    system = System()
+    header("Sign out")
+    print("Signing out...", alignment = "center")
+    system.sign_out()
 
 def test_sleep():
-    header("Suspender el dispositivo")
-    print("Suspendiendo el dispositivo...", alignment = "center")
-    System().sleep()
+    system = System()
+    header("Sleep the device")
+    print("Sleeping the device...", alignment = "center")
+    system.sleep()
 
 def test_hibernate():
-    header("Hibernar el dispositivo")
-    print("Hibernando el dispositivo...", alignment = "center")
-    System().hibernate()
+    system = System()
+    header("Hibernate the device")
+    print("Hibernating the device...", alignment = "center")
+    system.hibernate()
 
 def test_shutdown():
-    header("Apagar el dispositivo")
-    print("Apagando el dispositivo...", alignment = "center")
-    System().shutdown(delay = 15)
+    system = System()
+    header("Shutdown the device")
+    print("Shutting down the device...", alignment = "center")
+    system.shutdown(delay = 15)
 
 def test_restart():
-    header("Reiniciar el dispositivo")
-    print("Reiniciando el dispositivo...", alignment = "center")
-    System().restart(delay = 15)
+    system = System()
+    header("Restart the device")
+    print("Restarting the device...", alignment = "center")
+    system.restart(delay = 15)
 
 def test_kill_switch():
-    header("Probar Kill Switch")
-    System().enable_kill_switch()
+    timing = Timing()
+    system = System()
+    header("Test Kill Switch")
+    system.enable_kill_switch()
     print([
-        ("El Kill Switch está activado. Presione ", {}),
+        ("Kill Switch is enabled. Press ", {}),
         ("Ctrl + Shift + Alt + K", {"color": "#00bfff"}),
-        (" para abortar, o espere 10 segundos para que la prueba termine normalmente...", {})
+        (" to abort, or wait 10 seconds for the test to end normally...", {})
     ], alignment = "center")
     try:
-        Timing().wait(10)
-        System().disable_kill_switch()
-        success_message("Prueba finalizada sin usar el Kill Switch")
-    except KillSwitchTriggered: error_message("Prueba abortada")
-    finally: System().disable_kill_switch()
+        timing.wait(10)
+        system.disable_kill_switch()
+        success_message("Test completed without using Kill Switch")
+    except KillSwitchTriggered: error_message("Test aborted")
+    finally: system.disable_kill_switch()
 
 if __name__ == "__main__": main()

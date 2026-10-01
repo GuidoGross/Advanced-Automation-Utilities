@@ -7,8 +7,7 @@ parent_directory = os.path.dirname(script_directory)
 if parent_directory not in sys.path: sys.path.insert(0, parent_directory)
 
 from examples.examples_utilities import start_stop_script
-from advanced_automation_utilities.timing import Timing, TimingInfo, measure_time
-from advanced_automation_utilities.keyboard import KeyboardInfo
+from advanced_automation_utilities import KeyboardInfo, Timing, TimingInfo, measure_time
 from tui_utilities import (
     set_window_title,
     maximize_window,
@@ -23,17 +22,17 @@ from tui_utilities import (
 )
 
 def main():
-    set_window_title("Prueba de Timing")
+    set_window_title("Timing Test")
     maximize_window()
     while True:
         selection = menu(
-            title = "Prueba de Timing",
+            title = "Timing Test",
             options = {
-                "1": "Esperar",
-                "2": "Esperar aleatoriamente",
-                "3": "Esperar por condición",
-                "4": "Obtener el tiempo de ejecución de una función",
-                "S": "Salir"
+                "1": "Wait",
+                "2": "Wait randomly",
+                "3": "Wait by condition",
+                "4": "Get execution time of a function",
+                "E": "Exit"
             }
         )
         match selection:
@@ -41,66 +40,71 @@ def main():
             case "2": test_wait_random()
             case "3": test_wait_until()
             case "4": test_measure_time()
-            case "S": confirm_exit()
+            case "E": confirm_exit()
 
 def test_wait():
-    header("Espera")
+    timing = Timing()
+    header("Wait")
     waiting_time = 3
-    print([
-        ("Esperando ", {}),
-        (f"{waiting_time}", {"color": "#00bfff"}),
-        (" segundos...\n", {})
-    ], alignment = "center")
-    Timing().wait(waiting_time)
-    print("\nEspera terminada", alignment = "center")
+    print(
+        [("Waiting ", {}), (f"{waiting_time}", {"color": "#00bfff"}), (" seconds...\n", {})],
+        alignment = "center"
+    )
+    timing.wait(waiting_time)
+    print("\nWait finished", alignment = "center")
     wait_for_key()
 
 def test_wait_random():
-    header("Espera aleatoria")
+    timing = Timing()
+    timing_info = TimingInfo()
+    header("Wait randomly")
     lower_waiting_time = 1
     upper_waiting_time = 5
     print([
-        ("Esperando aleatoriamente entre ", {}),
+        ("Waiting randomly between ", {}),
         (f"{lower_waiting_time}", {"color": "#00bfff"}),
-        (" y ", {}),
+        (" and ", {}),
         (f"{upper_waiting_time}", {"color": "#00bfff"}),
-        (" segundos...\n", {})
+        (" seconds...\n", {})
     ], alignment = "center")
-    start_time = TimingInfo().time
-    Timing().wait_random(lower_waiting_time, upper_waiting_time)
-    end_time = TimingInfo().time
+    start_time = timing_info.time
+    timing.wait_random(lower_waiting_time, upper_waiting_time)
+    end_time = timing_info.time
     print([
-        ("\nEspera terminada en ", {}),
+        ("\nWait finished in ", {}),
         (f"{decimal_format((end_time - start_time) * 1000, decimals = 0)}ms", {"color": "#00bfff"})
     ], alignment = "center")
     wait_for_key()
 
 def test_wait_until():
     def _test():
-        header("Espera por condición")
+        timing = Timing()
+        keyboard_info = KeyboardInfo()
+        header("Wait by condition")
         print([
-            ("Esperando hasta un máximo de 5 segundos a que pulse la tecla ", {}),
+            ("Waiting up to a maximum of 5 seconds for you to press the ", {}),
             ("Space", {"color": "#00bfff"}),
-            ("...\n", {})
+            (" key...\n", {})
         ], alignment = "center")
         
-        def condition(): return KeyboardInfo().is_pressed("space")
+        def condition(): return keyboard_info.is_pressed("space")
         
-        success = Timing().wait_until(condition, timeout = 5)
+        success = timing.wait_until(condition, timeout = 5)
         if success:
             wait_for_key(text = "")
-            success_message("Ha pulsado la tecla \"Space\" a tiempo")
-        else: error_message("No ha pulsado la tecla \"Space\" a tiempo")
-        while KeyboardInfo().is_pressed("space"): Timing().wait(0.01)
-    start_stop_script(_test, "Esperar por condición")
+            success_message("You pressed the \"Space\" key in time")
+        else: error_message("You didn't press the \"Space\" key in time")
+        while keyboard_info.is_pressed("space"): timing.wait(0.01)
+    start_stop_script(_test, "Wait by condition")
 
 def test_measure_time():
-    header("Medir tiempo de ejecución de una función")
+    timing = Timing()
+    header("Measure execution time of a function")
     
     @measure_time
     def simulated_task():
-        print("Iniciando una tarea simulada...\n", alignment = "center")
-        Timing().wait_random(1, 3)
+        print("Starting a simulated task...\n", alignment = "center")
+        timing.wait_random(1, 3)
     
     simulated_task()
     wait_for_key()

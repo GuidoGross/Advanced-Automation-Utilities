@@ -7,7 +7,7 @@ parent_directory = os.path.dirname(script_directory)
 if parent_directory not in sys.path: sys.path.insert(0, parent_directory)
 
 from examples.examples_utilities import start_stop_script
-from advanced_automation_utilities.screen import Screen, ScreenInfo
+from advanced_automation_utilities import Screen, ScreenInfo
 from tui_utilities import (
     set_window_title,
     maximize_window,
@@ -21,83 +21,112 @@ from tui_utilities import (
 )
 
 def main():
-    set_window_title("Prueba de Screen")
+    set_window_title("Screen Test")
     maximize_window()
     while True:
         selection = menu(
-            title = "Prueba de Screen",
+            title = "Screen Test",
             options = {
-                "1": "Obtener resolución de pantalla",
-                "2": "Obtener color del píxel",
-                "3": "Localizar imagen en pantalla",
-                "4": "Leer texto de la pantalla",
-                "5": "Localizar texto en la pantalla",
-                "S": "Salir"
+                "1": "Take and save screenshot",
+                "2": "Locate image on screen",
+                "3": "Read text from screen",
+                "4": "Locate text on screen",
+                "5": "Get screen resolution",
+                "6": "Check if pixel matches color",
+                "7": "Check if coordinates are on screen",
+                "E": "Exit"
             }
         )
         match selection:
-            case "1": test_get_resolution()
-            case "2": test_get_pixel_color()
-            case "3": test_locate_image()
-            case "4": test_read_text()
-            case "5": test_locate_text()
-            case "S": confirm_exit()
+            case "1": test_take_and_save_screenshot()
+            case "2": test_locate_image()
+            case "3": test_read_text()
+            case "4": test_locate_text()
+            case "5": test_get_resolution()
+            case "6": test_pixel_matches_color()
+            case "7": test_on_screen()
+            case "E": confirm_exit()
 
-def test_get_resolution():
-    header("Resolución de la pantalla")
-    print([
-        ("Resolución: ", {"bold": True}),
-        (f"{str(ScreenInfo().resolution).replace(",", ";")}", {})
-    ])
-    print([("Ancho: ", {"bold": True}), (f"{ScreenInfo().width}", {})])
-    print([("Alto: ", {"bold": True}), (f"{ScreenInfo().height}", {})])
-    wait_for_key()
-
-def test_get_pixel_color():
-    def get_pixel_color():
-        header("Color del píxel")
-        x = 300
-        y = 600
-        pixel_color = ScreenInfo().pixel_color(x, y)
-        hexadecimal_color = ScreenInfo().pixel_color(x, y, format = "hexadecimal")
-        print(f"Color del píxel en ({x}; {y}): ", bold = True)
-        print([("    - RGB: ", {"bold": True}), (f"■ {pixel_color}", {"color": hexadecimal_color})])
-        print([
-            ("    - Hexadecimal: ", {"bold": True}),
-            (f"■ {hexadecimal_color}", {"color": hexadecimal_color})
-        ])
-        wait_for_key()
+def test_take_and_save_screenshot():
+    def take_and_save_screenshot():
+        screen = Screen()
+        header("Take and save screenshot")
+        try:
+            save_path = os.path.join(os.path.expanduser("~"), "Pictures", "test_screenshot.png")
+            screen.take_screenshot(save_path = save_path)
+            success_message(f"Screenshot saved at: {save_path}")
+        except Exception as error: error_message(f"Error taking screenshot: {error}")
     
-    start_stop_script(get_pixel_color, "Obtener color del píxel")
+    start_stop_script(take_and_save_screenshot, "Take screenshot")
 
 def test_locate_image():
     def locate_image():
-        header("Localizar imagen en pantalla")
-        x, y = Screen().locate_image("", confidence = 0.9, monitor_index = 0)
-        if x is not None and y is not None:
-            success_message(f"Imagen encontrada en la posición ({x}; {y})")
-        else: error_message("Imagen no encontrada")
+        screen = Screen()
+        header("Locate image on screen")
+        result = screen.locate_image("")
+        if result[0] is not None and result[1] is not None:
+            success_message(f"Image found at position ({result[0]}; {result[1]})")
+        else: error_message("Image not found")
     
-    start_stop_script(locate_image, "Localizar imagen en pantalla")
+    start_stop_script(locate_image, "Locate image on screen")
 
 def test_read_text():
     def read_text():
-        header("Leer texto de la pantalla")
-        text = Screen().read_text(monitor_index = 0)
-        print([("Texto en la pantalla:", {"bold": True}), (f" {text}", {})])
+        screen = Screen()
+        header("Read text from screen")
+        text = screen.read_text()
+        print([("Text on screen:", {"bold": True}), (f" {text}", {})])
         wait_for_key()
     
-    start_stop_script(read_text, "Leer texto de la pantalla")
+    start_stop_script(read_text, "Read text from screen")
 
 def test_locate_text():
     def locate_text():
-        header("Localizar texto en pantalla")
-        text = "Prueba"
-        x, y = Screen().locate_text(text, exact_match = False, monitor_index = 0)
+        screen = Screen()
+        header("Locate text on screen")
+        text = "Test"
+        x, y = screen.locate_text(text)
         if x is not None and y is not None:
-            success_message(f"Texto \"{text}\" encontrado en la posición ({x}; {y})")
-        else: error_message(f"Texto \"{text}\" no encontrado")
+            success_message(f"Text \"{text}\" found at position ({x}; {y})")
+        else: error_message(f"Text \"{text}\" not found")
     
-    start_stop_script(locate_text, "Localizar texto en pantalla")
+    start_stop_script(locate_text, "Locate text on screen")
+
+def test_get_resolution():
+    screen_info = ScreenInfo()
+    header("Screen resolution")
+    print([
+        ("Resolution: ", {"bold": True}),
+        (f"{str(screen_info.resolution).replace(",", ";")}", {})
+    ])
+    print([("Width: ", {"bold": True}), (f"{screen_info.width}", {})])
+    print([("Height: ", {"bold": True}), (f"{screen_info.height}", {})])
+    print([("Work area: ", {"bold": True}), (f"{str(screen_info.work_area).replace(",", ";")}", {})])
+    wait_for_key()
+
+def test_pixel_matches_color():
+    def pixel_matches_color():
+        screen_info = ScreenInfo()
+        header("Check if pixel matches color")
+        x = 300
+        y = 600
+        expected = "#FFFFFF"
+        matches = screen_info.pixel_matches_color(x, y, expected_color = expected)
+        if matches: success_message(f"Pixel at ({x}; {y}) matches {expected}.")
+        else: error_message(f"Pixel at ({x}; {y}) does not match {expected}.")
+    
+    start_stop_script(pixel_matches_color, "Check if pixel matches color")
+
+def test_on_screen():
+    def on_screen():
+        screen_info = ScreenInfo()
+        header("Check if coordinates are on screen")
+        x = 300
+        y = 600
+        is_visible = screen_info.on_screen(x, y)
+        if is_visible: success_message(f"Coordinates ({x}; {y}) are inside the screen.")
+        else: error_message(f"Coordinates ({x}; {y}) are outside the screen.")
+
+    start_stop_script(on_screen, "Check if coordinates are on screen")
 
 if __name__ == "__main__": main()

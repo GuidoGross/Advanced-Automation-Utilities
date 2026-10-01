@@ -7,24 +7,24 @@ parent_directory = os.path.dirname(script_directory)
 if parent_directory not in sys.path: sys.path.insert(0, parent_directory)
 
 from examples.examples_utilities import start_stop_script
-from advanced_automation_utilities.keyboard import Keyboard, KeyboardInfo, KeyboardPhysics
+from advanced_automation_utilities import Keyboard, KeyboardInfo, KEYBOARD_NORMAL
 from tui_utilities import (
     set_window_title, maximize_window, menu, confirm_exit, print, header, wait_for_key
 )
 
 def main():
-    set_window_title("Prueba de Keyboard")
+    set_window_title("Keyboard Test")
     maximize_window()
     while True:
         selection = menu(
-            title = "Prueba de Keyboard",
+            title = "Keyboard Test",
             options = {
-                "1": "Pulsar una tecla",
-                "2": "Mantener y soltar una tecla",
-                "3": "Ejecutar atajo",
-                "4": "Escribir texto",
-                "5": "Detectar si una tecla está presionada",
-                "S": "Salir"
+                "1": "Press key",
+                "2": "Hold and release key",
+                "3": "Execute hotkey",
+                "4": "Write text",
+                "5": "Check if a key is pressed",
+                "E": "Exit"
             }
         )
         match selection:
@@ -33,81 +33,56 @@ def main():
             case "3": test_hotkey()
             case "4": test_write()
             case "5": test_is_key_pressed()
-            case "S": confirm_exit()
+            case "E": confirm_exit()
 
 def test_press_key():
     def press_key():
-        physics = KeyboardPhysics(
-            press_delay = 0.15,
-            press_delay_variation = 0.5,
-            press_duration = 0.05,
-            press_duration_variation = 0.1
-        )
-        keyboard = Keyboard(physics)
+        keyboard_physics = KEYBOARD_NORMAL
+        keyboard = Keyboard(keyboard_physics)
         keyboard.press_key("a")
     
-    start_stop_script(press_key, "Pulsar una tecla")
+    start_stop_script(press_key, "Press key")
 
 def test_hold_and_release_key():
     def hold_key():
-        physics = KeyboardPhysics(
-            press_delay = 0.15,
-            press_delay_variation = 0.5,
-            press_duration = 1,
-            press_duration_variation = 0.1
-        )
-        keyboard = Keyboard(physics)
+        keyboard_physics = KEYBOARD_NORMAL
+        keyboard = Keyboard(keyboard_physics)
         keyboard.hold_key("a")
         keyboard.release_key("a")
     
-    start_stop_script(hold_key, "Mantener y soltar una tecla")
+    start_stop_script(hold_key, "Hold and release key")
 
 def test_hotkey():
     def hotkey():
-        physics = KeyboardPhysics(
-            press_delay = 0.15,
-            press_delay_variation = 0.5,
-            press_duration = 0.05,
-            press_duration_variation = 0.1,
-            hotkey_delay = 0.15,
-            hotkey_delay_variation = 0.5
-        )
-        keyboard = Keyboard(physics)
+        keyboard_physics = KEYBOARD_NORMAL
+        keyboard = Keyboard(keyboard_physics)
         keyboard.hotkey("ctrl", "c")
     
-    start_stop_script(hotkey, "Ejecutar atajo")
+    start_stop_script(hotkey, "Execute hotkey")
 
 def test_write():
     def write():
-        physics = KeyboardPhysics(
-            press_delay = 0.15,
-            press_delay_variation = 0.5,
-            press_duration = 0.05,
-            press_duration_variation = 0.1,
-            typing_error_chance = 0.025,
-            typing_error_correction_delay = 0.25,
-            typing_error_correction_delay_variation = 0.5,
-            typing_error_delayed_realization_chance = 0.5
-        )
-        keyboard = Keyboard(physics)
-        keyboard.write("Al escribir este texto, se generarán errores simulados muy avanzados.")
+        keyboard_physics = KEYBOARD_NORMAL
+        keyboard = Keyboard(keyboard_physics)
+        keyboard.write("By writing this text, very advanced simulated errors will be generated.")
     
-    start_stop_script(write, "Escribir texto")
+    start_stop_script(write, "Write text")
 
 def test_is_key_pressed():
     def is_key_pressed():
-        header("¿Está presionada la tecla \"espacio\"?")
-        is_pressed = KeyboardInfo().is_pressed("space")
+        keyboard_info = KeyboardInfo()
+        header("Is \"space\" key pressed?")
+        is_pressed = keyboard_info.is_pressed("space")
         print([
-            ("La tecla \"espacio\" ", {}),
+            ("The \"space\" key ", {}),
             (
-                f"{"está" if is_pressed else "no está"}",
+                f"{"is" if is_pressed else "is not"}",
                 {"color": f"{"#00ff00" if is_pressed else "#ff0000"}"}
             ),
-            (" presionada", {})
+            (" pressed", {})
         ], alignment = "center")
         wait_for_key()
     
-    start_stop_script(is_key_pressed, "Detectar si una tecla está presionada")
+    start_stop_script(is_key_pressed, "Check if a key is pressed")
 
 if __name__ == "__main__": main()

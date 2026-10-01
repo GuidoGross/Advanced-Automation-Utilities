@@ -34,7 +34,7 @@ def _get_work_area():
     ctypes.windll.user32.SystemParametersInfoW(_SPI_GETWORKAREA, 0, ctypes.byref(rectangle), 0)
     return rectangle.left, rectangle.top, rectangle.right, rectangle.bottom
 
-def _take_screenshot(region = None, monitor_index = 0):
+def _take_screenshot(region = None, monitor_index = 0, save_path = None):
     with mss.mss() as screen_capture_tool:
         if region is None: screen = screen_capture_tool.monitors[monitor_index]
         else:
@@ -46,6 +46,10 @@ def _take_screenshot(region = None, monitor_index = 0):
                 "height": int(bottom - top)
             }
         screenshot = screen_capture_tool.grab(screen)
+    if save_path is not None:
+        image = numpy.array(screenshot)
+        image = cv2.cvtColor(image, cv2.COLOR_BGRA2BGR)
+        cv2.imwrite(save_path, image)
     return screenshot
 
 def _adjust_coordinates_for_region(x, y, region, monitor_index = 0):
@@ -59,7 +63,7 @@ def _adjust_coordinates_for_region(x, y, region, monitor_index = 0):
             y += monitor["top"]
     return int(x), int(y)
 
-def _locate_image(image_path, confidence, region, monitor_index):
+def _locate_image(image_path, confidence, limit, region, monitor_index):
     with open(image_path, "rb") as file:
         image_array = numpy.frombuffer(file.read(), numpy.uint8)
     template = cv2.imdecode(image_array, cv2.IMREAD_COLOR)
@@ -71,13 +75,24 @@ def _locate_image(image_path, confidence, region, monitor_index):
     image = numpy.array(screenshot)
     image = cv2.cvtColor(image, cv2.COLOR_BGRA2BGR)
     result = cv2.matchTemplate(image, template, cv2.TM_CCOEFF_NORMED)
-    _, max_value, _, max_location = cv2.minMaxLoc(result)
-    if max_value >= confidence:
-        height, width = template.shape[:2]
-        x = max_location[0] + width / 2
-        y = max_location[1] + height / 2
-        return _adjust_coordinates_for_region(x, y, region, monitor_index)
-    return None, None
+    height, width = template.shape[:2]
+    if limit == 1:
+        _, maximum_value, _, maximum_location = cv2.minMaxLoc(result)
+        if maximum_value >= confidence:
+            x = maximum_location[0] + width / 2
+            y = maximum_location[1] + height / 2
+            return _adjust_coordinates_for_region(x, y, region, monitor_index)
+        return None, None
+    else:
+        locations = numpy.where(result >= confidence)
+        locations = list(zip(*locations[::-1]))
+        matches = []
+        for location in locations:
+            x = location[0] + width / 2
+            y = location[1] + height / 2
+            matches.append(_adjust_coordinates_for_region(x, y, region, monitor_index))
+            if limit > 0 and len(matches) >= limit: break
+        return matches
 
 def _run_ocr_on_region(region = None, monitor_index = 0):
     screenshot = _take_screenshot(region, monitor_index)

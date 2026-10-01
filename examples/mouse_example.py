@@ -7,302 +7,138 @@ parent_directory = os.path.dirname(script_directory)
 if parent_directory not in sys.path: sys.path.insert(0, parent_directory)
 
 from examples.examples_utilities import start_stop_script
-from advanced_automation_utilities.mouse import MousePhysics, Mouse, MouseInfo
+from advanced_automation_utilities import Mouse, MouseInfo, MOUSE_NORMAL
 from tui_utilities import (
     set_window_title, maximize_window, menu, confirm_exit, print, header, wait_for_key
 )
 
 def main():
-    set_window_title("Prueba de Mouse")
+    set_window_title("Mouse Test")
     maximize_window()
     while True:
         selection = menu(
-            title = "Prueba de Mouse",
+            title = "Mouse Test",
             options = {
-                "1": "Mover el puntero",
-                "2": "Hacer clic",
-                "3": "Hacer doble clic",
-                "4": "Hacer clic derecho",
-                "5": "Hacer clic medio",
-                "6": "Mantener y soltar clic",
-                "7": "Arrastrar",
-                "8": "Desplazar",
-                "9": "Desplazar hasta que se cumpla una condición",
-                "10": "Deambular",
-                "11": "Deambular hasta que se cumpla una condición",
-                "12": "Obtener coordenadas del puntero",
-                "13": "Obtener color del pixel en el que se encuentra el puntero",
-                "14": "Detectar si el puntero está en la pantalla",
-                "S": "Salir"
+                "1": "Click",
+                "2": "Double click",
+                "3": "Right click",
+                "4": "Middle click",
+                "5": "Drag",
+                "7": "Scroll until a condition is met",
+                "9": "Wander until a condition is met",
+                "8": "Get pointer coordinates and pixel color",
+                "9": "Check if pointer is inside the screen",
+                "E": "Exit"
             }
         )
         match selection:
-            case "1": test_move_pointer()
-            case "2": test_click()
-            case "3": test_double_click()
-            case "4": test_right_click()
-            case "5": test_middle_click()
-            case "6": test_hold_and_release_click()
-            case "7": test_drag()
-            case "8": test_scroll()
-            case "9": test_scroll_until()
-            case "10": test_wander()
-            case "11": test_wander_until()
-            case "12": test_get_pointer_coordinates()
-            case "13": test_get_pixel_color()
-            case "14": test_is_pointer_on_screen()
-            case "S": confirm_exit()
-
-def test_move_pointer():
-    def move():
-        physics = MousePhysics(
-            speed = 1250,
-            speed_variation = 0.1,
-            base_duration = 0.1,
-            base_duration_variation = 0.1,
-            inconsistency = 0.25,
-            target_radius = 25,
-            readjustment_duration_ratio = 0.25
-        )
-        mouse = Mouse(physics)
-        mouse.move(300, 600)
-    
-    start_stop_script(move, "Mover el puntero")
+            case "1": test_click()
+            case "2": test_double_click()
+            case "3": test_right_click()
+            case "4": test_middle_click()
+            case "5": test_drag()
+            case "6": test_scroll_until()
+            case "7": test_wander_until()
+            case "8": test_get_pointer_info()
+            case "9": test_is_pointer_on_screen()
+            case "E": confirm_exit()
 
 def test_click():
     def click():
-        physics = MousePhysics(
-            speed = 1250,
-            speed_variation = 0.1,
-            base_duration = 0.1,
-            base_duration_variation = 0.1,
-            inconsistency = 0.25,
-            target_radius = 25,
-            readjustment_duration_ratio = 0.25,
-            click_delay = 0.05,
-            click_delay_variation = 0.1,
-            click_duration = 0.05,
-            click_duration_variation = 0.1
-        )
-        mouse = Mouse(physics)
+        mouse_physics = MOUSE_NORMAL
+        mouse = Mouse(mouse_physics)
         mouse.click(300, 600)
     
-    start_stop_script(click, "Hacer clic")
+    start_stop_script(click, "Click")
 
 def test_double_click():
     def double_click():
-        physics = MousePhysics(
-            speed = 1250,
-            speed_variation = 0.1,
-            base_duration = 0.1,
-            base_duration_variation = 0.1,
-            inconsistency = 0.25,
-            target_radius = 25,
-            readjustment_duration_ratio = 0.25,
-            click_delay = 0.05,
-            click_delay_variation = 0.1,
-            click_duration = 0.05,
-            click_duration_variation = 0.1
-        )
-        mouse = Mouse(physics)
+        mouse_physics = MOUSE_NORMAL
+        mouse = Mouse(mouse_physics)
         mouse.double_click(300, 600)
     
-    start_stop_script(double_click, "Hacer doble clic")
+    start_stop_script(double_click, "Double click")
 
 def test_right_click():
     def right_click():
-        physics = MousePhysics(
-            speed = 1250,
-            speed_variation = 0.1,
-            base_duration = 0.1,
-            base_duration_variation = 0.1,
-            inconsistency = 0.25,
-            target_radius = 25,
-            readjustment_duration_ratio = 0.25,
-            click_delay = 0.05,
-            click_delay_variation = 0.1,
-            click_duration = 0.05,
-            click_duration_variation = 0.1
-        )
-        mouse = Mouse(physics)
+        mouse_physics = MOUSE_NORMAL
+        mouse = Mouse(mouse_physics)
         mouse.right_click(300, 600)
     
-    start_stop_script(right_click, "Hacer clic derecho")
+    start_stop_script(right_click, "Right click")
 
 def test_middle_click():
     def middle_click():
-        physics = MousePhysics(
-            speed = 1250,
-            speed_variation = 0.1,
-            base_duration = 0.1,
-            base_duration_variation = 0.1,
-            inconsistency = 0.25,
-            target_radius = 25,
-            readjustment_duration_ratio = 0.25,
-            click_delay = 0.05,
-            click_delay_variation = 0.1,
-            click_duration = 0.05,
-            click_duration_variation = 0.1
-        )
-        mouse = Mouse(physics)
+        mouse_physics = MOUSE_NORMAL
+        mouse = Mouse(mouse_physics)
         mouse.middle_click(300, 600)
     
-    start_stop_script(middle_click, "Hacer clic medio")
-
-def test_hold_and_release_click():
-    def hold_and_release_click():
-        physics = MousePhysics(
-            speed = 1250,
-            speed_variation = 0.1,
-            base_duration = 0.1,
-            base_duration_variation = 0.1,
-            inconsistency = 0.25,
-            target_radius = 25,
-            readjustment_duration_ratio = 0.25,
-            click_delay = 0.05,
-            click_delay_variation = 0.1,
-            click_duration = 1,
-            click_duration_variation = 0.1
-        )
-        mouse = Mouse(physics)
-        mouse.hold_click(300, 600).release_click(300, 600)
-    
-    start_stop_script(hold_and_release_click, "Mantener y soltar clic")
+    start_stop_script(middle_click, "Middle click")
 
 def test_drag():
     def drag():
-        physics = MousePhysics(
-            speed = 1250,
-            speed_variation = 0.1,
-            base_duration = 0.1,
-            base_duration_variation = 0.1,
-            inconsistency = 0.25,
-            target_radius = 25,
-            readjustment_duration_ratio = 0.25,
-            click_delay = 0.05,
-            click_delay_variation = 0.1,
-            click_duration = 0.05,
-            click_duration_variation = 0.1
-        )
-        mouse = Mouse(physics)
+        mouse_physics = MOUSE_NORMAL
+        mouse = Mouse(mouse_physics)
         mouse.drag_and_drop(300, 600, 600, 600)
     
-    start_stop_script(drag, "Arrastrar")
-
-def test_scroll():
-    def scroll():
-        physics = MousePhysics(
-            scroll_speed = 1000,
-            scroll_speed_variation = 0.1,
-            scroll_duration = 0,
-            scroll_duration_variation = 0,
-            scroll_step = 120,
-            scroll_pause_variation = 0.1
-        )
-        mouse = Mouse(physics)
-        mouse.scroll(1000).scroll(1000, "up").scroll(1000, "right").scroll(1000, "left")
-    
-    start_stop_script(scroll, "Desplazarse")
+    start_stop_script(drag, "Drag")
 
 def test_scroll_until():
     def scroll_until():
-        physics = MousePhysics(
-            scroll_speed = 1000,
-            scroll_speed_variation = 0.1,
-            scroll_duration = 0,
-            scroll_duration_variation = 0,
-            scroll_step = 120,
-            scroll_pause_variation = 0.1
-        )
-        mouse = Mouse(physics)
+        mouse_physics = MOUSE_NORMAL
+        mouse = Mouse(mouse_physics)
         mouse.scroll_until(condition_function = lambda: False, direction = "down", timeout = 2.5)
         mouse.scroll_until(condition_function = lambda: False, direction = "up", timeout = 2.5)
         mouse.scroll_until(condition_function = lambda: False, direction = "right", timeout = 2.5)
         mouse.scroll_until(condition_function = lambda: False, direction = "left", timeout = 2.5)
     
-    start_stop_script(scroll_until, "Desplazarse hasta que se cumpla una condición")
-
-def test_wander():
-    def wander():
-        physics = MousePhysics(
-            speed = 1250,
-            speed_variation = 0.1,
-            base_duration = 0.1,
-            base_duration_variation = 0.1,
-            inconsistency = 0.25,
-            target_radius = 25,
-            readjustment_duration_ratio = 0.25,
-            wander_delay = 2.5,
-            wander_delay_variation = 0.1,
-            wander_distance_ratio = 0.25,
-            wander_distance_ratio_variation = 0.1
-        )
-        mouse = Mouse(physics)
-        mouse.wander(10)
-    
-    start_stop_script(wander, "Deambular")
+    start_stop_script(scroll_until, "Scroll until a condition is met")
 
 def test_wander_until():
     def wander_until():
-        physics = MousePhysics(
-            speed = 1250,
-            speed_variation = 0.1,
-            base_duration = 0.1,
-            base_duration_variation = 0.1,
-            inconsistency = 0.25,
-            target_radius = 25,
-            readjustment_duration_ratio = 0.25,
-            wander_delay = 2.5,
-            wander_delay_variation = 0.1,
-            wander_distance_ratio = 0.25,
-            wander_distance_ratio_variation = 0.1
-        )
-        mouse = Mouse(physics)
+        mouse_physics = MOUSE_NORMAL
+        mouse = Mouse(mouse_physics)
         mouse.wander_until(condition_function = lambda: False, timeout = 10)
     
-    start_stop_script(wander_until, "Deambular hasta que se cumpla una condición")
+    start_stop_script(wander_until, "Wander until a condition is met")
 
-def test_get_pointer_coordinates():
-    def get_pointer_coordinates():
-        header("Coordenadas del puntero")
-        coordinates = MouseInfo().coordinates
-        x = MouseInfo().x
-        y = MouseInfo().y
-        print([("Coordenadas del puntero: ", {"bold": True}), (str(coordinates).replace(",", ";"), {})])
-        print([("Coordenada x: ", {"bold": True}), (f"{x}", {})])
-        print([("Coordenada y: ", {"bold": True}), (f"{y}", {})])
-        wait_for_key()
-    
-    start_stop_script(get_pointer_coordinates, "Obtener coordenadas del puntero")
-
-def test_get_pixel_color():
-    def get_pixel_color():
-        header("Color del pixel bajo el puntero")
-        pixel_color = MouseInfo().pixel_color()
-        hexadecimal_pixel_color = MouseInfo().pixel_color(format = "hexadecimal")
-        print("Color del pixel bajo el puntero:", bold = True)
-        print([("    - RGB:", {"bold": True}), (f" ■ {pixel_color}", {"color": hexadecimal_pixel_color})])
+def test_get_pointer_info():
+    def get_pointer_info():
+        mouse_info = MouseInfo()
+        header("Pointer information")
+        coordinates = mouse_info.coordinates
+        x = mouse_info.x
+        y = mouse_info.y
+        pixel_color = mouse_info.pixel_color()
+        hexadecimal_pixel_color = mouse_info.pixel_color(format = "hexadecimal")
+        print([("Pointer coordinates: ", {"bold": True}), (str(coordinates).replace(",", ";"), {})])
+        print([("    - x coordinate: ", {"bold": True}), (f"{x}", {})])
+        print([("    - y coordinate: ", {"bold": True}), (f"{y}", {})])
+        print("\nPixel color under pointer:", bold = True)
+        print([("    - RGB: ", {"bold": True}), (f"■ {pixel_color}", {"color": hexadecimal_pixel_color})])
         print([
             ("    - Hexadecimal: ", {"bold": True}),
-            (f" ■ {hexadecimal_pixel_color}", {"color": hexadecimal_pixel_color})
+            (f"■ {hexadecimal_pixel_color}", {"color": hexadecimal_pixel_color})
         ])
         wait_for_key()
     
-    start_stop_script(get_pixel_color, "Obtener color del pixel bajo el puntero")
+    start_stop_script(get_pointer_info, "Get pointer information")
 
 def test_is_pointer_on_screen():
     def is_pointer_on_screen():
-        header("¿Está el puntero dentro de la pantalla?")
+        mouse_info = MouseInfo()
+        header("Is the pointer inside the screen?")
+        is_on_screen = mouse_info.on_screen(monitor_index = 0)
         print([
-            ("El puntero ", {}),
+            ("The pointer ", {}),
             (
-                f"{"está" if MouseInfo().on_screen else "no está"}",
-                {"color": f"{"#00ff00" if MouseInfo().on_screen else "#ff0000"}"}
+                f"{"is" if is_on_screen else "is not"}",
+                {"color": f"{"#00ff00" if is_on_screen else "#ff0000"}"}
             ),
-            (" dentro de la pantalla", {})
+            (" inside the screen", {})
         ], alignment = "center")
         wait_for_key()
     
-    start_stop_script(is_pointer_on_screen, "Detectar si el puntero está dentro de la pantalla")
+    start_stop_script(is_pointer_on_screen, "Check if pointer is inside the screen")
 
 if __name__ == "__main__": main()

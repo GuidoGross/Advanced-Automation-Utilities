@@ -1,7 +1,8 @@
-from typing import Union
-from .._utilities import _validate_options
+from .._utilities import _validate_options, _validate_between_range, _validate_region
 from ..backend.windows._screen import _get_screen_resolution, _get_pixel_color, _get_work_area
 from .._typing import ColorFormat
+from typing import Union, Optional
+import mss
 
 class ScreenInfo:
     """
@@ -108,6 +109,92 @@ class ScreenInfo:
         match format.lower():
             case "rgb": return rgb_color
             case "hexadecimal": return hexadecimal_color
+
+    def pixel_matches_color(
+        self, x: int, y: int, expected_color: Union[tuple[int, int, int], str], tolerance: float = 1
+    ) -> bool:
+        """
+        **`ScreenInfo().pixel_matches_color()`:** Checks if a pixel matches a specific color with a given tolerance.
+
+        **Description:**
+
+        Compares the color of the pixel at the specified coordinates with the expected color. If a tolerance is provided, the function will return True if all RGB channels are within the tolerance range.
+
+        **Arguments:**
+
+        - **`x` (`int`)**
+        - **`y` (`int`)**
+        - **`expected_color` (`Union[tuple[int, int, int], str]`):** Format: (R, G, B) or "#RRGGBB".
+        - **`tolerance` (`float`):** Must be ≥ 0 and ≤ 1.
+
+        **Returns:**
+
+        **`bool`**
+
+        **Example:**
+
+        ```python
+        matches = ScreenInfo().pixel_matches_color(
+            x = 250, y = 500, expected_color = "#FFFFFF", tolerance = 1
+        )
+        ```
+        """
+        _validate_between_range(0, 1, tolerance = tolerance)
+        if isinstance(expected_color, str):
+            expected_color = expected_color.lstrip("#")
+            expected_color = tuple(int(expected_color[i:i + 2], 16) for i in (0, 2, 4))
+        actual_color = self.pixel_color(x, y, format = "rgb")
+        tolerance_value = (1 - tolerance) * 255
+        matches = all(
+            abs(actual - expected) <= tolerance_value
+            for actual, expected in zip(actual_color, expected_color)
+        )
+        return matches
+
+    def on_screen(
+        self, x: int, y: int, region: Optional[tuple[int, int, int, int]] = None, monitor_index: int = 0
+    ) -> bool:
+        """
+        **`ScreenInfo().on_screen()`:** Checks if the given coordinates are within the bounds of a screen or region.
+
+        **Description:**
+
+        Verifies if the specified (x, y) coordinates fall inside the designated screen or region.
+
+        **Arguments:**
+
+        - **`x` (`int`)**
+        - **`y` (`int`)**
+        - **`region` (`Optional[tuple[int, int, int, int]]`):** Format: (left, top, right, bottom).
+        - **`monitor_index` (`int`)**
+
+        **Returns:**
+
+        **`bool`**
+
+        **Example:**
+
+        ```python
+        is_visible = ScreenInfo().on_screen(x = 250, y = 500, monitor_index = 0)
+        ```
+        """
+        if region is not None:
+            _validate_region(region)
+        _validate_between_range(monitor_index = monitor_index)
+        with mss.mss() as screen_capture_tool:
+            monitor = screen_capture_tool.monitors[monitor_index]
+            if region is not None:
+                left = monitor["left"] + region[0]
+                top = monitor["top"] + region[1]
+                width = region[2] - region[0]
+                height = region[3] - region[1]
+            else:
+                left = monitor["left"]
+                top = monitor["top"]
+                width = monitor["width"]
+                height = monitor["height"]
+                
+        return left <= x < left + width and top <= y < top + height
     
     @property
     def work_area(self) -> tuple[int, int, int, int]:

@@ -337,10 +337,10 @@ class Mouse(_QueueableController):
         **Arguments:**
 
         - **`condition_function` (`Callable[[], bool]`)**
-        - **`amount` (`int`)**
+        - **`amount` (`int`):** Must be ≥ 0.
         - **`direction` (`str`):** Valid options: "up", "down", "left", "right".
-        - **`timeout` (`float`)**
-        - **`poll_interval` (`float`)**
+        - **`timeout` (`float`):** Seconds. Must be ≥ 0.
+        - **`poll_interval` (`float`):** Seconds. Must be > 0.
 
         **Returns:**
 
@@ -424,8 +424,8 @@ class Mouse(_QueueableController):
         - **`condition_function` (`Callable[[], bool]`)**
         - **`region` (`Optional[tuple[int, int, int, int]]`):** Format: (left, top, right, bottom).
         - **`maximum_steps` (`Optional[int]`):** Must be ≥ 0.
-        - **`timeout` (`float`)**
-        - **`poll_interval` (`float`)**
+        - **`timeout` (`float`):** Seconds. Must be ≥ 0.
+        - **`poll_interval` (`float`):** Seconds. Must be > 0.
 
         **Returns:**
 

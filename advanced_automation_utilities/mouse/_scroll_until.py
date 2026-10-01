@@ -27,7 +27,7 @@ class _ScrollUntil(_MouseAction):
         )
         _validate_options(self.direction, ["up", "down", "left", "right"], "scroll direction")
     
-    def execute(self):
+    def execute(self, stop_event = None):
         stop_scroll = False
         timing = Timing()
         timing_info = TimingInfo()
@@ -50,6 +50,7 @@ class _ScrollUntil(_MouseAction):
         condition_met = False
         try:
             while self.timeout == 0 or timing_info.time - start_time < self.timeout:
+                if stop_event is not None and stop_event.is_set(): break
                 if self.condition_function():
                     condition_met = True
                     break

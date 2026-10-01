@@ -94,8 +94,8 @@ The full documentation, API references, and examples are in the **[GitHub Wiki](
 - **[Keyboard](https://github.com/GuidoGross/Advanced-Automation-Utilities/wiki/Keyboard)**: typing, hotkeys, blocking and physics.
 - **[Screen](https://github.com/GuidoGross/Advanced-Automation-Utilities/wiki/Screen)**: OCR text reading, image location, and pixel colors.
 - **[Timing](https://github.com/GuidoGross/Advanced-Automation-Utilities/wiki/Timing)**: smart delays, random delays, and performance measuring.
-- **[System](https://github.com/GuidoGross/Advanced-Automation-Utilities/wiki/System)**: process management, window management and kill-switch.
 - **[Sound](https://github.com/GuidoGross/Advanced-Automation-Utilities/wiki/Sound)**: system sounds, TTS and audio files.
+- **[System](https://github.com/GuidoGross/Advanced-Automation-Utilities/wiki/System)**: process management, window management and kill-switch.
 - **[Asynchrony](https://github.com/GuidoGross/Advanced-Automation-Utilities/wiki/Asynchrony)**: non-blocking parallel executions.
 - **[Physics](https://github.com/GuidoGross/Advanced-Automation-Utilities/wiki/Physics)**: human-like mouse and keyboard behaviors.
 - **[Exceptions](https://github.com/GuidoGross/Advanced-Automation-Utilities/wiki/Exceptions)**: library-specific errors.

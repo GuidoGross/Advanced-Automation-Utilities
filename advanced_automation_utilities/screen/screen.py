@@ -1,7 +1,9 @@
 from ._locate_image import _LocateImage
 from ._read_text import _ReadText
 from ._locate_text import _LocateText
-from typing import Optional
+from ._take_screenshot import _TakeScreenshot
+from typing import Optional, Union
+import mss.base
 
 class Screen:
     """
@@ -9,13 +11,51 @@ class Screen:
 
     Advanced computer vision leveraging OpenCV and native Windows OCR. Read text from specific regions, locate UI elements via template matching, and interact with pixel-perfect accuracy across multi-monitor setups without requiring external cloud services.
     """
+    def take_screenshot(
+        self,
+        region: Optional[tuple[int, int, int, int]] = None,
+        monitor_index: int = 0,
+        save_path: Optional[str] = None
+    ) -> mss.base.ScreenShot:
+        """
+        **`Screen().take_screenshot()`:** Takes a screenshot of the screen or a specific region.
+
+        **Description:**
+
+        Takes a blazing-fast screenshot using `mss`. Optionally saves it to a file.
+
+        **Arguments:**
+
+        - **`region` (`Optional[tuple[int, int, int, int]]`):** Format: (left, top, right, bottom).
+        - **`monitor_index` (`int`)**
+        - **`save_path` (`Optional[str]`):** Must be a valid file path.
+
+        **Returns:**
+
+        **`mss.base.ScreenShot`**
+
+        **Example:**
+
+        ```python
+        screenshot = Screen().take_screenshot(
+            region = (250, 250, 500, 500),
+            monitor_index = 0,
+            save_path = "screenshot.png"
+        )
+        ```
+        """
+        return _TakeScreenshot(
+            region = region, monitor_index = monitor_index, save_path = save_path
+        ).execute()
+
     def locate_image(
         self,
         image_path: str,
         confidence: float = 0.9,
+        limit: int = 1,
         region: Optional[tuple[int, int, int, int]] = None,
         monitor_index: int = 0
-    ) -> tuple[Optional[int], Optional[int]]:
+    ) -> Union[tuple[Optional[int], Optional[int]], list[tuple[int, int]]]:
         """
         **`Screen().locate_image()`:** Searches for a template image on the screen and returns its central coordinates.
 
@@ -27,12 +67,13 @@ class Screen:
 
         - **`image_path` (`str`):** Must be a valid file path.
         - **`confidence` (`float`):** Must be ≥ 0 and ≤ 1.
+        - **`limit` (`int`):** Must be ≥ 0.
         - **`region` (`Optional[tuple[int, int, int, int]]`):** Format: (left, top, right, bottom).
         - **`monitor_index` (`int`)**
 
         **Returns:**
 
-        **`tuple[Optional[int], Optional[int]]`:** Format: (x, y).
+        **`Union[tuple[Optional[int], Optional[int]], list[tuple[int, int]]]`:** Format: (x, y) or a list of them.
 
         **Example:**
 
@@ -40,6 +81,7 @@ class Screen:
         x, y = Screen().locate_image(
             image_path = "button.png",
             confidence = 0.9,
+            limit = 1,
             region = (250, 250, 500, 500),
             monitor_index = 0
         )
@@ -48,6 +90,7 @@ class Screen:
         return _LocateImage(
             image_path = image_path,
             confidence = confidence,
+            limit = limit,
             region = region,
             monitor_index = monitor_index
         ).execute()

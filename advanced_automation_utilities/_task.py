@@ -9,6 +9,7 @@ class Task:
     """
     def __init__(self) -> None:
         self._actions: list[Any] = []
+        self._cancel_event = threading.Event()
         self._done_event = threading.Event()
         self._exception: Exception | None = None
         self._cancelled = False
@@ -59,3 +60,25 @@ class Task:
         ```
         """
         self._cancelled = True
+        self._cancel_event.set()
+    
+    @property
+    def is_done(self) -> bool:
+        """
+        **Description:**
+
+        Checks if the task is complete or cancelled.
+
+        **Returns:**
+
+        **`bool`**
+
+        **Example:**
+
+        ```python
+        with keyboard.asynchronous() as keyboard_task: keyboard.write("Hello, world!")
+        with mouse.asynchronous() as mouse_task:
+            mouse.wander_until(condition_function = lambda: keyboard_task.is_done)
+        ```
+        """
+        return self._done_event.is_set()

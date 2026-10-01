@@ -95,7 +95,7 @@ class _QueueableController:
         """
         **Description:**
 
-        Halts execution until a given function or lambda condition evaluates to True.
+        Pauses execution until a given function or lambda condition evaluates to True.
         Can be chained and queued asynchronously.
 
         **Arguments:**
@@ -142,7 +142,10 @@ class _QueueableController:
             try:
                 for action in task._actions:
                     if task._cancelled or KILL_SWITCH_EVENT.is_set(): break
-                    result = action.execute()
+                    import inspect
+                    if "stop_event" in inspect.signature(action.execute).parameters:
+                        result = action.execute(stop_event = task._cancel_event)
+                    else: result = action.execute()
                     task.results.append(result)
                     task.last_result = result
             except BaseException as error:

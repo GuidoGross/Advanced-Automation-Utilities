@@ -7,4 +7,6 @@ class _Wait(_TimingAction):
         _validate_between_range(duration = duration)
         self.duration = duration
     
-    def execute(self): KILL_SWITCH_EVENT.wait(timeout = self.duration)
+    def execute(self, stop_event = None):
+        if stop_event is not None: stop_event.wait(timeout = self.duration)
+        else: KILL_SWITCH_EVENT.wait(timeout = self.duration)

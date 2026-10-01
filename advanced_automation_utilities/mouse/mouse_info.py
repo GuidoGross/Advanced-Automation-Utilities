@@ -1,7 +1,7 @@
 from advanced_automation_utilities.screen import ScreenInfo
 from ..backend.windows._mouse import _get_cursor_position
 from .._typing import ColorFormat
-import mss
+from typing import Optional, Union
 
 class MouseInfo:
     """
@@ -96,14 +96,20 @@ class MouseInfo:
         """
         return ScreenInfo().pixel_color(self.x, self.y, format = format)
     
-    @property
-    def on_screen(self) -> bool:
+    def pixel_matches_color(
+        self, expected_color: Union[tuple[int, int, int], str], tolerance: float = 1
+    ) -> bool:
         """
-        **`MouseInfo().on_screen`:** Checks if the pointer is currently within the bounds of any screen.
+        **`MouseInfo().pixel_matches_color()`:** Checks if the pixel currently under the pointer matches a specific color.
 
         **Description:**
 
-        Verifies if the current mouse coordinates fall inside the desktop's virtual screen boundaries. Useful for multi-monitor setups.
+        Takes a micro-screenshot of the exact pixel the mouse is hovering over and compares it with the expected color. If a tolerance is provided, the function will return True if all RGB channels are within the tolerance range.
+
+        **Arguments:**
+
+        - **`expected_color` (`Union[tuple[int, int, int], str]`):** Format: (R, G, B) or "#RRGGBB".
+        - **`tolerance` (`float`):** Must be ≥ 0 and ≤ 1.
 
         **Returns:**
 
@@ -112,16 +118,40 @@ class MouseInfo:
         **Example:**
 
         ```python
-        is_pointer_on_screen = MouseInfo().on_screen
+        matches = MouseInfo().pixel_matches_color(expected_color = "#FFFFFF", tolerance = 1)
+        ```
+        """
+        return ScreenInfo().pixel_matches_color(
+            x = self.x, y = self.y, expected_color = expected_color, tolerance = tolerance
+        )
+    
+    def on_screen(
+        self, region: Optional[tuple[int, int, int, int]] = None, monitor_index: int = 0
+    ) -> bool:
+        """
+        **`MouseInfo().on_screen()`:** Checks if the pointer is currently within the bounds of a screen or region.
+
+        **Description:**
+
+        Verifies if the current mouse coordinates fall inside the designated screen or region. Useful for multi-monitor setups.
+        
+        **Arguments:**
+
+        - **`region` (`Optional[tuple[int, int, int, int]]`):** Format: (left, top, right, bottom).
+        - **`monitor_index` (`int`)**
+
+        **Returns:**
+
+        **`bool`**
+
+        **Example:**
+
+        ```python
+        is_pointer_on_screen = MouseInfo().on_screen(monitor_index = 0)
         ```
 
         ### **Keyboard Utilities (keyboard)**
 
         **Low-level keyboard interaction and information retrieval:**
         """
-        x, y = self.coordinates
-        with mss.mss() as screen_capture_tool:
-            virtual = screen_capture_tool.monitors[0]
-            return (
-                virtual["left"] <= x < virtual["left"] + virtual["width"] and virtual["top"] <= y < virtual["top"] + virtual["height"]
-            )
+        return ScreenInfo().on_screen(self.x, self.y, region = region, monitor_index = monitor_index)
