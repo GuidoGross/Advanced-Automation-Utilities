@@ -26,7 +26,7 @@ with mouse.asynchronous() as mouse_task:
     mouse.scroll(amount = 1000, direction = "down")
 ```
 
-## **Embeded timing actions**
+## **Embedded timing actions**
 
 Because every controller is queueable, they all inherit basic timing capabilities. These allow you to inject precise pauses directly into your asynchronous chains.
 
