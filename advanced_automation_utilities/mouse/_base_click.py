@@ -1,22 +1,14 @@
 from ._mouse_action import _MouseAction
 from ._move import _Move
 from .._utilities import _validate_options, _apply_variation
-from .._typing import MouseButton
 from ..timing import Timing
-from typing import Optional
 
 class _BaseClick(_MouseAction):
-    def __init__(
-        self,
-        x: Optional[int] = None,
-        y: Optional[int] = None,
-        button: MouseButton = "left",
-        physics = None
-    ):
+    def __init__(self, x = None, y = None, button = "left", physics = None):
         super().__init__(physics = physics)
         self.x = x
         self.y = y
-        self.button = button
+        self.button = button.lower() if isinstance(button, str) else button
         _validate_options(self.button, ["left", "right", "middle"], "mouse button")
     
     def _move_if_needed(self):

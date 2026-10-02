@@ -9,10 +9,10 @@ class Task:
     """
     def __init__(self) -> None:
         self._actions: list[Any] = []
-        self._cancel_event = threading.Event()
-        self._done_event = threading.Event()
-        self._exception: Exception | None = None
-        self._cancelled = False
+        self._cancel_event: threading.Event = threading.Event()
+        self._done_event: threading.Event = threading.Event()
+        self._exception: BaseException | None = None
+        self._cancelled: bool = False
         self.results: list[Any] = []
         self.last_result: Any = None
     

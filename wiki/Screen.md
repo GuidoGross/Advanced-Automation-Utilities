@@ -203,7 +203,7 @@ Returns the color of the pixel at the specified coordinates on RGB or hexadecima
 
 - **`x` (`int`)**
 - **`y` (`int`)**
-- **`format` (`str`):** Valid options: "rgb", "hexadecimal".
+- **`format` (`str`):** Valid options: "rgb", "hexadecimal". Matching is case-insensitive.
 
 **Returns:**
 

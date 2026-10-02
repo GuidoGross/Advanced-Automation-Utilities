@@ -78,7 +78,7 @@ class Mouse(_QueueableController):
 
         - **`x` (`Optional[int]`)**
         - **`y` (`Optional[int]`)**
-        - **`button` (`str`):** Valid options: "left", "right", "middle".
+        - **`button` (`str`):** Valid options: "left", "right", "middle". Matching is case-insensitive.
 
         **Returns:**
 
@@ -110,7 +110,7 @@ class Mouse(_QueueableController):
 
         - **`x` (`Optional[int]`)**
         - **`y` (`Optional[int]`)**
-        - **`button` (`str`):** Valid options: "left", "right", "middle".
+        - **`button` (`str`):** Valid options: "left", "right", "middle". Matching is case-insensitive.
 
         **Returns:**
 
@@ -144,7 +144,7 @@ class Mouse(_QueueableController):
 
         - **`x` (`Optional[int]`)**
         - **`y` (`Optional[int]`)**
-        - **`button` (`str`):** Valid options: "left", "right", "middle".
+        - **`button` (`str`):** Valid options: "left", "right", "middle". Matching is case-insensitive.
         - **`clicks` (`int`):** Must be ≥ 0.
 
         **Returns:**
@@ -179,7 +179,7 @@ class Mouse(_QueueableController):
 
         - **`x` (`Optional[int]`)**
         - **`y` (`Optional[int]`)**
-        - **`button` (`str`):** Valid options: "left", "right", "middle".
+        - **`button` (`str`):** Valid options: "left", "right", "middle". Matching is case-insensitive.
 
         **Returns:**
 
@@ -265,7 +265,7 @@ class Mouse(_QueueableController):
         - **`start_y` (`int`)**
         - **`end_x` (`int`)**
         - **`end_y` (`int`)**
-        - **`button` (`str`):** Valid options: "left", "right", "middle".
+        - **`button` (`str`):** Valid options: "left", "right", "middle". Matching is case-insensitive.
 
         **Returns:**
 
@@ -303,7 +303,7 @@ class Mouse(_QueueableController):
         **Arguments:**
 
         - **`amount` (`int`):** Must be ≥ 0.
-        - **`direction` (`str`):** Valid options: "up", "down", "left", "right".
+        - **`direction` (`str`):** Valid options are "up", "down", "left", or "right". Matching is case-insensitive.
 
         **Returns:**
 
@@ -338,7 +338,7 @@ class Mouse(_QueueableController):
 
         - **`condition_function` (`Callable[[], bool]`)**
         - **`amount` (`int`):** Must be ≥ 0.
-        - **`direction` (`str`):** Valid options: "up", "down", "left", "right".
+        - **`direction` (`str`):** Valid options are "up", "down", "left", or "right". Matching is case-insensitive.
         - **`timeout` (`float`):** Seconds. Must be ≥ 0.
         - **`poll_interval` (`float`):** Seconds. Must be > 0.
 

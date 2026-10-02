@@ -14,5 +14,5 @@ class _TakeScreenshot(_ScreenAction):
         if self.save_path is not None and not isinstance(self.save_path, str):
             raise ValueError("Save path must be a string.")
             
-    def execute(self) -> mss.base.ScreenShot:
+    def execute(self):
         return _take_screenshot(self.region, self.monitor_index, self.save_path)

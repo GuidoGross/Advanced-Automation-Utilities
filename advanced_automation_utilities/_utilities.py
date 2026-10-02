@@ -19,12 +19,12 @@ def _validate_between_range(minimum = 0, maximum = math.inf, **kwargs):
                     raise ValueError(f"{formatted_name} must be greater than or equal to {minimum}.")
                 case _: raise ValueError(f"{formatted_name} must be between {minimum} and {maximum}.")
 
-def _validate_options(value, valid_options: list[str], name: str = "Option"):
+def _validate_options(value, valid_options, name = "Option"):
     if value not in valid_options:
         options = ", ".join([f"\"{option}\"" for option in valid_options])
         raise ValueError(f"Invalid {name.lower()}. Valid options: {options}.")
 
-def _validate_file_exists(file_path: str, name: str = "File"):
+def _validate_file_exists(file_path, name = "File"):
     if not os.path.exists(file_path):
         raise FileNotFoundError(f"{name} \"{file_path}\" does not exist or could not be found.")
 

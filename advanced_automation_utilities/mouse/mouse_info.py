@@ -82,7 +82,7 @@ class MouseInfo:
 
         **Arguments:**
 
-        - **`format` (`str`):** Valid options: "rgb", "hexadecimal".
+        - **`format` (`str`):** Valid options: "rgb", "hexadecimal". Matching is case-insensitive.
 
         **Returns:**
 

@@ -1,5 +1,4 @@
 from ._mouse_action import _MouseAction
-from typing import Optional
 from ._move import _Move
 from .mouse_info import MouseInfo
 from .._utilities import _validate_region, _validate_between_range, _apply_variation
@@ -15,9 +14,9 @@ class _Wander(_MouseAction):
     
     def __init__(
         self,
-        duration: float,
-        region: Optional[tuple[int, int, int, int]] = None,
-        maximum_steps: Optional[int] = None,
+        duration,
+        region = None,
+        maximum_steps = None,
         physics = None
     ):
         super().__init__(physics = physics)

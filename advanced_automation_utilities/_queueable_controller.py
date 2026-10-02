@@ -11,7 +11,7 @@ import threading
 
 class _QueueableController:
     def __init__(self):
-        self._queue_mode = False
+        self._queue_mode: bool = False
         self._queue: list[Any] = []
         self._task_queue: queue.Queue[Task] = queue.Queue()
         self._worker_thread: threading.Thread | None = None

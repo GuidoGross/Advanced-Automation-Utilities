@@ -59,7 +59,7 @@ class Sound(_QueueableController):
 
         **Arguments:**
 
-        - **`sound_type` (`str`):** Valid options: "info", "warning", "error", "question", "ok".
+        - **`sound_type` (`str`):** Valid options: "info", "warning", "error", "question", "ok". Matching is case-insensitive.
 
         **Returns:**
 
