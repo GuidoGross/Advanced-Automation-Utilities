@@ -1,6 +1,10 @@
+<div align = "center">
+
 # **Contributing**
 
-Thank you for considering a contribution to **Advanced Automation Utilities**. Contributions can include bug reports, documentation improvements, examples, and code changes.
+**Thank you for considering a contribution to Advanced Automation Utilities. Contributions can include bug reports, documentation improvements, examples, and code changes.**
+
+</div>
 
 ## **Before you start**
 

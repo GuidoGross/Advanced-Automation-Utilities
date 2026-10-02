@@ -1,4 +1,10 @@
+<div align = "center">
+
 # **Security**
+
+**This policy explains how to report security vulnerabilities in Advanced Automation Utilities and outlines the project's approach to responsible disclosure.**
+
+</div>
 
 ## **Reporting a vulnerability**
 

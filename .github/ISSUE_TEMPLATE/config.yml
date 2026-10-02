@@ -1,0 +1,6 @@
+blank_issues_enabled: true
+contact_links:
+    -
+        name: Security policy
+        url: https://github.com/GuidoGross/Advanced_Automation_Utilities/blob/main/SECURITY.md
+        about: Read how to report a security vulnerability privately.

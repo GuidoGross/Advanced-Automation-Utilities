@@ -1,4 +1,10 @@
+<div align = "center">
+
 # **Code of Conduct**
+
+**This Code of Conduct sets expectations for respectful participation in the Advanced Automation Utilities community and explains how concerns can be reported and addressed.**
+
+</div>
 
 ## **Our commitment**
 
