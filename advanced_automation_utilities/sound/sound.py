@@ -1,6 +1,6 @@
 from ._play_beep_sound import _PlayBeepSound
-from ._play_audio import _PlayAudio
 from ._play_system_sound import _PlaySystemSound
+from ._play_audio import _PlayAudio
 from ._speak import _Speak
 from .._queueable_controller import _QueueableController
 from .._typing import SystemSound
@@ -49,30 +49,6 @@ class Sound(_QueueableController):
         """
         return self._execute_or_queue(_PlayBeepSound(frequency = frequency, duration = duration))
     
-    def play_audio(self, file_path: str) -> Self:
-        """
-        **`Sound().play_audio()`:** Plays an audio file from the file system.
-
-        **Description:**
-
-        Uses the native Windows MCI API for lightweight audio playback.
-
-        **Arguments:**
-
-        - **`file_path` (`str`)**
-
-        **Returns:**
-
-        **`Self`**
-
-        **Example:**
-
-        ```python
-        Sound().play_audio(file_path = "alert.wav")
-        ```
-        """
-        return self._execute_or_queue(_PlayAudio(file_path = file_path))
-    
     def play_system_sound(self, sound_type: SystemSound) -> Self:
         """
         **`Sound().play_system_sound()`:** Plays a default Windows system sound.
@@ -96,6 +72,30 @@ class Sound(_QueueableController):
         ```
         """
         return self._execute_or_queue(_PlaySystemSound(sound_type = sound_type))
+
+    def play_audio(self, file_path: str) -> Self:
+            """
+            **`Sound().play_audio()`:** Plays an audio file from the file system.
+    
+            **Description:**
+    
+            Uses the native Windows MCI API for lightweight audio playback.
+    
+            **Arguments:**
+    
+            - **`file_path` (`str`)**
+    
+            **Returns:**
+    
+            **`Self`**
+    
+            **Example:**
+    
+            ```python
+            Sound().play_audio(file_path = "alert.wav")
+            ```
+            """
+            return self._execute_or_queue(_PlayAudio(file_path = file_path))
     
     def speak(self, text: str) -> Self:
         """
