@@ -270,7 +270,7 @@ Executes in a loop, scrolling step by step while periodically until either the `
 - **`condition_function` (`Callable[[], bool]`)**
 - **`amount` (`int`)**
 - **`direction` (`str`):** Valid options: "up", "down", "left", "right". Matching is case-insensitive.
-- **`timeout` (`float`)**
+- **`timeout` (`float`):** Seconds. Must be ≥ 0.
 - **`poll_interval` (`float`)**
 
 **Returns:**
@@ -333,7 +333,7 @@ Executes the wander logic until the `condition_function` is met or the `maximum_
 - **`condition_function` (`Callable[[], bool]`)**
 - **`region` (`Optional[tuple[int, int, int, int]]`):** Format: (left, top, right, bottom).
 - **`maximum_steps` (`Optional[int]`):** Must be ≥ 0.
-- **`timeout` (`float`)**
+- **`timeout` (`float`):** Seconds. Must be ≥ 0.
 - **`poll_interval` (`float`)**
 
 **Returns:**
