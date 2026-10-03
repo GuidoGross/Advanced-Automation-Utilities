@@ -46,4 +46,4 @@ python -m pip install -e .
 
 ## **Legal**
 
-By submitting a contribution to this repository, you agree that the contribution may be distributed under the GNU General Public License, version 3 or any later version (GPL-3.0-or-later), the same license as this library. You confirm that you have the right to submit the contribution under these terms. You retain copyright in your contribution; this does not transfer ownership to the project maintainer.
+By submitting a contribution to this repository, you agree that the contribution may be distributed under the GNU Affero General Public License, version 3 or any later version (AGPL-3.0-or-later), the same license as this library. You confirm that you have the right to submit the contribution under these terms. You retain copyright in your contribution; this does not transfer ownership to the project maintainer.
